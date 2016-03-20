@@ -106,6 +106,30 @@ class AuthTest extends TestCase
         new Auth(['type' => 'hash', 'username' => 'USERNAME', 'password' => 'PASSWORD']);
     }
 
+    public function getAuthTypeProvider()
+    {
+        $data = $this->validateAuthTypeProvider();
+        foreach ($data as $name => $params) {
+            $data[$name][] = $name; // data set name and authentication method type are same
+        }
+        return $data;
+    }
+
+    /**
+     * @param array $config
+     * @param string $expectedType
+     * @covers       kdn\cpanel\api\Auth::__construct
+     * @covers       kdn\cpanel\api\Auth::getAuthType
+     * @uses         kdn\cpanel\api\Auth::getMethods
+     * @uses         kdn\cpanel\api\Auth::validateAuthType
+     * @dataProvider getAuthTypeProvider
+     * @small
+     */
+    public function testGetAuthType($config, $expectedType)
+    {
+        $this->assertEquals($expectedType, (new Auth($config))->getAuthType());
+    }
+
     public function determineAuthTypeProvider()
     {
         return [
@@ -123,13 +147,14 @@ class AuthTest extends TestCase
      * @param string $expectedType
      * @covers       kdn\cpanel\api\Auth::__construct
      * @covers       kdn\cpanel\api\Auth::determineAuthType
+     * @uses         kdn\cpanel\api\Auth::getAuthType
      * @uses         kdn\cpanel\api\Auth::getMethods
      * @dataProvider determineAuthTypeProvider
      * @small
      */
     public function testDetermineAuthType($config, $expectedType)
     {
-        $this->assertEquals($expectedType, (new Auth($config))->type);
+        $this->assertEquals($expectedType, (new Auth($config))->getAuthType());
     }
 
     /**

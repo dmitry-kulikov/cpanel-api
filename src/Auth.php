@@ -11,11 +11,6 @@ use kdn\cpanel\api\exceptions\InvalidConfigException;
 class Auth extends Object
 {
     /**
-     * @var string authentication method type
-     */
-    public $type;
-
-    /**
      * @var string hash used by Hash authentication method
      */
     public $hash;
@@ -34,6 +29,11 @@ class Auth extends Object
      * @var string name of user for which session should be created in Single Sign On authentication method
      */
     public $targetUsername;
+
+    /**
+     * @var string authentication method type
+     */
+    protected $type;
 
     /**
      * @inheritdoc
@@ -91,6 +91,15 @@ class Auth extends Object
         if (!isset($this->type)) {
             throw new InvalidConfigException("Can't determine authentication method.\n" . static::getMethodsInfo());
         }
+    }
+
+    /**
+     * Get authentication method type.
+     * @return string authentication method type.
+     */
+    public function getAuthType()
+    {
+        return $this->type;
     }
 
     /**
