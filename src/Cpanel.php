@@ -2,6 +2,11 @@
 
 namespace kdn\cpanel\api;
 
+use kdn\cpanel\api\apis\Api2;
+use kdn\cpanel\api\apis\Uapi;
+use kdn\cpanel\api\apis\WhmApi0;
+use kdn\cpanel\api\apis\WhmApi1;
+
 /**
  * Class Cpanel.
  * @package kdn\cpanel\api

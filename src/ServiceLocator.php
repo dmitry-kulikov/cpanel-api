@@ -19,12 +19,11 @@ use kdn\cpanel\api\exceptions\UnknownPropertyException;
  * $locator->setDefinitions(
  *     [
  *         'api2' => [
- *             'class' => 'kdn\cpanel\api\Api2',
+ *             'class' => 'kdn\cpanel\api\apis\Api2',
  *             'dnsLookup' => 'kdn\cpanel\api\modules\api2\DnsLookup',
  *         ],
  *         'uapi' => [
- *             'class' => 'kdn\cpanel\api\Uapi',
- *             'request' => 'kdn\cpanel\api\requests\UapiRequest',
+ *             'class' => 'kdn\cpanel\api\apis\Uapi',
  *         ],
  *     ]
  * );
@@ -130,14 +129,13 @@ class ServiceLocator extends Object
      *
      * ```php
      * // a class name
-     * $locator->set('uapi', 'kdn\cpanel\api\Uapi');
+     * $locator->set('uapi', 'kdn\cpanel\api\apis\Uapi');
      *
      * // a configuration array
      * $locator->set(
      *     'api2',
      *     [
-     *         'class' => 'kdn\cpanel\api\Api2',
-     *         'request' => 'kdn\cpanel\api\requests\Api2Request',
+     *         'class' => 'kdn\cpanel\api\apis\Api2',
      *         'dnsLookup' => 'kdn\cpanel\api\modules\api2\DnsLookup',
      *     ]
      * );
@@ -146,12 +144,12 @@ class ServiceLocator extends Object
      * $locator->set(
      *     'uapi',
      *     function ($params) {
-     *         return new \kdn\cpanel\api\Uapi;
+     *         return new \kdn\cpanel\api\apis\Uapi;
      *     }
      * );
      *
      * // an instance
-     * $locator->set('uapi', new \kdn\cpanel\api\Uapi);
+     * $locator->set('uapi', new \kdn\cpanel\api\apis\Uapi);
      * ```
      *
      * If a service definition with the same ID already exists, it will be overwritten.
@@ -224,12 +222,11 @@ class ServiceLocator extends Object
      * ```php
      * [
      *     'api2' => [
-     *         'class' => 'kdn\cpanel\api\Api2',
+     *         'class' => 'kdn\cpanel\api\apis\Api2',
      *         'dnsLookup' => 'kdn\cpanel\api\modules\api2\DnsLookup',
      *     ],
      *     'uapi' => [
-     *         'class' => 'kdn\cpanel\api\Uapi',
-     *         'request' => 'kdn\cpanel\api\requests\UapiRequest',
+     *         'class' => 'kdn\cpanel\api\apis\Uapi',
      *     ],
      * ]
      * ```

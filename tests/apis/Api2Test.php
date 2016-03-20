@@ -1,0 +1,64 @@
+<?php
+
+namespace kdn\cpanel\api;
+
+use kdn\cpanel\api\apis\Api2;
+use kdn\cpanel\api\modules\api2\DnsLookup;
+
+/**
+ * Class Api2Test.
+ * @package kdn\cpanel\api
+ * @uses kdn\cpanel\api\Object
+ * @uses kdn\cpanel\api\ServiceLocator
+ * @uses kdn\cpanel\api\Cpanel
+ */
+class Api2Test extends TestCase
+{
+    /**
+     * @var Api2
+     */
+    protected $api2;
+
+    /**
+     * @inheritdoc
+     */
+    protected function setUp()
+    {
+        $this->api2 = new Api2(['cpanel' => new Cpanel]);
+    }
+
+    /**
+     * @covers kdn\cpanel\api\apis\Api2::getDefaultDefinitions
+     * @small
+     */
+    public function testGetDefaultDefinitions()
+    {
+        $this->assertEquals(
+            [
+                'dnsLookup' => DnsLookup::className(),
+            ],
+            $this->api2->getDefaultDefinitions()
+        );
+    }
+
+    public function getProvider()
+    {
+        return [
+            'dnsLookup' => ['dnsLookup', DnsLookup::className()],
+        ];
+    }
+
+    /**
+     * @param string $service
+     * @param string $class
+     * @covers       kdn\cpanel\api\Api::get
+     * @uses         kdn\cpanel\api\apis\Api2::getDefaultDefinitions
+     * @dataProvider getProvider
+     * @small
+     */
+    public function testGet($service, $class)
+    {
+        $this->assertInstanceOf($class, $this->api2->$service);
+        $this->assertSame($this->api2->cpanel, $this->api2->$service->cpanel);
+    }
+}

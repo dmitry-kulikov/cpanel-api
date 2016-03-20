@@ -2,6 +2,11 @@
 
 namespace kdn\cpanel\api;
 
+use kdn\cpanel\api\apis\Api2;
+use kdn\cpanel\api\apis\Uapi;
+use kdn\cpanel\api\apis\WhmApi0;
+use kdn\cpanel\api\apis\WhmApi1;
+
 /**
  * Class CpanelTest.
  * @package kdn\cpanel\api
@@ -55,10 +60,10 @@ class CpanelTest extends TestCase
      * @param string $class
      * @covers       kdn\cpanel\api\Cpanel::get
      * @uses         kdn\cpanel\api\Cpanel::getDefaultDefinitions
-     * @uses         kdn\cpanel\api\Api2::getDefaultDefinitions
-     * @uses         kdn\cpanel\api\Uapi::getDefaultDefinitions
-     * @uses         kdn\cpanel\api\WhmApi0::getDefaultDefinitions
-     * @uses         kdn\cpanel\api\WhmApi1::getDefaultDefinitions
+     * @uses         kdn\cpanel\api\apis\Api2::getDefaultDefinitions
+     * @uses         kdn\cpanel\api\apis\Uapi::getDefaultDefinitions
+     * @uses         kdn\cpanel\api\apis\WhmApi0::getDefaultDefinitions
+     * @uses         kdn\cpanel\api\apis\WhmApi1::getDefaultDefinitions
      * @dataProvider getProvider
      * @small
      */
