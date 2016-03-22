@@ -17,15 +17,15 @@ class AuthTest extends TestCase
     {
         $this->assertEquals(
             [
-                'singleSignOn' => [
+                Auth::SINGLE_SIGN_ON => [
                     'required' => ['username', 'password', 'targetUsername'],
                     'services' => [Cpanel::API_2, Cpanel::UAPI, Cpanel::WHM_API_0, Cpanel::WHM_API_1],
                 ],
-                'usernamePassword' => [
+                Auth::USERNAME_PASSWORD => [
                     'required' => ['username', 'password'],
                     'services' => [Cpanel::API_2, Cpanel::UAPI, Cpanel::WHM_API_0, Cpanel::WHM_API_1],
                 ],
-                'hash' => [
+                Auth::HASH => [
                     'required' => ['hash'],
                     'services' => [Cpanel::API_2, Cpanel::WHM_API_0, Cpanel::WHM_API_1],
                 ],
@@ -53,11 +53,15 @@ class AuthTest extends TestCase
     public function validateAuthTypeProvider()
     {
         return [
-            'hash' => [['type' => 'hash', 'hash' => 'HASH']],
-            'usernamePassword' => [['type' => 'usernamePassword', 'username' => 'USERNAME', 'password' => 'PASSWORD']],
-            'singleSignOn' => [
+            Auth::HASH => [['type' => Auth::HASH, 'hash' => 'HASH']],
+            Auth::USERNAME_PASSWORD => [
                 [
-                    'type' => 'singleSignOn',
+                    'type' => Auth::USERNAME_PASSWORD, 'username' => 'USERNAME', 'password' => 'PASSWORD'
+                ]
+            ],
+            Auth::SINGLE_SIGN_ON => [
+                [
+                    'type' => Auth::SINGLE_SIGN_ON,
                     'username' => 'USERNAME',
                     'password' => 'PASSWORD',
                     'targetUsername' => 'TARGET',
@@ -103,7 +107,7 @@ class AuthTest extends TestCase
      */
     public function testValidateAuthTypeNotEnoughDataException()
     {
-        new Auth(['type' => 'hash', 'username' => 'USERNAME', 'password' => 'PASSWORD']);
+        new Auth(['type' => Auth::HASH, 'username' => 'USERNAME', 'password' => 'PASSWORD']);
     }
 
     public function getAuthTypeProvider()
@@ -133,11 +137,11 @@ class AuthTest extends TestCase
     public function determineAuthTypeProvider()
     {
         return [
-            'hash' => [['hash' => 'HASH'], 'hash'],
-            'usernamePassword' => [['username' => 'USERNAME', 'password' => 'PASSWORD'], 'usernamePassword'],
-            'singleSignOn' => [
+            Auth::HASH => [['hash' => 'HASH'], Auth::HASH],
+            Auth::USERNAME_PASSWORD => [['username' => 'USERNAME', 'password' => 'PASSWORD'], Auth::USERNAME_PASSWORD],
+            Auth::SINGLE_SIGN_ON => [
                 ['username' => 'USERNAME', 'password' => 'PASSWORD', 'targetUsername' => 'TARGET'],
-                'singleSignOn',
+                Auth::SINGLE_SIGN_ON,
             ],
         ];
     }

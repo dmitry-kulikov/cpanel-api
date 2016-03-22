@@ -11,6 +11,13 @@ use kdn\cpanel\api\exceptions\InvalidConfigException;
 class Auth extends Object
 {
     /**
+     * Names of authentication methods.
+     */
+    const SINGLE_SIGN_ON = 'singleSignOn';
+    const USERNAME_PASSWORD = 'usernamePassword';
+    const HASH = 'hash';
+
+    /**
      * @var string hash used by Hash authentication method
      */
     public $hash;
@@ -109,15 +116,15 @@ class Auth extends Object
     public static function getMethods()
     {
         return [
-            'singleSignOn' => [
+            static::SINGLE_SIGN_ON => [
                 'required' => ['username', 'password', 'targetUsername'],
                 'services' => [Cpanel::API_2, Cpanel::UAPI, Cpanel::WHM_API_0, Cpanel::WHM_API_1],
             ],
-            'usernamePassword' => [
+            static::USERNAME_PASSWORD => [
                 'required' => ['username', 'password'],
                 'services' => [Cpanel::API_2, Cpanel::UAPI, Cpanel::WHM_API_0, Cpanel::WHM_API_1],
             ],
-            'hash' => [
+            static::HASH => [
                 'required' => ['hash'],
                 'services' => [Cpanel::API_2, Cpanel::WHM_API_0, Cpanel::WHM_API_1],
             ],
