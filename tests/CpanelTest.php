@@ -6,10 +6,12 @@ use kdn\cpanel\api\apis\Api2;
 use kdn\cpanel\api\apis\Uapi;
 use kdn\cpanel\api\apis\WhmApi0;
 use kdn\cpanel\api\apis\WhmApi1;
+use kdn\cpanel\api\mocks\ObjectMock;
 
 /**
  * Class CpanelTest.
  * @package kdn\cpanel\api
+ * @uses kdn\cpanel\api\ArrayHelper
  * @uses kdn\cpanel\api\Object
  * @uses kdn\cpanel\api\ServiceLocator
  */
@@ -25,7 +27,15 @@ class CpanelTest extends TestCase
      */
     protected function setUp()
     {
-        $this->cpanel = new Cpanel;
+        $className = ObjectMock::className();
+        $this->cpanel = new Cpanel(
+            [
+                'definitions' => [
+                    'objectMock' => $className,
+                    'objectMockWithCpanel' => ['class' => $className, 'cpanel' => null],
+                ],
+            ]
+        );
     }
 
     /**
@@ -71,5 +81,27 @@ class CpanelTest extends TestCase
     {
         $this->assertInstanceOf($class, $this->cpanel->$service);
         $this->assertSame($this->cpanel, $this->cpanel->$service->cpanel);
+    }
+
+    /**
+     * @covers kdn\cpanel\api\Cpanel::get
+     * @uses   kdn\cpanel\api\Cpanel::getDefaultDefinitions
+     * @small
+     */
+    public function testGetCustomServiceWithoutCpanel()
+    {
+        $this->assertInstanceOf(ObjectMock::className(), $this->cpanel->{'objectMock'});
+        $this->assertObjectNotHasAttribute('cpanel', $this->cpanel->{'objectMock'});
+    }
+
+    /**
+     * @covers kdn\cpanel\api\Cpanel::get
+     * @uses   kdn\cpanel\api\Cpanel::getDefaultDefinitions
+     * @small
+     */
+    public function testGetCustomServiceWithCpanel()
+    {
+        $this->assertInstanceOf(ObjectMock::className(), $this->cpanel->{'objectMockWithCpanel'});
+        $this->assertSame($this->cpanel, $this->cpanel->{'objectMockWithCpanel'}->cpanel);
     }
 }

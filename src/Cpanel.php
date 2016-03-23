@@ -60,7 +60,7 @@ class Cpanel extends ServiceLocator
     public function get($id)
     {
         $object = parent::get($id);
-        if ($object instanceof Api) {
+        if (static::hasProperty($object, 'cpanel')) {
             $object->cpanel = $this;
         }
         return $object;

@@ -51,7 +51,7 @@ class UapiTest extends TestCase
     /**
      * @param string $service
      * @param string $class
-     * @covers       kdn\cpanel\api\Api::get
+     * @covers       kdn\cpanel\api\apis\Uapi::get
      * @uses         kdn\cpanel\api\apis\Uapi::getDefaultDefinitions
      * @dataProvider getProvider
      * @small

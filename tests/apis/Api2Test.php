@@ -51,7 +51,7 @@ class Api2Test extends TestCase
     /**
      * @param string $service
      * @param string $class
-     * @covers       kdn\cpanel\api\Api::get
+     * @covers       kdn\cpanel\api\apis\Api2::get
      * @uses         kdn\cpanel\api\apis\Api2::getDefaultDefinitions
      * @dataProvider getProvider
      * @small

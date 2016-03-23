@@ -19,7 +19,7 @@ abstract class Api extends ServiceLocator
     public function get($id)
     {
         $object = parent::get($id);
-        if ($object instanceof Module) {
+        if (static::hasProperty($object, 'cpanel')) {
             $object->cpanel = $this->cpanel;
         }
         return $object;

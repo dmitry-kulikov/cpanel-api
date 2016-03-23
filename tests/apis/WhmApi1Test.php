@@ -51,7 +51,7 @@ class WhmApi1Test extends TestCase
     /**
      * @param string $service
      * @param string $class
-     * @covers       kdn\cpanel\api\Api::get
+     * @covers       kdn\cpanel\api\apis\WhmApi1::get
      * @uses         kdn\cpanel\api\apis\WhmApi1::getDefaultDefinitions
      * @dataProvider getProvider
      * @small

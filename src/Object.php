@@ -2,6 +2,9 @@
 
 namespace kdn\cpanel\api;
 
+use ReflectionObject;
+use ReflectionProperty;
+
 /**
  * Class Object.
  * @package kdn\cpanel\api
@@ -38,5 +41,29 @@ class Object
         foreach ($properties as $name => $value) {
             $this->$name = $value;
         }
+    }
+
+    /**
+     * Checks if property is defined for object and satisfies optional filter.
+     * @param object $object an object instance
+     * @param string $name name of the property being checked for
+     * @param integer $filter the optional filter, for filtering desired property types;
+     * it's configured using the ReflectionProperty constants; use null to disable filtering
+     * @return boolean true if object has the property, otherwise false.
+     */
+    public static function hasProperty($object, $name, $filter = ReflectionProperty::IS_PUBLIC)
+    {
+        $reflection = new ReflectionObject($object);
+        if (isset($filter)) {
+            $properties = $reflection->getProperties($filter);
+        } else {
+            $properties = $reflection->getProperties();
+        }
+        foreach ($properties as $property) {
+            if ($property->getName() === $name) {
+                return true;
+            }
+        }
+        return false;
     }
 }
