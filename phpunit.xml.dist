@@ -25,6 +25,7 @@
         <log type="coverage-html" target="coverage"/>
     </logging>
     <php>
+        <env name="INTEGRATION_TESTING" value="false"/>
         <env name="CPANEL_HOST" value="hostname.example.com"/>
         <env name="CPANEL_AUTH_HASH" value="hash"/>
         <env name="CPANEL_AUTH_USERNAME" value="username"/>

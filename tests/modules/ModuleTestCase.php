@@ -3,8 +3,10 @@
 namespace kdn\cpanel\api\modules;
 
 use GuzzleHttp\Client;
+use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Middleware;
+use GuzzleHttp\Psr7\Response;
 use kdn\cpanel\api\Auth;
 use kdn\cpanel\api\Cpanel;
 use kdn\cpanel\api\TestCase;
@@ -50,31 +52,6 @@ class ModuleTestCase extends TestCase
     }
 
     /**
-     * Get environment variable "CPANEL_HOST".
-     * @return boolean|string environment variable "CPANEL_HOST".
-     */
-    protected static function getCpanelHost()
-    {
-        return getenv('CPANEL_HOST');
-    }
-
-    /**
-     * Get environment variable "GUZZLE_REQUEST_VERIFY".
-     * @return boolean|string environment variable "GUZZLE_REQUEST_VERIFY".
-     */
-    protected static function getGuzzleRequestVerify()
-    {
-        $variable = getenv('GUZZLE_REQUEST_VERIFY');
-        if ($variable === '1' || $variable === false) {
-            return true;
-        }
-        if (empty($variable)) {
-            return false;
-        }
-        return $variable;
-    }
-
-    /**
      * Get last request from container which holds the history.
      * @return \GuzzleHttp\Psr7\Request last request.
      */
@@ -89,10 +66,13 @@ class ModuleTestCase extends TestCase
     protected function setUp()
     {
         $this->historyContainer = [];
-        $stack = HandlerStack::create();
+        $handler = null;
+        if (!static::getIntegrationTesting()) {
+            $handler = new MockHandler([new Response(200)]);
+        }
+        $stack = HandlerStack::create($handler);
         $stack->push(Middleware::history($this->historyContainer));
         $this->module = (new Cpanel(static::getCpanelConfig()))->{$this->apiName}->{$this->moduleName}
             ->setClient(new Client(['handler' => $stack, 'verify' => static::getGuzzleRequestVerify()]));
-        // todo use mocks
     }
 }
