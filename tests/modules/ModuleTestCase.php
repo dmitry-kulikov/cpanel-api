@@ -65,7 +65,7 @@ class ModuleTestCase extends TestCase
     protected static function getGuzzleRequestVerify()
     {
         $variable = getenv('GUZZLE_REQUEST_VERIFY');
-        if ($variable === '1') {
+        if ($variable === '1' || $variable === false) {
             return true;
         }
         if (empty($variable)) {
