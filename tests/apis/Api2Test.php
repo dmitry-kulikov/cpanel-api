@@ -1,9 +1,10 @@
 <?php
 
-namespace kdn\cpanel\api;
+namespace kdn\cpanel\api\apis;
 
-use kdn\cpanel\api\apis\Api2;
+use kdn\cpanel\api\Cpanel;
 use kdn\cpanel\api\modules\api2\DnsLookup;
+use kdn\cpanel\api\TestCase;
 
 /**
  * Class Api2Test.

@@ -1,9 +1,10 @@
 <?php
 
-namespace kdn\cpanel\api;
+namespace kdn\cpanel\api\apis;
 
-use kdn\cpanel\api\apis\Uapi;
+use kdn\cpanel\api\Cpanel;
 use kdn\cpanel\api\modules\uapi\Brand;
+use kdn\cpanel\api\TestCase;
 
 /**
  * Class UapiTest.

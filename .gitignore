@@ -1,4 +1,5 @@
 /.idea
+/cert.pem
 /composer.phar
 /coverage
 /phpunit.xml

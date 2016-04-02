@@ -8,6 +8,7 @@ use kdn\cpanel\api\modules\uapi\Brand;
 /**
  * Class Uapi.
  * @package kdn\cpanel\api\apis
+ * @link https://documentation.cpanel.net/display/SDK/Guide+to+UAPI
  *
  * @property Brand $brand
  */

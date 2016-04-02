@@ -18,7 +18,7 @@ class ServiceLocatorTest extends TestCase
      */
     protected $locator;
 
-    protected static function getTestConfig()
+    protected static function getServiceLocatorConfig()
     {
         return [
             'definitions' => [
@@ -36,7 +36,7 @@ class ServiceLocatorTest extends TestCase
      */
     protected function setUp()
     {
-        $this->locator = new ServiceLocator(static::getTestConfig());
+        $this->locator = new ServiceLocator(static::getServiceLocatorConfig());
     }
 
     /**
@@ -118,7 +118,7 @@ class ServiceLocatorTest extends TestCase
      */
     public function testGetDefinitions()
     {
-        $this->assertEquals($this->getTestConfig()['definitions'], $this->locator->getDefinitions());
+        $this->assertEquals(static::getServiceLocatorConfig()['definitions'], $this->locator->getDefinitions());
     }
 
     /**

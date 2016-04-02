@@ -1,9 +1,10 @@
 <?php
 
-namespace kdn\cpanel\api;
+namespace kdn\cpanel\api\apis;
 
-use kdn\cpanel\api\apis\WhmApi1;
+use kdn\cpanel\api\Cpanel;
 use kdn\cpanel\api\modules\whmApi1\ServerInformation;
+use kdn\cpanel\api\TestCase;
 
 /**
  * Class WhmApi1Test.
