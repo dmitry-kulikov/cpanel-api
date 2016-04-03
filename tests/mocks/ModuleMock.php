@@ -1,20 +1,25 @@
 <?php
 
-namespace kdn\cpanel\api\modules;
+namespace kdn\cpanel\api\mocks;
 
 use kdn\cpanel\api\Cpanel;
 use kdn\cpanel\api\Module;
 
 /**
- * Class UapiModule.
- * @package kdn\cpanel\api\modules
+ * Class ModuleMock.
+ * @package kdn\cpanel\api\mocks
  */
-class UapiModule extends Module
+class ModuleMock extends Module
 {
     /**
      * @inheritdoc
      */
     protected $port = 2083;
+
+    /**
+     * @inheritdoc
+     */
+    protected $name = 'Mock';
 
     /**
      * @inheritdoc
@@ -26,7 +31,6 @@ class UapiModule extends Module
      */
     protected function buildUri($function, $params)
     {
-        return $this->getBaseUri()->withPath("execute/{$this->getName()}/$function")
-            ->withQuery(static::buildQuery($params));
+        return $this->getBaseUri();
     }
 }
