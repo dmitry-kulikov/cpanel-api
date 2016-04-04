@@ -2,6 +2,7 @@
 
 namespace kdn\cpanel\api;
 
+use GuzzleHttp\Client;
 use kdn\cpanel\api\mocks\ModuleMock;
 
 /**
@@ -28,8 +29,8 @@ class ModuleTest extends TestCase
         return [
             'host' => static::getCpanelHost(),
             'auth' => new Auth(
-                ['username' => getenv('CPANEL_AUTH_USERNAME'), 'password' => getenv('CPANEL_AUTH_PASSWORD')]
-            )
+                ['username' => static::getCpanelAuthUsername(), 'password' => static::getCpanelAuthPassword()]
+            ),
         ];
     }
 
@@ -80,6 +81,83 @@ class ModuleTest extends TestCase
     {
         $host = 'test-get-host.example.com';
         $this->assertEquals($host, $this->module->setHost($host)->getHost());
+    }
+
+    /**
+     * @covers kdn\cpanel\api\Module::getProtocol
+     * @small
+     */
+    public function testGetProtocol()
+    {
+        $cpanel = new Cpanel(static::getCpanelConfig());
+        $this->module = new ModuleMock(['cpanel' => $cpanel]);
+        $cpanel->protocol = 'test-get-protocol';
+        $this->assertEquals($cpanel->protocol, $this->module->getProtocol());
+    }
+
+    /**
+     * @covers kdn\cpanel\api\Module::getProtocol
+     * @covers kdn\cpanel\api\Module::setProtocol
+     * @small
+     */
+    public function testSetProtocolAndGetProtocol()
+    {
+        $protocol = 'test-get-protocol';
+        $this->assertEquals($protocol, $this->module->setProtocol($protocol)->getProtocol());
+    }
+
+    /**
+     * @covers kdn\cpanel\api\Module::getPort
+     * @covers kdn\cpanel\api\Module::setPort
+     * @small
+     */
+    public function testSetPortAndGetPort()
+    {
+        $port = 65535;
+        $this->assertEquals($port, $this->module->setPort($port)->getPort());
+    }
+
+    /**
+     * @covers kdn\cpanel\api\Module::getAuth
+     * @small
+     */
+    public function testGetAuth()
+    {
+        $cpanel = new Cpanel(static::getCpanelConfig());
+        $this->module = new ModuleMock(['cpanel' => $cpanel]);
+        $cpanel->auth = new Auth(['hash' => static::getCpanelAuthHash()]);
+        $this->assertSame($cpanel->auth, $this->module->getAuth());
+    }
+
+    /**
+     * @covers kdn\cpanel\api\Module::getAuth
+     * @covers kdn\cpanel\api\Module::setAuth
+     * @small
+     */
+    public function testSetAuthAndGetAuth()
+    {
+        $auth = new Auth(['hash' => static::getCpanelAuthHash()]);
+        $this->assertSame($auth, $this->module->setAuth($auth)->getAuth());
+    }
+
+    /**
+     * @covers kdn\cpanel\api\Module::getClient
+     * @small
+     */
+    public function testGetClient()
+    {
+        $this->assertInstanceOf('GuzzleHttp\Client', $this->module->getClient());
+    }
+
+    /**
+     * @covers kdn\cpanel\api\Module::getClient
+     * @covers kdn\cpanel\api\Module::setClient
+     * @small
+     */
+    public function testSetClientAndGetClient()
+    {
+        $client = new Client;
+        $this->assertSame($client, $this->module->setClient($client)->getClient());
     }
 
     /**

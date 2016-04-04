@@ -56,6 +56,29 @@ abstract class Module extends Object
     protected $serviceName;
 
     /**
+     * Get GuzzleHttp client object.
+     * @return Client GuzzleHttp client object.
+     */
+    public function getClient()
+    {
+        if (!isset($this->client)) {
+            $this->client = new Client;
+        }
+        return $this->client;
+    }
+
+    /**
+     * Set GuzzleHttp client object.
+     * @param Client $client GuzzleHttp client object
+     * @return $this module.
+     */
+    public function setClient($client)
+    {
+        $this->client = $client;
+        return $this;
+    }
+
+    /**
      * Get base URI.
      * @return Uri base URI address.
      */
@@ -156,29 +179,6 @@ abstract class Module extends Object
     public function setAuth($auth)
     {
         $this->auth = $auth;
-        return $this;
-    }
-
-    /**
-     * Get GuzzleHttp client object.
-     * @return Client GuzzleHttp client object.
-     */
-    public function getClient()
-    {
-        if (!isset($this->client)) {
-            $this->client = new Client;
-        }
-        return $this->client;
-    }
-
-    /**
-     * Set GuzzleHttp client object.
-     * @param Client $client GuzzleHttp client object
-     * @return $this module.
-     */
-    public function setClient($client)
-    {
-        $this->client = $client;
         return $this;
     }
 

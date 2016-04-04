@@ -46,7 +46,7 @@ class ModuleTestCase extends TestCase
         return [
             'host' => static::getCpanelHost(),
             'auth' => new Auth(
-                ['username' => getenv('CPANEL_AUTH_USERNAME'), 'password' => getenv('CPANEL_AUTH_PASSWORD')]
+                ['username' => static::getCpanelAuthUsername(), 'password' => static::getCpanelAuthPassword()]
             )
         ];
     }

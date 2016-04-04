@@ -12,15 +12,6 @@ use UnexpectedValueException;
 class TestCase extends PHPUnit_Framework_TestCase
 {
     /**
-     * Get value of environment variable "CPANEL_HOST".
-     * @return boolean|string value of environment variable "CPANEL_HOST".
-     */
-    protected static function getCpanelHost()
-    {
-        return getenv('CPANEL_HOST');
-    }
-
-    /**
      * Get value of environment variable "INTEGRATION_TESTING".
      * @return boolean value of environment variable "INTEGRATION_TESTING".
      */
@@ -33,6 +24,42 @@ class TestCase extends PHPUnit_Framework_TestCase
             );
         }
         return $value;
+    }
+
+    /**
+     * Get value of environment variable "CPANEL_HOST".
+     * @return boolean|string value of environment variable "CPANEL_HOST".
+     */
+    protected static function getCpanelHost()
+    {
+        return getenv('CPANEL_HOST');
+    }
+
+    /**
+     * Get value of environment variable "CPANEL_AUTH_HASH".
+     * @return boolean|string value of environment variable "CPANEL_AUTH_HASH".
+     */
+    protected static function getCpanelAuthHash()
+    {
+        return getenv('CPANEL_AUTH_HASH');
+    }
+
+    /**
+     * Get value of environment variable "CPANEL_AUTH_USERNAME".
+     * @return boolean|string value of environment variable "CPANEL_AUTH_USERNAME".
+     */
+    protected static function getCpanelAuthUsername()
+    {
+        return getenv('CPANEL_AUTH_USERNAME');
+    }
+
+    /**
+     * Get value of environment variable "CPANEL_AUTH_PASSWORD".
+     * @return boolean|string value of environment variable "CPANEL_AUTH_PASSWORD".
+     */
+    protected static function getCpanelAuthPassword()
+    {
+        return getenv('CPANEL_AUTH_PASSWORD');
     }
 
     /**
