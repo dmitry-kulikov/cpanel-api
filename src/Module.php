@@ -325,7 +325,7 @@ abstract class Module extends Object
      * RFC 3986, and spaces will be percent encoded (%20)
      * @return string a URL-encoded query string.
      */
-    protected static function buildQuery(array $params, $encoding = PHP_QUERY_RFC3986)
+    public static function buildQuery(array $params, $encoding = PHP_QUERY_RFC3986)
     {
         return http_build_query($params, null, '&', $encoding);
     }

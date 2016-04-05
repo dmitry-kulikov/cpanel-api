@@ -173,4 +173,54 @@ class ModuleTest extends TestCase
         $this->assertInstanceOf('GuzzleHttp\Psr7\Uri', $uri);
         $this->assertEquals('https://' . static::getCpanelHost() . ':2083', (string)$uri);
     }
+
+    /**
+     * @covers kdn\cpanel\api\Module::createRequest
+     * @uses   kdn\cpanel\api\Module::getBaseUri
+     * @uses   kdn\cpanel\api\Module::getHost
+     * @uses   kdn\cpanel\api\Module::getProtocol
+     * @uses   kdn\cpanel\api\Module::getPort
+     * @small
+     */
+    public function testCreateRequest()
+    {
+        $this->assertInstanceOf(
+            'GuzzleHttp\Psr7\Request',
+            Module::createRequest('get', $this->module->getBaseUri())
+        );
+    }
+
+    public function buildQueryProvider()
+    {
+        $params = ['version' => 1, 'Model' => ['a' => '1 2', 3]];
+        return [
+            'PHP_QUERY_RFC1738 encoding' => ['version=1&Model%5Ba%5D=1+2&Model%5B0%5D=3', $params, PHP_QUERY_RFC1738],
+            'PHP_QUERY_RFC3986 encoding' => ['version=1&Model%5Ba%5D=1%202&Model%5B0%5D=3', $params, PHP_QUERY_RFC3986],
+        ];
+    }
+
+    /**
+     * @param string $expectedResult
+     * @param array $params
+     * @param integer $encoding
+     * @covers       kdn\cpanel\api\Module::buildQuery
+     * @dataProvider buildQueryProvider
+     * @small
+     */
+    public function testBuildQuery($expectedResult, $params, $encoding)
+    {
+        $this->assertEquals($expectedResult, Module::buildQuery($params, $encoding));
+    }
+
+    /**
+     * @covers kdn\cpanel\api\Module::buildQuery
+     * @small
+     */
+    public function testBuildQueryDefaultEncoding()
+    {
+        $this->assertEquals(
+            'version=1&Model%5Ba%5D=1%202&Model%5B0%5D=3',
+            Module::buildQuery(['version' => 1, 'Model' => ['a' => '1 2', 3]])
+        );
+    }
 }
