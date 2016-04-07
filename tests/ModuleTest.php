@@ -3,6 +3,10 @@
 namespace kdn\cpanel\api;
 
 use GuzzleHttp\Client;
+use GuzzleHttp\Handler\MockHandler;
+use GuzzleHttp\HandlerStack;
+use GuzzleHttp\Middleware;
+use GuzzleHttp\Psr7\Response;
 use kdn\cpanel\api\mocks\ModuleMock;
 
 /**
@@ -12,9 +16,12 @@ use kdn\cpanel\api\mocks\ModuleMock;
  * @uses kdn\cpanel\api\ServiceLocator
  * @uses kdn\cpanel\api\Cpanel
  * @uses kdn\cpanel\api\Auth
+ * @uses kdn\cpanel\api\Response
  */
 class ModuleTest extends TestCase
 {
+    use HistoryContainer;
+
     /**
      * @var ModuleMock
      */
@@ -32,6 +39,17 @@ class ModuleTest extends TestCase
                 ['username' => static::getCpanelAuthUsername(), 'password' => static::getCpanelAuthPassword()]
             ),
         ];
+    }
+
+    /**
+     * Mocks client using mock handler with 1 response in queue and history middleware.
+     */
+    protected function mockClient()
+    {
+        $this->clearHistoryContainer();
+        $stack = HandlerStack::create(new MockHandler([new Response(200)]));
+        $stack->push(Middleware::history($this->historyContainer));
+        $this->module->setClient(new Client(['handler' => $stack]));
     }
 
     /**
@@ -222,5 +240,147 @@ class ModuleTest extends TestCase
             'version=1&Model%5Ba%5D=1%202&Model%5B0%5D=3',
             Module::buildQuery(['version' => 1, 'Model' => ['a' => '1 2', 3]])
         );
+    }
+
+    /**
+     * @covers kdn\cpanel\api\Module::sendRequest
+     * @uses   kdn\cpanel\api\Module::createRequest
+     * @uses   kdn\cpanel\api\Module::getBaseUri
+     * @uses   kdn\cpanel\api\Module::getClient
+     * @uses   kdn\cpanel\api\Module::getHost
+     * @uses   kdn\cpanel\api\Module::getPort
+     * @uses   kdn\cpanel\api\Module::getProtocol
+     * @uses   kdn\cpanel\api\Module::setClient
+     * @small
+     */
+    public function testSendRequest()
+    {
+        $this->mockClient();
+        $timeout = M_PI;
+        $this->assertInstanceOf(
+            'Psr\Http\Message\ResponseInterface',
+            $this->module->sendRequest(
+                Module::createRequest('get', $this->module->getBaseUri()),
+                ['timeout' => $timeout]
+            )
+        );
+        $request = $this->getLastRequest();
+        $this->assertEquals('GET', $request->getMethod());
+        $this->assertEquals('https://' . static::getCpanelHost() . ':2083', (string)$request->getUri());
+        $this->assertEquals($timeout, $this->getLastRequestOptions()['timeout']);
+    }
+
+    /**
+     * @covers kdn\cpanel\api\Module::send
+     * @covers kdn\cpanel\api\Module::validateAuthType
+     * @uses   kdn\cpanel\api\Module::buildHeaders
+     * @uses   kdn\cpanel\api\Module::buildQuery
+     * @uses   kdn\cpanel\api\Module::createRequest
+     * @uses   kdn\cpanel\api\Module::getAuth
+     * @uses   kdn\cpanel\api\Module::getBaseUri
+     * @uses   kdn\cpanel\api\Module::getClient
+     * @uses   kdn\cpanel\api\Module::getHost
+     * @uses   kdn\cpanel\api\Module::getPort
+     * @uses   kdn\cpanel\api\Module::getProtocol
+     * @uses   kdn\cpanel\api\Module::getServiceName
+     * @uses   kdn\cpanel\api\Module::sendRequest
+     * @uses   kdn\cpanel\api\Module::setClient
+     * @small
+     */
+    public function testSend()
+    {
+        $this->mockClient();
+        $timeout = M_PI;
+        $response = $this->module->send(
+            'put',
+            'upload',
+            ['version' => 1, 'Model' => ['a' => '1 2', 3]],
+            ['timeout' => $timeout]
+        );
+        $this->assertInstanceOf('kdn\cpanel\api\Response', $response);
+        $this->assertTrue($response->isParsed());
+        $request = $this->getLastRequest();
+        $this->assertEquals('PUT', $request->getMethod());
+        $this->assertEquals(
+            'https://' . static::getCpanelHost() . ':2083/upload?version=1&Model%5Ba%5D=1%202&Model%5B0%5D=3',
+            (string)$request->getUri()
+        );
+        $this->assertEquals($timeout, $this->getLastRequestOptions()['timeout']);
+    }
+
+    /**
+     * @covers kdn\cpanel\api\Module::get
+     * @uses   kdn\cpanel\api\Module::buildHeaders
+     * @uses   kdn\cpanel\api\Module::buildQuery
+     * @uses   kdn\cpanel\api\Module::createRequest
+     * @uses   kdn\cpanel\api\Module::getAuth
+     * @uses   kdn\cpanel\api\Module::getBaseUri
+     * @uses   kdn\cpanel\api\Module::getClient
+     * @uses   kdn\cpanel\api\Module::getHost
+     * @uses   kdn\cpanel\api\Module::getPort
+     * @uses   kdn\cpanel\api\Module::getProtocol
+     * @uses   kdn\cpanel\api\Module::getServiceName
+     * @uses   kdn\cpanel\api\Module::send
+     * @uses   kdn\cpanel\api\Module::sendRequest
+     * @uses   kdn\cpanel\api\Module::setClient
+     * @uses   kdn\cpanel\api\Module::validateAuthType
+     * @small
+     */
+    public function testGet()
+    {
+        $this->mockClient();
+        $timeout = M_PI;
+        $response = $this->module->get(
+            'read',
+            ['version' => 1, 'Model' => ['a' => '1 2', 3]],
+            ['timeout' => $timeout]
+        );
+        $this->assertInstanceOf('kdn\cpanel\api\Response', $response);
+        $this->assertTrue($response->isParsed());
+        $request = $this->getLastRequest();
+        $this->assertEquals('GET', $request->getMethod());
+        $this->assertEquals(
+            'https://' . static::getCpanelHost() . ':2083/read?version=1&Model%5Ba%5D=1%202&Model%5B0%5D=3',
+            (string)$request->getUri()
+        );
+        $this->assertEquals($timeout, $this->getLastRequestOptions()['timeout']);
+    }
+
+    /**
+     * @covers kdn\cpanel\api\Module::post
+     * @uses   kdn\cpanel\api\Module::buildHeaders
+     * @uses   kdn\cpanel\api\Module::buildQuery
+     * @uses   kdn\cpanel\api\Module::createRequest
+     * @uses   kdn\cpanel\api\Module::getAuth
+     * @uses   kdn\cpanel\api\Module::getBaseUri
+     * @uses   kdn\cpanel\api\Module::getClient
+     * @uses   kdn\cpanel\api\Module::getHost
+     * @uses   kdn\cpanel\api\Module::getPort
+     * @uses   kdn\cpanel\api\Module::getProtocol
+     * @uses   kdn\cpanel\api\Module::getServiceName
+     * @uses   kdn\cpanel\api\Module::send
+     * @uses   kdn\cpanel\api\Module::sendRequest
+     * @uses   kdn\cpanel\api\Module::setClient
+     * @uses   kdn\cpanel\api\Module::validateAuthType
+     * @small
+     */
+    public function testPost()
+    {
+        $this->mockClient();
+        $timeout = M_PI;
+        $response = $this->module->post(
+            'write',
+            ['version' => 1, 'Model' => ['a' => '1 2', 3]],
+            ['timeout' => $timeout]
+        );
+        $this->assertInstanceOf('kdn\cpanel\api\Response', $response);
+        $this->assertTrue($response->isParsed());
+        $request = $this->getLastRequest();
+        $this->assertEquals('POST', $request->getMethod());
+        $this->assertEquals(
+            'https://' . static::getCpanelHost() . ':2083/write?version=1&Model%5Ba%5D=1%202&Model%5B0%5D=3',
+            (string)$request->getUri()
+        );
+        $this->assertEquals($timeout, $this->getLastRequestOptions()['timeout']);
     }
 }

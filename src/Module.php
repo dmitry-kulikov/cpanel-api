@@ -259,7 +259,7 @@ abstract class Module extends Object
      * @throws AuthMethodNotSupportedException
      * @throws exceptions\ResponseInvalidJsonException
      */
-    protected function send($method, $function, $params, $requestOptions = [])
+    public function send($method, $function, $params, $requestOptions = [])
     {
         $this->validateAuthType();
         $request = static::createRequest($method, $this->buildUri($function, $params), $this->buildHeaders());

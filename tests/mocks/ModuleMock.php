@@ -31,6 +31,6 @@ class ModuleMock extends Module
      */
     protected function buildUri($function, $params)
     {
-        return $this->getBaseUri();
+        return $this->getBaseUri()->withPath($function)->withQuery(static::buildQuery($params));
     }
 }

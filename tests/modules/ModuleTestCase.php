@@ -9,6 +9,7 @@ use GuzzleHttp\Middleware;
 use GuzzleHttp\Psr7\Response;
 use kdn\cpanel\api\Auth;
 use kdn\cpanel\api\Cpanel;
+use kdn\cpanel\api\HistoryContainer;
 use kdn\cpanel\api\TestCase;
 
 /**
@@ -17,15 +18,12 @@ use kdn\cpanel\api\TestCase;
  */
 class ModuleTestCase extends TestCase
 {
+    use HistoryContainer;
+
     /**
      * @var \kdn\cpanel\api\Module module under test
      */
     protected $module;
-
-    /**
-     * @var array container to hold the history
-     */
-    protected $historyContainer;
 
     /**
      * @var string name of API which module belongs
@@ -52,20 +50,11 @@ class ModuleTestCase extends TestCase
     }
 
     /**
-     * Get last request from container which holds the history.
-     * @return \GuzzleHttp\Psr7\Request last request.
-     */
-    protected function getLastRequest()
-    {
-        return end($this->historyContainer)['request'];
-    }
-
-    /**
      * @inheritdoc
      */
     protected function setUp()
     {
-        $this->historyContainer = [];
+        $this->clearHistoryContainer();
         $handler = null;
         if (!static::getIntegrationTesting()) {
             $handler = new MockHandler([new Response(200)]);
