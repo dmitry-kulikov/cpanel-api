@@ -5,8 +5,8 @@ namespace kdn\cpanel\api;
 use GuzzleHttp\Client;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Uri;
-use kdn\cpanel\api\exceptions\AuthMethodNotSpecifiedException;
 use kdn\cpanel\api\exceptions\AuthMethodNotSupportedException;
+use kdn\cpanel\api\exceptions\InvalidAuthMethodException;
 use Psr\Http\Message\RequestInterface;
 
 /**
@@ -257,9 +257,10 @@ abstract class Module extends Object
      * @param array $requestOptions request options to apply to the given request and to the transfer
      * @return Response parsed response to request.
      * @throws AuthMethodNotSupportedException
+     * @throws InvalidAuthMethodException
      * @throws exceptions\ResponseInvalidJsonException
      */
-    public function send($method, $function, $params, $requestOptions = [])
+    public function send($method, $function, $params = [], $requestOptions = [])
     {
         $this->validateAuthType();
         $request = static::createRequest($method, $this->buildUri($function, $params), $this->buildHeaders());
@@ -269,14 +270,13 @@ abstract class Module extends Object
     /**
      * Checks that current authentication method can be used with current service.
      * @throws AuthMethodNotSupportedException
+     * @throws InvalidAuthMethodException
      */
     protected function validateAuthType()
     {
         $auth = $this->getAuth();
         if (!is_object($auth)) {
-            throw new AuthMethodNotSpecifiedException(
-                'The authentication method must be specified and must be an object.'
-            );
+            throw new InvalidAuthMethodException('The authentication method must be an object.');
         }
         $authType = $auth->getAuthType();
         if (!in_array($this->getServiceName(), $auth->getMethods()[$authType]['services'])) {

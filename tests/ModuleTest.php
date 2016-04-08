@@ -8,6 +8,7 @@ use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Middleware;
 use GuzzleHttp\Psr7\Response;
 use kdn\cpanel\api\mocks\ModuleMock;
+use ReflectionObject;
 
 /**
  * Class ModuleTest.
@@ -382,5 +383,94 @@ class ModuleTest extends TestCase
             (string)$request->getUri()
         );
         $this->assertEquals($timeout, $this->getLastRequestOptions()['timeout']);
+    }
+
+    public function validateAuthTypeInvalidAuthMethodExceptionProvider()
+    {
+        return [
+            'null' => [null],
+            'boolean' => [true],
+            'integer' => [1],
+            'float' => [1.2],
+            'string' => ['test'],
+            'array' => [[]],
+        ];
+    }
+
+    /**
+     * @param mixed $auth
+     * @covers       kdn\cpanel\api\Module::validateAuthType
+     * @uses         kdn\cpanel\api\Module::getAuth
+     * @uses         kdn\cpanel\api\Module::send
+     * @uses         kdn\cpanel\api\Module::setAuth
+     * @dataProvider validateAuthTypeInvalidAuthMethodExceptionProvider
+     * @expectedException \kdn\cpanel\api\exceptions\InvalidAuthMethodException
+     * @expectedExceptionMessage The authentication method must be an object.
+     * @small
+     */
+    public function testValidateAuthTypeInvalidAuthMethodException($auth)
+    {
+        $this->module->cpanel->auth = null;
+        $this->module->setAuth($auth)->send('get', 'read');
+    }
+
+    /**
+     * @covers kdn\cpanel\api\Module::validateAuthType
+     * @uses   kdn\cpanel\api\Module::getAuth
+     * @uses   kdn\cpanel\api\Module::getServiceName
+     * @uses   kdn\cpanel\api\Module::send
+     * @uses   kdn\cpanel\api\Module::setAuth
+     * @expectedException \kdn\cpanel\api\exceptions\AuthMethodNotSupportedException
+     * @expectedExceptionMessage Authentication method "hash" not supported by service "uapi".
+     * @small
+     */
+    public function testValidateAuthTypeAuthMethodNotSupportedException()
+    {
+        $this->module->setAuth(new Auth(['hash' => static::getCpanelAuthHash()]))->send('get', 'read');
+    }
+
+    public function buildHeadersProvider()
+    {
+        return [
+            Auth::USERNAME_PASSWORD => [
+                'Basic dXNlcm5hbWU6cGFzc3dvcmQ=',
+                new Auth(['username' => 'username', 'password' => 'password'])
+            ],
+            Auth::HASH => ['WHM root:hash', new Auth(['hash' => "h\na\rs\r\nh"])],
+        ];
+    }
+
+    /**
+     * @param string $expectedResult
+     * @param Auth $auth
+     * @covers       kdn\cpanel\api\Module::buildHeaders
+     * @uses         kdn\cpanel\api\Module::buildQuery
+     * @uses         kdn\cpanel\api\Module::getAuth
+     * @uses         kdn\cpanel\api\Module::getBaseUri
+     * @uses         kdn\cpanel\api\Module::getClient
+     * @uses         kdn\cpanel\api\Module::getHost
+     * @uses         kdn\cpanel\api\Module::getPort
+     * @uses         kdn\cpanel\api\Module::getProtocol
+     * @uses         kdn\cpanel\api\Module::getServiceName
+     * @uses         kdn\cpanel\api\Module::createRequest
+     * @uses         kdn\cpanel\api\Module::send
+     * @uses         kdn\cpanel\api\Module::sendRequest
+     * @uses         kdn\cpanel\api\Module::setAuth
+     * @uses         kdn\cpanel\api\Module::setClient
+     * @uses         kdn\cpanel\api\Module::validateAuthType
+     * @dataProvider buildHeadersProvider
+     * @small
+     */
+    public function testBuildHeaders($expectedResult, $auth)
+    {
+        $reflectionObject = new ReflectionObject($this->module);
+        $property = $reflectionObject->getProperty('serviceName');
+        $property->setAccessible(true);
+        $property->setValue($this->module, Cpanel::API_2);
+
+        $this->mockClient();
+        $this->module->setAuth($auth)->send('get', 'read');
+        $request = $this->getLastRequest();
+        $this->assertEquals($expectedResult, $request->getHeaderLine('Authorization'));
     }
 }

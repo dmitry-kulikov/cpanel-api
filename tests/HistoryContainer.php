@@ -3,7 +3,7 @@
 namespace kdn\cpanel\api;
 
 /**
- * Class HistoryContainer.
+ * Trait HistoryContainer.
  * @package kdn\cpanel\api
  */
 trait HistoryContainer
