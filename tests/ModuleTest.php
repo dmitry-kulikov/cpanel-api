@@ -18,6 +18,7 @@ use ReflectionObject;
  * @uses kdn\cpanel\api\Cpanel
  * @uses kdn\cpanel\api\Auth
  * @uses kdn\cpanel\api\Response
+ * @uses kdn\cpanel\api\responses\UapiResponse
  */
 class ModuleTest extends TestCase
 {
@@ -298,7 +299,7 @@ class ModuleTest extends TestCase
             ['version' => 1, 'Model' => ['a' => '1 2', 3]],
             ['timeout' => $timeout]
         );
-        $this->assertInstanceOf('kdn\cpanel\api\Response', $response);
+        $this->assertInstanceOf('kdn\cpanel\api\responses\UapiResponse', $response);
         $this->assertTrue($response->isParsed());
         $request = $this->getLastRequest();
         $this->assertEquals('PUT', $request->getMethod());
@@ -336,7 +337,7 @@ class ModuleTest extends TestCase
             ['version' => 1, 'Model' => ['a' => '1 2', 3]],
             ['timeout' => $timeout]
         );
-        $this->assertInstanceOf('kdn\cpanel\api\Response', $response);
+        $this->assertInstanceOf('kdn\cpanel\api\responses\UapiResponse', $response);
         $this->assertTrue($response->isParsed());
         $request = $this->getLastRequest();
         $this->assertEquals('GET', $request->getMethod());
@@ -374,7 +375,7 @@ class ModuleTest extends TestCase
             ['version' => 1, 'Model' => ['a' => '1 2', 3]],
             ['timeout' => $timeout]
         );
-        $this->assertInstanceOf('kdn\cpanel\api\Response', $response);
+        $this->assertInstanceOf('kdn\cpanel\api\responses\UapiResponse', $response);
         $this->assertTrue($response->isParsed());
         $request = $this->getLastRequest();
         $this->assertEquals('POST', $request->getMethod());

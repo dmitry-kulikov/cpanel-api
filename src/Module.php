@@ -56,6 +56,11 @@ abstract class Module extends Object
     protected $serviceName;
 
     /**
+     * @var string response object class
+     */
+    protected $responseClass;
+
+    /**
      * Get GuzzleHttp client object.
      * @return Client GuzzleHttp client object.
      */
@@ -264,7 +269,9 @@ abstract class Module extends Object
     {
         $this->validateAuthType();
         $request = static::createRequest($method, $this->buildUri($function, $params), $this->buildHeaders());
-        return (new Response($this->sendRequest($request, $requestOptions)))->parse();
+        /** @var Response $response */
+        $response = new $this->responseClass($this->sendRequest($request, $requestOptions));
+        return $response->parse();
     }
 
     /**

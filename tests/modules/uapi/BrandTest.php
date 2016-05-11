@@ -2,7 +2,7 @@
 
 namespace kdn\cpanel\api\modules\uapi;
 
-use kdn\cpanel\api\Response;
+use kdn\cpanel\api\responses\UapiResponse;
 
 /**
  * Class BrandTest.
@@ -13,10 +13,11 @@ use kdn\cpanel\api\Response;
  * @uses   kdn\cpanel\api\ServiceLocator
  * @uses   kdn\cpanel\api\Cpanel
  * @uses   kdn\cpanel\api\Auth
- * @uses   kdn\cpanel\api\Response
  * @uses   kdn\cpanel\api\Api
  * @uses   kdn\cpanel\api\apis\Uapi
  * @uses   kdn\cpanel\api\Module
+ * @uses   kdn\cpanel\api\Response
+ * @uses   kdn\cpanel\api\responses\UapiResponse
  */
 class BrandTest extends UapiModuleTestCase
 {
@@ -31,7 +32,7 @@ class BrandTest extends UapiModuleTestCase
      */
     public function testRead()
     {
-        $this->assertInstanceOf(Response::className(), $this->module->read());
+        $this->assertInstanceOf(UapiResponse::className(), $this->module->read());
         $request = $this->getLastRequest();
         $this->assertEquals('GET', $request->getMethod());
         $this->assertEquals(
