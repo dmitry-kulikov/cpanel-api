@@ -1,16 +1,18 @@
 <?php
 
-namespace kdn\cpanel\api;
+namespace kdn\cpanel\api\helpers;
+
+use kdn\cpanel\api\TestCase;
 
 /**
  * Class ArrayHelperTest.
  * Based on code taken from Yii framework.
- * @package kdn\cpanel\api
+ * @package kdn\cpanel\api\helpers
  */
 class ArrayHelperTest extends TestCase
 {
     /**
-     * @covers kdn\cpanel\api\ArrayHelper::merge
+     * @covers kdn\cpanel\api\helpers\ArrayHelper::merge
      * @small
      * @link http://www.yiiframework.com/
      * @copyright Copyright (c) 2008 Yii Software LLC

@@ -1,11 +1,11 @@
 <?php
 
-namespace kdn\cpanel\api;
+namespace kdn\cpanel\api\helpers;
 
 /**
  * Class ArrayHelper.
  * Based on code taken from Yii framework.
- * @package kdn\cpanel\api
+ * @package kdn\cpanel\api\helpers
  */
 class ArrayHelper
 {

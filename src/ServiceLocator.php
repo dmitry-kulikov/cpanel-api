@@ -4,6 +4,7 @@ namespace kdn\cpanel\api;
 
 use kdn\cpanel\api\exceptions\InvalidConfigException;
 use kdn\cpanel\api\exceptions\UnknownPropertyException;
+use kdn\cpanel\api\helpers\ArrayHelper;
 
 /**
  * ServiceLocator implements a [service locator](http://en.wikipedia.org/wiki/Service_locator_pattern).

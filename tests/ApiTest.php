@@ -8,7 +8,7 @@ use kdn\cpanel\api\mocks\ObjectMock;
 /**
  * Class ApiTest.
  * @package kdn\cpanel\api
- * @uses kdn\cpanel\api\ArrayHelper
+ * @uses kdn\cpanel\api\helpers\ArrayHelper
  * @uses kdn\cpanel\api\Object
  * @uses kdn\cpanel\api\ServiceLocator
  * @uses kdn\cpanel\api\Cpanel

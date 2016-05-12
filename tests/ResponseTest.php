@@ -9,7 +9,6 @@ use kdn\cpanel\api\mocks\ResponseMock;
  * Class ResponseTest.
  * @package kdn\cpanel\api
  * @uses kdn\cpanel\api\Object
- * @uses kdn\cpanel\api\JsonHelper
  */
 class ResponseTest extends TestCase
 {
@@ -51,19 +50,5 @@ class ResponseTest extends TestCase
         // test that repeat of parsing doesn't cause errors
         $this->response->parse();
         $this->assertEquals(['domain' => 'example.com'], $this->response->data);
-    }
-
-    /**
-     * @covers kdn\cpanel\api\Response::__construct
-     * @covers kdn\cpanel\api\Response::parse
-     * @uses   kdn\cpanel\api\Response::isParsed
-     * @expectedException \kdn\cpanel\api\exceptions\InvalidJsonException
-     * @expectedExceptionMessage Invalid JSON: syntax error.
-     * @small
-     */
-    public function testParseInvalidJsonException()
-    {
-        $this->response = new ResponseMock(new Response(200, [], '{'));
-        $this->response->parse();
     }
 }

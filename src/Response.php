@@ -2,7 +2,7 @@
 
 namespace kdn\cpanel\api;
 
-use kdn\cpanel\api\exceptions\InvalidJsonException;
+use Symfony\Component\Serializer\Encoder\JsonEncoder;
 
 /**
  * Class Response.
@@ -43,19 +43,15 @@ abstract class Response extends Object
     /**
      * Parse response.
      * @return $this parsed response object.
-     * @throws InvalidJsonException
      */
     public function parse()
     {
         if ($this->isParsed()) {
             return $this;
         }
-        $decodedResponse = json_decode($this->rawResponse->getBody()->getContents(), true);
+        $encoder = new JsonEncoder();
+        $decodedResponse = $encoder->decode($this->rawResponse->getBody()->getContents(), $encoder::FORMAT);
         $this->parsed = true;
-        $jsonLastError = JsonHelper::getJsonLastError();
-        if (isset($jsonLastError)) {
-            throw new InvalidJsonException("Invalid JSON: $jsonLastError.");
-        }
         foreach ($this->getParams() as $param) {
             $this->$param = $decodedResponse[$param];
         }

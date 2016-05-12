@@ -10,7 +10,6 @@ use kdn\cpanel\api\responses\UapiResponse;
  * @property \kdn\cpanel\api\modules\uapi\Brand $module
  * @covers kdn\cpanel\api\modules\UapiModule
  * @uses   kdn\cpanel\api\Object
- * @uses   kdn\cpanel\api\JsonHelper
  * @uses   kdn\cpanel\api\ServiceLocator
  * @uses   kdn\cpanel\api\Cpanel
  * @uses   kdn\cpanel\api\Auth
