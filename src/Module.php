@@ -263,7 +263,7 @@ abstract class Module extends Object
      * @return Response parsed response to request.
      * @throws AuthMethodNotSupportedException
      * @throws InvalidAuthMethodException
-     * @throws exceptions\ResponseInvalidJsonException
+     * @throws exceptions\InvalidJsonException
      */
     public function send($method, $function, $params = [], $requestOptions = [])
     {

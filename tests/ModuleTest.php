@@ -14,6 +14,7 @@ use ReflectionObject;
  * Class ModuleTest.
  * @package kdn\cpanel\api
  * @uses kdn\cpanel\api\Object
+ * @uses kdn\cpanel\api\JsonHelper
  * @uses kdn\cpanel\api\ServiceLocator
  * @uses kdn\cpanel\api\Cpanel
  * @uses kdn\cpanel\api\Auth
