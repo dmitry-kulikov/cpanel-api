@@ -18,8 +18,8 @@ class ResponseMock extends Response
     /**
      * @inheritdoc
      */
-    protected function getParams()
+    protected function denormalize($data)
     {
-        return ['data'];
+        $this->data = $data;
     }
 }

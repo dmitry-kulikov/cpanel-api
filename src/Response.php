@@ -52,15 +52,13 @@ abstract class Response extends Object
         $encoder = new JsonEncoder();
         $decodedResponse = $encoder->decode($this->rawResponse->getBody()->getContents(), $encoder::FORMAT);
         $this->parsed = true;
-        foreach ($this->getParams() as $param) {
-            $this->$param = $decodedResponse[$param];
-        }
+        $this->denormalize($decodedResponse);
         return $this;
     }
 
     /**
-     * Get response parameter names.
-     * @return array response parameter names.
+     * Uses response data array to set response object properties.
+     * @param array $data response data
      */
-    abstract protected function getParams();
+    abstract protected function denormalize($data);
 }
