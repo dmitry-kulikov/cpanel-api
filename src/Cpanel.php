@@ -2,19 +2,14 @@
 
 namespace kdn\cpanel\api;
 
-use kdn\cpanel\api\apis\Api2;
-use kdn\cpanel\api\apis\Uapi;
-use kdn\cpanel\api\apis\WhmApi0;
-use kdn\cpanel\api\apis\WhmApi1;
-
 /**
  * Class Cpanel.
  * @package kdn\cpanel\api
  *
- * @property Api2 $api2
- * @property Uapi $uapi
- * @property WhmApi0 $whmApi0
- * @property WhmApi1 $whmApi1
+ * @property \kdn\cpanel\api\apis\Api2 $api2
+ * @property \kdn\cpanel\api\apis\Uapi $uapi
+ * @property \kdn\cpanel\api\apis\WhmApi0 $whmApi0
+ * @property \kdn\cpanel\api\apis\WhmApi1 $whmApi1
  */
 class Cpanel extends ServiceLocator
 {
@@ -47,10 +42,10 @@ class Cpanel extends ServiceLocator
     public static function getDefaultDefinitions()
     {
         return [
-            static::API_2 => Api2::className(),
-            static::UAPI => Uapi::className(),
-            static::WHM_API_0 => WhmApi0::className(),
-            static::WHM_API_1 => WhmApi1::className(),
+            static::API_2 => 'kdn\cpanel\api\apis\Api2',
+            static::UAPI => 'kdn\cpanel\api\apis\Uapi',
+            static::WHM_API_0 => 'kdn\cpanel\api\apis\WhmApi0',
+            static::WHM_API_1 => 'kdn\cpanel\api\apis\WhmApi1',
         ];
     }
 

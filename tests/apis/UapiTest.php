@@ -3,6 +3,7 @@
 namespace kdn\cpanel\api\apis;
 
 use kdn\cpanel\api\Cpanel;
+use kdn\cpanel\api\modules\uapi\Backup;
 use kdn\cpanel\api\modules\uapi\Brand;
 use kdn\cpanel\api\TestCase;
 
@@ -36,6 +37,7 @@ class UapiTest extends TestCase
     {
         $this->assertEquals(
             [
+                'backup' => Backup::className(),
                 'brand' => Brand::className(),
             ],
             $this->uapi->getDefaultDefinitions()
@@ -45,6 +47,7 @@ class UapiTest extends TestCase
     public function getProvider()
     {
         return [
+            'backup' => ['backup', Backup::className()],
             'brand' => ['brand', Brand::className()],
         ];
     }

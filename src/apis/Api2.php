@@ -3,14 +3,13 @@
 namespace kdn\cpanel\api\apis;
 
 use kdn\cpanel\api\Api;
-use kdn\cpanel\api\modules\api2\DnsLookup;
 
 /**
  * Class Api2.
  * @package kdn\cpanel\api\apis
  * @link https://documentation.cpanel.net/display/SDK/Guide+to+cPanel+API+2
  *
- * @property DnsLookup $dnsLookup
+ * @property \kdn\cpanel\api\modules\api2\DnsLookup $dnsLookup
  */
 class Api2 extends Api
 {
@@ -20,7 +19,7 @@ class Api2 extends Api
     public static function getDefaultDefinitions()
     {
         return [
-            'dnsLookup' => DnsLookup::className(),
+            'dnsLookup' => 'kdn\cpanel\api\modules\api2\DnsLookup',
         ];
     }
 }

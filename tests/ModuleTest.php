@@ -8,6 +8,7 @@ use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Middleware;
 use GuzzleHttp\Psr7\Response;
 use kdn\cpanel\api\mocks\ModuleMock;
+use kdn\cpanel\api\responses\UapiResponse;
 use ReflectionObject;
 
 /**
@@ -299,7 +300,7 @@ class ModuleTest extends TestCase
             ['version' => 1, 'Model' => ['a' => '1 2', 3]],
             ['timeout' => $timeout]
         );
-        $this->assertInstanceOf('kdn\cpanel\api\responses\UapiResponse', $response);
+        $this->assertInstanceOf(UapiResponse::className(), $response);
         $this->assertTrue($response->isParsed());
         $request = $this->getLastRequest();
         $this->assertEquals('PUT', $request->getMethod());
@@ -337,7 +338,7 @@ class ModuleTest extends TestCase
             ['version' => 1, 'Model' => ['a' => '1 2', 3]],
             ['timeout' => $timeout]
         );
-        $this->assertInstanceOf('kdn\cpanel\api\responses\UapiResponse', $response);
+        $this->assertInstanceOf(UapiResponse::className(), $response);
         $this->assertTrue($response->isParsed());
         $request = $this->getLastRequest();
         $this->assertEquals('GET', $request->getMethod());
@@ -375,7 +376,7 @@ class ModuleTest extends TestCase
             ['version' => 1, 'Model' => ['a' => '1 2', 3]],
             ['timeout' => $timeout]
         );
-        $this->assertInstanceOf('kdn\cpanel\api\responses\UapiResponse', $response);
+        $this->assertInstanceOf(UapiResponse::className(), $response);
         $this->assertTrue($response->isParsed());
         $request = $this->getLastRequest();
         $this->assertEquals('POST', $request->getMethod());

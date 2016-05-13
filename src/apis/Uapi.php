@@ -3,14 +3,14 @@
 namespace kdn\cpanel\api\apis;
 
 use kdn\cpanel\api\Api;
-use kdn\cpanel\api\modules\uapi\Brand;
 
 /**
  * Class Uapi.
  * @package kdn\cpanel\api\apis
  * @link https://documentation.cpanel.net/display/SDK/Guide+to+UAPI
  *
- * @property Brand $brand
+ * @property \kdn\cpanel\api\modules\uapi\Backup $backup
+ * @property \kdn\cpanel\api\modules\uapi\Brand $brand
  */
 class Uapi extends Api
 {
@@ -20,7 +20,8 @@ class Uapi extends Api
     public static function getDefaultDefinitions()
     {
         return [
-            'brand' => Brand::className(),
+            'backup' => 'kdn\cpanel\api\modules\uapi\Backup',
+            'brand' => 'kdn\cpanel\api\modules\uapi\Brand',
         ];
     }
 }
