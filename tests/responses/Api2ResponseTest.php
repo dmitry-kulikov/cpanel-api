@@ -25,19 +25,19 @@ class Api2ResponseTest extends TestCase
     {
         $response = <<<'EOT'
 {
-  "cpanelresult": {
-    "apiversion": 2,
-    "func": "userexists",
-    "data": [
-      {
-        "userexists": "1"
-      }
-    ],
-    "event": {
-      "result": 1
-    },
-    "module": "Postgres"
-  }
+    "cpanelresult": {
+        "apiversion": 2,
+        "func": "userexists",
+        "data": [
+            {
+                "userexists": "1"
+            }
+        ],
+        "event": {
+            "result": 1
+        },
+        "module": "Postgres"
+    }
 }
 EOT;
         $this->response = new Api2Response(new Response(200, [], $response));
