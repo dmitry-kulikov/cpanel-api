@@ -5,6 +5,7 @@ namespace kdn\cpanel\api\apis;
 use kdn\cpanel\api\Cpanel;
 use kdn\cpanel\api\modules\uapi\Backup;
 use kdn\cpanel\api\modules\uapi\Bandwidth;
+use kdn\cpanel\api\modules\uapi\Batch;
 use kdn\cpanel\api\modules\uapi\Brand;
 use kdn\cpanel\api\TestCase;
 
@@ -40,6 +41,7 @@ class UapiTest extends TestCase
             [
                 'backup' => Backup::className(),
                 'bandwidth' => Bandwidth::className(),
+                'batch' => Batch::className(),
                 'brand' => Brand::className(),
             ],
             $this->uapi->getDefaultDefinitions()
@@ -51,6 +53,7 @@ class UapiTest extends TestCase
         return [
             'backup' => ['backup', Backup::className()],
             'bandwidth' => ['bandwidth', Bandwidth::className()],
+            'batch' => ['batch', Batch::className()],
             'brand' => ['brand', Brand::className()],
         ];
     }
