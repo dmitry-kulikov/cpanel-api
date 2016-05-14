@@ -4,6 +4,7 @@ namespace kdn\cpanel\api\apis;
 
 use kdn\cpanel\api\Cpanel;
 use kdn\cpanel\api\modules\uapi\Backup;
+use kdn\cpanel\api\modules\uapi\Bandwidth;
 use kdn\cpanel\api\modules\uapi\Brand;
 use kdn\cpanel\api\TestCase;
 
@@ -38,6 +39,7 @@ class UapiTest extends TestCase
         $this->assertEquals(
             [
                 'backup' => Backup::className(),
+                'bandwidth' => Bandwidth::className(),
                 'brand' => Brand::className(),
             ],
             $this->uapi->getDefaultDefinitions()
@@ -48,6 +50,7 @@ class UapiTest extends TestCase
     {
         return [
             'backup' => ['backup', Backup::className()],
+            'bandwidth' => ['bandwidth', Bandwidth::className()],
             'brand' => ['brand', Brand::className()],
         ];
     }

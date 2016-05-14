@@ -36,6 +36,15 @@ class TestCase extends PHPUnit_Framework_TestCase
     }
 
     /**
+     * Get value of environment variable "CPANEL_DOMAIN".
+     * @return boolean|string value of environment variable "CPANEL_DOMAIN".
+     */
+    protected static function getCpanelDomain()
+    {
+        return getenv('CPANEL_DOMAIN');
+    }
+
+    /**
      * Get value of environment variable "CPANEL_AUTH_HASH".
      * @return boolean|string value of environment variable "CPANEL_AUTH_HASH".
      */

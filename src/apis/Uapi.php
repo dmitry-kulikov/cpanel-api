@@ -10,6 +10,7 @@ use kdn\cpanel\api\Api;
  * @link https://documentation.cpanel.net/display/SDK/Guide+to+UAPI
  *
  * @property \kdn\cpanel\api\modules\uapi\Backup $backup
+ * @property \kdn\cpanel\api\modules\uapi\Bandwidth $bandwidth
  * @property \kdn\cpanel\api\modules\uapi\Brand $brand
  */
 class Uapi extends Api
@@ -21,6 +22,7 @@ class Uapi extends Api
     {
         return [
             'backup' => 'kdn\cpanel\api\modules\uapi\Backup',
+            'bandwidth' => 'kdn\cpanel\api\modules\uapi\Bandwidth',
             'brand' => 'kdn\cpanel\api\modules\uapi\Brand',
         ];
     }
