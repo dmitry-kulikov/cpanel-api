@@ -27,7 +27,10 @@ trait HistoryContainer
      */
     protected function getLastRequest()
     {
-        return end($this->historyContainer)['request'];
+        /** @var \GuzzleHttp\Psr7\Request $request */
+        $request = end($this->historyContainer)['request'];
+        $request->getBody()->rewind();
+        return $request;
     }
 
     /**

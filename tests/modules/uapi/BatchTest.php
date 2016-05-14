@@ -37,9 +37,12 @@ class BatchTest extends UapiModuleTestCase
         $request = $this->getLastRequest();
         $this->assertEquals('POST', $request->getMethod());
         $this->assertEquals(
-            'https://' . static::getCpanelHost() . ':2083/execute/Batch/strict?' .
-            'command-0=%5B%22PasswdStrength%22%2C%22get_required_strength%22%2C%7B%22app%22%3A%22webdisk%22%7D%5D',
+            'https://' . static::getCpanelHost() . ':2083/execute/Batch/strict',
             (string)$request->getUri()
+        );
+        $this->assertEquals(
+            'command-0=%5B%22PasswdStrength%22%2C%22get_required_strength%22%2C%7B%22app%22%3A%22webdisk%22%7D%5D',
+            $request->getBody()->getContents()
         );
     }
 
@@ -59,10 +62,13 @@ class BatchTest extends UapiModuleTestCase
         $request = $this->getLastRequest();
         $this->assertEquals('POST', $request->getMethod());
         $this->assertEquals(
-            'https://' . static::getCpanelHost() . ':2083/execute/Batch/strict?' .
+            'https://' . static::getCpanelHost() . ':2083/execute/Batch/strict',
+            (string)$request->getUri()
+        );
+        $this->assertEquals(
             'command-0=%5B%22SSH%22%2C%22get_port%22%2C%7B%7D%5D&' .
             'command-1=%5B%22PasswdStrength%22%2C%22get_required_strength%22%2C%7B%22app%22%3A%22webdisk%22%7D%5D',
-            (string)$request->getUri()
+            $request->getBody()->getContents()
         );
     }
 
@@ -82,10 +88,13 @@ class BatchTest extends UapiModuleTestCase
         $request = $this->getLastRequest();
         $this->assertEquals('POST', $request->getMethod());
         $this->assertEquals(
-            'https://' . static::getCpanelHost() . ':2083/execute/Batch/strict?' .
+            'https://' . static::getCpanelHost() . ':2083/execute/Batch/strict',
+            (string)$request->getUri()
+        );
+        $this->assertEquals(
             'command-0=%5B%22PasswdStrength%22%2C%22get_required_strength%22%2C%7B%22app%22%3A%22webdisk%22%7D%5D&' .
             'command-1=%5B%22SSH%22%2C%22get_port%22%2C%7B%7D%5D',
-            (string)$request->getUri()
+            $request->getBody()->getContents()
         );
     }
 }

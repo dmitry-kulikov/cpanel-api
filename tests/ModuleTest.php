@@ -293,11 +293,13 @@ class ModuleTest extends TestCase
     public function testSend()
     {
         $this->mockClient();
+        $body = 'data=test';
         $timeout = M_PI;
         $response = $this->module->send(
             'put',
             'upload',
             ['version' => 1, 'Model' => ['a' => '1 2', 3]],
+            $body,
             ['timeout' => $timeout]
         );
         $this->assertInstanceOf(UapiResponse::className(), $response);
@@ -308,6 +310,7 @@ class ModuleTest extends TestCase
             'https://' . static::getCpanelHost() . ':2083/upload?version=1&Model%5Ba%5D=1%202&Model%5B0%5D=3',
             (string)$request->getUri()
         );
+        $this->assertEquals($body, $request->getBody()->getContents());
         $this->assertEquals($timeout, $this->getLastRequestOptions()['timeout']);
     }
 
@@ -332,10 +335,12 @@ class ModuleTest extends TestCase
     public function testGet()
     {
         $this->mockClient();
+        $body = 'data=test';
         $timeout = M_PI;
         $response = $this->module->get(
             'read',
             ['version' => 1, 'Model' => ['a' => '1 2', 3]],
+            $body,
             ['timeout' => $timeout]
         );
         $this->assertInstanceOf(UapiResponse::className(), $response);
@@ -346,6 +351,7 @@ class ModuleTest extends TestCase
             'https://' . static::getCpanelHost() . ':2083/read?version=1&Model%5Ba%5D=1%202&Model%5B0%5D=3',
             (string)$request->getUri()
         );
+        $this->assertEquals($body, $request->getBody()->getContents());
         $this->assertEquals($timeout, $this->getLastRequestOptions()['timeout']);
     }
 
@@ -370,10 +376,12 @@ class ModuleTest extends TestCase
     public function testPost()
     {
         $this->mockClient();
+        $body = 'data=test';
         $timeout = M_PI;
         $response = $this->module->post(
             'write',
             ['version' => 1, 'Model' => ['a' => '1 2', 3]],
+            $body,
             ['timeout' => $timeout]
         );
         $this->assertInstanceOf(UapiResponse::className(), $response);
@@ -384,6 +392,7 @@ class ModuleTest extends TestCase
             'https://' . static::getCpanelHost() . ':2083/write?version=1&Model%5Ba%5D=1%202&Model%5B0%5D=3',
             (string)$request->getUri()
         );
+        $this->assertEquals($body, $request->getBody()->getContents());
         $this->assertEquals($timeout, $this->getLastRequestOptions()['timeout']);
     }
 

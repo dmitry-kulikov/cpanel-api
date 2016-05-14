@@ -23,17 +23,17 @@ class Batch extends UapiModule
     public function strict($command)
     {
         if (!is_array($command)) {
-            $params = ['command-0' => $command];
+            $formParams = ['command-0' => $command];
         } else {
-            $params = [];
+            $formParams = [];
             foreach ($command as $key => $value) {
                 if (!is_string($key)) {
                     $key = "command-$key";
                 }
-                $params[$key] = $value;
+                $formParams[$key] = $value;
             }
-            ksort($params);
+            ksort($formParams);
         }
-        return $this->post('strict', $params);
+        return $this->post('strict', [], null, ['form_params' => $formParams]);
     }
 }

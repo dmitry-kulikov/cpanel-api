@@ -234,24 +234,26 @@ abstract class Module extends Object
      * Create and send an HTTP GET request to call function with specified parameters.
      * @param string $function function name
      * @param array $params parameters
+     * @param string|resource|\Psr\Http\Message\StreamInterface $body message body
      * @param array $requestOptions request options to apply to the given request and to the transfer
      * @return Response parsed response to request.
      */
-    public function get($function, $params = [], $requestOptions = [])
+    public function get($function, $params = [], $body = null, $requestOptions = [])
     {
-        return $this->send('get', $function, $params, $requestOptions);
+        return $this->send('get', $function, $params, $body, $requestOptions);
     }
 
     /**
      * Create and send an HTTP POST request to call function with specified parameters.
      * @param string $function function name
      * @param array $params parameters
+     * @param string|resource|\Psr\Http\Message\StreamInterface $body message body
      * @param array $requestOptions request options to apply to the given request and to the transfer
      * @return Response parsed response to request.
      */
-    public function post($function, $params = [], $requestOptions = [])
+    public function post($function, $params = [], $body = null, $requestOptions = [])
     {
-        return $this->send('post', $function, $params, $requestOptions);
+        return $this->send('post', $function, $params, $body, $requestOptions);
     }
 
     /**
@@ -259,15 +261,16 @@ abstract class Module extends Object
      * @param string $method HTTP method for the request
      * @param string $function function name
      * @param array $params parameters
+     * @param string|resource|\Psr\Http\Message\StreamInterface $body message body
      * @param array $requestOptions request options to apply to the given request and to the transfer
      * @return Response parsed response to request.
      * @throws AuthMethodNotSupportedException
      * @throws InvalidAuthMethodException
      */
-    public function send($method, $function, $params = [], $requestOptions = [])
+    public function send($method, $function, $params = [], $body = null, $requestOptions = [])
     {
         $this->validateAuthType();
-        $request = static::createRequest($method, $this->buildUri($function, $params), $this->buildHeaders());
+        $request = static::createRequest($method, $this->buildUri($function, $params), $this->buildHeaders(), $body);
         /** @var Response $response */
         $response = new $this->responseClass($this->sendRequest($request, $requestOptions));
         return $response->parse();
