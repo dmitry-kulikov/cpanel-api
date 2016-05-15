@@ -139,6 +139,29 @@ class ModuleTest extends TestCase
     }
 
     /**
+     * @covers kdn\cpanel\api\Module::getClientConfig
+     * @small
+     */
+    public function testGetClientConfig()
+    {
+        $cpanel = new Cpanel(static::getCpanelConfig());
+        $this->module = new ModuleMock(['cpanel' => $cpanel]);
+        $cpanel->clientConfig = ['verify' => 'cert.pem'];
+        $this->assertEquals($cpanel->clientConfig, $this->module->getClientConfig());
+    }
+
+    /**
+     * @covers kdn\cpanel\api\Module::getClientConfig
+     * @covers kdn\cpanel\api\Module::setClientConfig
+     * @small
+     */
+    public function testSetClientConfigAndGetClientConfig()
+    {
+        $clientConfig = ['verify' => 'cert.pem'];
+        $this->assertEquals($clientConfig, $this->module->setClientConfig($clientConfig)->getClientConfig());
+    }
+
+    /**
      * @covers kdn\cpanel\api\Module::getAuth
      * @small
      */
@@ -163,6 +186,7 @@ class ModuleTest extends TestCase
 
     /**
      * @covers kdn\cpanel\api\Module::getClient
+     * @uses   kdn\cpanel\api\Module::getClientConfig
      * @small
      */
     public function testGetClient()

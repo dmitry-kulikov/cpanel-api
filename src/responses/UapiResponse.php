@@ -11,19 +11,17 @@ use kdn\cpanel\api\Response;
 class UapiResponse extends Response
 {
     /**
-     * @var string one or more messages about the function's results;
-     * if there are no messages, this parameter returns a null value
+     * @var array messages about the function's results
      */
     public $messages;
 
     /**
-     * @var string one or more error messages, if errors occurred;
-     * if there are no errors, this parameter returns a null value
+     * @var array error messages, if errors occurred
      */
     public $errors;
 
     /**
-     * @var boolean whether the function itself was successful;
+     * @var integer whether the function itself was successful;
      * note: a value of 1 only indicates that the system successfully ran the function;
      * it does not indicate that the function completed its action or that it did not encounter errors
      */
@@ -47,6 +45,20 @@ class UapiResponse extends Response
         $params = ['messages', 'errors', 'status', 'metadata', 'data'];
         foreach ($params as $param) {
             $this->$param = $data[$param];
+        }
+        if (!isset($this->messages)) {
+            $this->messages = [];
+        } else {
+            if (!is_array($this->messages)) {
+                $this->messages = [$this->messages];
+            }
+        }
+        if (!isset($this->errors)) {
+            $this->errors = [];
+        } else {
+            if (!is_array($this->errors)) {
+                $this->errors = [$this->errors];
+            }
         }
     }
 }

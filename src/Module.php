@@ -36,6 +36,11 @@ abstract class Module extends Object
     protected $port;
 
     /**
+     * @var array configuration which should be used to create GuzzleHttp client object
+     */
+    protected $clientConfig;
+
+    /**
      * @var Auth authentication method object
      */
     protected $auth;
@@ -67,7 +72,7 @@ abstract class Module extends Object
     public function getClient()
     {
         if (!isset($this->client)) {
-            $this->client = new Client;
+            $this->client = new Client($this->getClientConfig());
         }
         return $this->client;
     }
@@ -160,6 +165,30 @@ abstract class Module extends Object
     public function setPort($port)
     {
         $this->port = $port;
+        return $this;
+    }
+
+    /**
+     * Get configuration which should be used to create GuzzleHttp client object.
+     * @return array configuration which should be used to create GuzzleHttp client object.
+     */
+    public function getClientConfig()
+    {
+        if (isset($this->clientConfig)) {
+            return $this->clientConfig;
+        } else {
+            return $this->cpanel->clientConfig;
+        }
+    }
+
+    /**
+     * Set configuration which should be used to create GuzzleHttp client object.
+     * @param array $clientConfig configuration which should be used to create GuzzleHttp client object
+     * @return $this module.
+     */
+    public function setClientConfig($clientConfig)
+    {
+        $this->clientConfig = $clientConfig;
         return $this;
     }
 

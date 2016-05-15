@@ -19,10 +19,28 @@ class UapiResponseTest extends TestCase
     protected $response;
 
     /**
-     * @inheritdoc
+     * @covers kdn\cpanel\api\responses\UapiResponse::denormalize
+     * @small
      */
-    protected function setUp()
+    public function testDenormalize()
     {
+        $response = <<<'EOT'
+{
+    "data": null,
+    "messages": null,
+    "metadata": {},
+    "status": 1,
+    "errors": null
+}
+EOT;
+        $this->response = new UapiResponse(new Response(200, [], $response));
+        $this->response->parse();
+        $this->assertEquals(null, $this->response->data);
+        $this->assertEquals([], $this->response->messages);
+        $this->assertEquals([], $this->response->metadata);
+        $this->assertSame(1, $this->response->status);
+        $this->assertEquals([], $this->response->errors);
+
         $response = <<<'EOT'
 {
     "data": [
@@ -39,19 +57,28 @@ class UapiResponseTest extends TestCase
 }
 EOT;
         $this->response = new UapiResponse(new Response(200, [], $response));
-    }
-
-    /**
-     * @covers kdn\cpanel\api\responses\UapiResponse::denormalize
-     * @small
-     */
-    public function testDenormalize()
-    {
         $this->response->parse();
         $this->assertEquals([null, null, 'The domain resolves to Mars. Beep beep beep.'], $this->response->data);
-        $this->assertEquals('Message', $this->response->messages);
+        $this->assertEquals(['Message'], $this->response->messages);
         $this->assertSame(['transformed' => 1], $this->response->metadata);
         $this->assertSame(1, $this->response->status);
-        $this->assertEquals('Error', $this->response->errors);
+        $this->assertEquals(['Error'], $this->response->errors);
+
+        $response = <<<'EOT'
+{
+    "data": null,
+    "messages": ["Message"],
+    "metadata": {},
+    "status": 0,
+    "errors": ["Error"]
+}
+EOT;
+        $this->response = new UapiResponse(new Response(200, [], $response));
+        $this->response->parse();
+        $this->assertEquals(null, $this->response->data);
+        $this->assertEquals(['Message'], $this->response->messages);
+        $this->assertEquals([], $this->response->metadata);
+        $this->assertSame(0, $this->response->status);
+        $this->assertEquals(['Error'], $this->response->errors);
     }
 }

@@ -32,6 +32,11 @@ class Cpanel extends ServiceLocator
     public $protocol = 'https';
 
     /**
+     * @var array configuration which should be used to create GuzzleHttp client object
+     */
+    public $clientConfig = [];
+
+    /**
      * @var Auth authentication method object
      */
     public $auth;

@@ -2,7 +2,6 @@
 
 namespace kdn\cpanel\api\modules;
 
-use GuzzleHttp\Client;
 use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Middleware;
@@ -39,10 +38,17 @@ class ModuleTestCase extends TestCase
      * Get configuration for Cpanel.
      * @return array configuration for Cpanel.
      */
-    protected static function getCpanelConfig()
+    protected function getCpanelConfig()
     {
+        $handler = null;
+        if (!static::getIntegrationTesting()) {
+            $handler = new MockHandler([new Response(200)]);
+        }
+        $stack = HandlerStack::create($handler);
+        $stack->push(Middleware::history($this->historyContainer));
         return [
             'host' => static::getCpanelHost(),
+            'clientConfig' => ['handler' => $stack, 'verify' => static::getGuzzleRequestVerify()],
             'auth' => new Auth(
                 ['username' => static::getCpanelAuthUsername(), 'password' => static::getCpanelAuthPassword()]
             )
@@ -55,13 +61,6 @@ class ModuleTestCase extends TestCase
     protected function setUp()
     {
         $this->clearHistoryContainer();
-        $handler = null;
-        if (!static::getIntegrationTesting()) {
-            $handler = new MockHandler([new Response(200)]);
-        }
-        $stack = HandlerStack::create($handler);
-        $stack->push(Middleware::history($this->historyContainer));
-        $this->module = (new Cpanel(static::getCpanelConfig()))->{$this->apiName}->{$this->moduleName}
-            ->setClient(new Client(['handler' => $stack, 'verify' => static::getGuzzleRequestVerify()]));
+        $this->module = (new Cpanel($this->getCpanelConfig()))->{$this->apiName}->{$this->moduleName};
     }
 }
