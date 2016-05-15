@@ -82,6 +82,18 @@ class Ssl extends UapiModule
     }
 
     /**
+     * @link https://documentation.cpanel.net/display/SDK/UAPI+Functions+-+SSL%3A%3Aset_cert_friendly_name
+     * @param string $friendlyName
+     * @param string $newFriendlyName
+     * @return \kdn\cpanel\api\responses\UapiResponse parsed response to request.
+     */
+    public function setCertFriendlyName($friendlyName, $newFriendlyName)
+    {
+        $formParams = ['friendly_name' => $friendlyName, 'new_friendly_name' => $newFriendlyName];
+        return $this->post('set_cert_friendly_name', [], null, ['form_params' => $formParams]);
+    }
+
+    /**
      * Reads entire file into a string.
      * @param string $fileName name of the file to read
      * @return boolean|string returns the read data or false on failure.

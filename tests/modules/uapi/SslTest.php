@@ -124,4 +124,25 @@ class SslTest extends UapiModuleTestCase
         );
         $this->assertEquals("friendly_name=$certName", $request->getBody()->getContents());
     }
+
+    /**
+     * @covers kdn\cpanel\api\modules\uapi\Ssl::setCertFriendlyName
+     * @medium
+     */
+    public function testSetCertFriendlyName()
+    {
+        $certName = 'TestCert';
+        $newCertName = 'TestCert2';
+        $this->assertInstanceOf(UapiResponse::className(), $this->module->setCertFriendlyName($certName, $newCertName));
+        $request = $this->getLastRequest();
+        $this->assertEquals('POST', $request->getMethod());
+        $this->assertEquals(
+            'https://' . static::getCpanelHost() . ':2083/execute/SSL/set_cert_friendly_name',
+            (string)$request->getUri()
+        );
+        $this->assertEquals(
+            "friendly_name=$certName&new_friendly_name=$newCertName",
+            $request->getBody()->getContents()
+        );
+    }
 }
