@@ -63,6 +63,35 @@ class SslTest extends UapiModuleTestCase
     }
 
     /**
+     * @covers kdn\cpanel\api\modules\uapi\Ssl::getFileContents
+     * @covers kdn\cpanel\api\modules\uapi\Ssl::installSslFromFiles
+     * @uses   kdn\cpanel\api\modules\uapi\Ssl::installSsl
+     * @medium
+     */
+    public function testInstallSslFromFiles()
+    {
+        $domain = static::getCpanelDomain();
+        $relativePath = static::getDataPath() . 'ssl';
+        $response = $this->module->installSslFromFiles(
+            $domain,
+            "$relativePath/cert.pem",
+            "$relativePath/privkey.pem",
+            "$relativePath/bundle.txt"
+        );
+        $this->assertInstanceOf(UapiResponse::className(), $response);
+        $request = $this->getLastRequest();
+        $this->assertEquals('POST', $request->getMethod());
+        $this->assertEquals(
+            'https://' . static::getCpanelHost() . ':2083/execute/SSL/install_ssl',
+            (string)$request->getUri()
+        );
+        $this->assertEquals(
+            "domain=$domain&cert=certificate&key=privateKey&cabundle=caBundle",
+            $request->getBody()->getContents()
+        );
+    }
+
+    /**
      * @covers kdn\cpanel\api\modules\uapi\Ssl::deleteCertById
      * @medium
      */

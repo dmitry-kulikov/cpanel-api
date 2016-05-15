@@ -100,4 +100,13 @@ class TestCase extends PHPUnit_Framework_TestCase
         }
         return $variable;
     }
+
+    /**
+     * Get path to "data" directory.
+     * @return string path to "data" directory.
+     */
+    protected function getDataPath()
+    {
+        return __DIR__ . '/data/';
+    }
 }
