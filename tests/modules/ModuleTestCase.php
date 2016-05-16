@@ -42,7 +42,7 @@ class ModuleTestCase extends TestCase
     {
         $handler = null;
         if (!static::getIntegrationTesting()) {
-            $handler = new MockHandler([new Response(200)]);
+            $handler = new MockHandler([new Response(200, [], '{}')]);
         }
         $stack = HandlerStack::create($handler);
         $stack->push(Middleware::history($this->historyContainer));

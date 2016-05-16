@@ -50,7 +50,7 @@ class ModuleTest extends TestCase
     protected function mockClient()
     {
         $this->clearHistoryContainer();
-        $stack = HandlerStack::create(new MockHandler([new Response(200)]));
+        $stack = HandlerStack::create(new MockHandler([new Response(200, [], '{}')]));
         $stack->push(Middleware::history($this->historyContainer));
         $this->module->setClient(new Client(['handler' => $stack]));
     }
