@@ -137,7 +137,7 @@ class Auth extends Object
      */
     public static function getMethodsInfo()
     {
-        $message[] = 'Allowed authentication methods:';
+        $message = ['Allowed authentication methods:'];
         foreach (static::getMethods() as $type => $method) {
             $message[] = ' - ' . $type . ': requires "' . implode('", "', $method['required']) . '", allows to use ' .
                 implode(', ', $method['services']);

@@ -6,7 +6,7 @@ use GuzzleHttp\Client;
 use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Middleware;
-use GuzzleHttp\Psr7\Response;
+use GuzzleHttp\Psr7\Response as GuzzleResponse;
 use kdn\cpanel\api\mocks\ModuleMock;
 use kdn\cpanel\api\responses\UapiResponse;
 use ReflectionObject;
@@ -59,7 +59,7 @@ class ModuleTest extends TestCase
     "data": null
 }
 EOT;
-        $stack = HandlerStack::create(new MockHandler([new Response(200, [], $responseBody)]));
+        $stack = HandlerStack::create(new MockHandler([new GuzzleResponse(200, [], $responseBody)]));
         $stack->push(Middleware::history($this->historyContainer));
         $this->module->setClient(new Client(['handler' => $stack]));
     }

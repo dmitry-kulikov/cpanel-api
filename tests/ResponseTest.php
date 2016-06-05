@@ -2,7 +2,7 @@
 
 namespace kdn\cpanel\api;
 
-use GuzzleHttp\Psr7\Response;
+use GuzzleHttp\Psr7\Response as GuzzleResponse;
 use kdn\cpanel\api\mocks\ResponseMock;
 
 /**
@@ -22,7 +22,7 @@ class ResponseTest extends TestCase
      */
     protected function setUp()
     {
-        $this->response = new ResponseMock(new Response(200, [], '{"domain": "example.com"}'));
+        $this->response = new ResponseMock(new GuzzleResponse(200, [], '{"domain": "example.com"}'));
     }
 
     /**

@@ -17,16 +17,15 @@ class ArrayHelper
      * type and are having the same key.
      * For integer-keyed elements, the elements from the latter array will
      * be appended to the former array.
-     * @param array $a array to be merged to
-     * @param array $b array to be merged from; you can specify additional
-     * arrays via third argument, fourth argument etc.
+     * First argument is array to be merged to, second argument is array to be merged from;
+     * you can specify additional arrays via third argument, fourth argument etc.
      * @return array the merged array (the original arrays are not changed).
      * @link http://www.yiiframework.com/
      * @copyright Copyright (c) 2008 Yii Software LLC
      * @license http://www.yiiframework.com/license/
      * @author Qiang Xue <qiang.xue@gmail.com>
      */
-    public static function merge($a, $b)
+    public static function merge()
     {
         $args = func_get_args();
         $res = array_shift($args);

@@ -46,18 +46,14 @@ class UapiResponse extends Response
         foreach ($params as $param) {
             $this->$param = $data[$param];
         }
-        if (!isset($this->messages)) {
-            $this->messages = [];
-        } else {
-            if (!is_array($this->messages)) {
-                $this->messages = [$this->messages];
-            }
-        }
-        if (!isset($this->errors)) {
-            $this->errors = [];
-        } else {
-            if (!is_array($this->errors)) {
-                $this->errors = [$this->errors];
+        $paramsToArray = ['messages', 'errors'];
+        foreach ($paramsToArray as $param) {
+            if (!isset($this->$param)) {
+                $this->$param = [];
+            } else {
+                if (!is_array($this->$param)) {
+                    $this->$param = [$this->$param];
+                }
             }
         }
     }
