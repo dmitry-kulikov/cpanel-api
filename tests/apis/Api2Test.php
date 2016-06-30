@@ -25,6 +25,7 @@ class Api2Test extends TestCase
      */
     protected function setUp()
     {
+        parent::setUp();
         $this->api2 = new Api2(['cpanel' => new Cpanel]);
     }
 

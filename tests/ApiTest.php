@@ -25,6 +25,7 @@ class ApiTest extends TestCase
      */
     protected function setUp()
     {
+        parent::setUp();
         $className = ObjectMock::className();
         $this->api = new ApiMock(
             [

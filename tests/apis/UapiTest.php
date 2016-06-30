@@ -29,6 +29,7 @@ class UapiTest extends TestCase
      */
     protected function setUp()
     {
+        parent::setUp();
         $this->uapi = new Uapi(['cpanel' => new Cpanel]);
     }
 

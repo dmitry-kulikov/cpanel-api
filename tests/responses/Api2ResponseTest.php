@@ -23,6 +23,7 @@ class Api2ResponseTest extends TestCase
      */
     protected function setUp()
     {
+        parent::setUp();
         $response = <<<'EOT'
 {
     "cpanelresult": {

@@ -27,6 +27,7 @@ class CpanelTest extends TestCase
      */
     protected function setUp()
     {
+        parent::setUp();
         $className = ObjectMock::className();
         $this->cpanel = new Cpanel(
             [

@@ -25,6 +25,7 @@ class WhmApi1Test extends TestCase
      */
     protected function setUp()
     {
+        parent::setUp();
         $this->whmApi1 = new WhmApi1(['cpanel' => new Cpanel]);
     }
 

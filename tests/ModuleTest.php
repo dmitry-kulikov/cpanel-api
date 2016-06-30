@@ -69,6 +69,7 @@ EOT;
      */
     protected function setUp()
     {
+        parent::setUp();
         $this->module = new ModuleMock(['cpanel' => new Cpanel(static::getCpanelConfig())]);
     }
 

@@ -23,6 +23,7 @@ class WhmApi0ResponseTest extends TestCase
      */
     protected function setUp()
     {
+        parent::setUp();
         $response = <<<'EOT'
 {
     "hostname": "hostname.example.com"

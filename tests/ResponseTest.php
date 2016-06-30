@@ -22,6 +22,7 @@ class ResponseTest extends TestCase
      */
     protected function setUp()
     {
+        parent::setUp();
         $this->response = new ResponseMock(new GuzzleResponse(200, [], '{"domain": "example.com"}'));
     }
 

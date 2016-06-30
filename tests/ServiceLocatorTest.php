@@ -36,6 +36,7 @@ class ServiceLocatorTest extends TestCase
      */
     protected function setUp()
     {
+        parent::setUp();
         $this->locator = new ServiceLocator(static::getServiceLocatorConfig());
     }
 

@@ -9,7 +9,7 @@ use UnexpectedValueException;
  * Class TestCase.
  * @package kdn\cpanel\api
  */
-class TestCase extends PHPUnit_Framework_TestCase
+abstract class TestCase extends PHPUnit_Framework_TestCase
 {
     /**
      * Get value of environment variable "INTEGRATION_TESTING".

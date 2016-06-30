@@ -15,7 +15,7 @@ use kdn\cpanel\api\TestCase;
  * Class ModuleTestCase.
  * @package kdn\cpanel\api
  */
-class ModuleTestCase extends TestCase
+abstract class ModuleTestCase extends TestCase
 {
     use HistoryContainer;
 
@@ -69,6 +69,7 @@ EOT;
      */
     protected function setUp()
     {
+        parent::setUp();
         $this->clearHistoryContainer();
         $this->module = (new Cpanel($this->getCpanelConfig()))->{$this->apiName}->{$this->moduleName};
     }
