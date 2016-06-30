@@ -21,9 +21,6 @@
             <directory suffix=".php">src</directory>
         </whitelist>
     </filter>
-    <logging>
-        <log type="coverage-html" target="coverage"/>
-    </logging>
     <php>
         <env name="INTEGRATION_TESTING" value="false"/>
         <env name="CPANEL_HOST" value="hostname.example.com"/>
