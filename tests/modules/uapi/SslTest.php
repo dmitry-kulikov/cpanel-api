@@ -8,16 +8,16 @@ use kdn\cpanel\api\responses\UapiResponse;
  * Class SslTest.
  * @package kdn\cpanel\api\modules\uapi
  * @property \kdn\cpanel\api\modules\uapi\Ssl $module
- * @covers kdn\cpanel\api\modules\UapiModule
- * @uses   kdn\cpanel\api\Object
- * @uses   kdn\cpanel\api\ServiceLocator
- * @uses   kdn\cpanel\api\Cpanel
- * @uses   kdn\cpanel\api\Auth
- * @uses   kdn\cpanel\api\Api
- * @uses   kdn\cpanel\api\apis\Uapi
- * @uses   kdn\cpanel\api\Module
- * @uses   kdn\cpanel\api\Response
- * @uses   kdn\cpanel\api\responses\UapiResponse
+ * @covers \kdn\cpanel\api\modules\UapiModule
+ * @uses   \kdn\cpanel\api\Object
+ * @uses   \kdn\cpanel\api\ServiceLocator
+ * @uses   \kdn\cpanel\api\Cpanel
+ * @uses   \kdn\cpanel\api\Auth
+ * @uses   \kdn\cpanel\api\Api
+ * @uses   \kdn\cpanel\api\apis\Uapi
+ * @uses   \kdn\cpanel\api\Module
+ * @uses   \kdn\cpanel\api\Response
+ * @uses   \kdn\cpanel\api\responses\UapiResponse
  */
 class SslTest extends UapiModuleTestCase
 {
@@ -27,7 +27,7 @@ class SslTest extends UapiModuleTestCase
     protected $moduleName = 'ssl';
 
     /**
-     * @covers kdn\cpanel\api\modules\uapi\Ssl::listCerts
+     * @covers \kdn\cpanel\api\modules\uapi\Ssl::listCerts
      * @medium
      */
     public function testListCerts()
@@ -42,7 +42,7 @@ class SslTest extends UapiModuleTestCase
     }
 
     /**
-     * @covers kdn\cpanel\api\modules\uapi\Ssl::installSsl
+     * @covers \kdn\cpanel\api\modules\uapi\Ssl::installSsl
      * @medium
      */
     public function testInstallSsl()
@@ -63,9 +63,9 @@ class SslTest extends UapiModuleTestCase
     }
 
     /**
-     * @covers kdn\cpanel\api\modules\uapi\Ssl::getFileContents
-     * @covers kdn\cpanel\api\modules\uapi\Ssl::installSslFromFiles
-     * @uses   kdn\cpanel\api\modules\uapi\Ssl::installSsl
+     * @covers \kdn\cpanel\api\modules\uapi\Ssl::getFileContents
+     * @covers \kdn\cpanel\api\modules\uapi\Ssl::installSslFromFiles
+     * @uses   \kdn\cpanel\api\modules\uapi\Ssl::installSsl
      * @medium
      */
     public function testInstallSslFromFiles()
@@ -92,7 +92,7 @@ class SslTest extends UapiModuleTestCase
     }
 
     /**
-     * @covers kdn\cpanel\api\modules\uapi\Ssl::deleteCertById
+     * @covers \kdn\cpanel\api\modules\uapi\Ssl::deleteCertById
      * @medium
      */
     public function testDeleteCertById()
@@ -109,7 +109,7 @@ class SslTest extends UapiModuleTestCase
     }
 
     /**
-     * @covers kdn\cpanel\api\modules\uapi\Ssl::deleteCertByName
+     * @covers \kdn\cpanel\api\modules\uapi\Ssl::deleteCertByName
      * @medium
      */
     public function testDeleteCertByName()
@@ -126,7 +126,7 @@ class SslTest extends UapiModuleTestCase
     }
 
     /**
-     * @covers kdn\cpanel\api\modules\uapi\Ssl::setCertFriendlyName
+     * @covers \kdn\cpanel\api\modules\uapi\Ssl::setCertFriendlyName
      * @medium
      */
     public function testSetCertFriendlyName()

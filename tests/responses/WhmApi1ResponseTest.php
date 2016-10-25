@@ -8,8 +8,8 @@ use kdn\cpanel\api\TestCase;
 /**
  * Class WhmApi1ResponseTest.
  * @package kdn\cpanel\api\responses
- * @covers kdn\cpanel\api\Response
- * @uses   kdn\cpanel\api\Object
+ * @covers \kdn\cpanel\api\Response
+ * @uses   \kdn\cpanel\api\Object
  */
 class WhmApi1ResponseTest extends TestCase
 {
@@ -45,7 +45,7 @@ EOT;
     }
 
     /**
-     * @covers kdn\cpanel\api\responses\WhmApi1Response::denormalize
+     * @covers \kdn\cpanel\api\responses\WhmApi1Response::denormalize
      * @small
      */
     public function testDenormalize()

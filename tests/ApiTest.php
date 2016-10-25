@@ -8,10 +8,10 @@ use kdn\cpanel\api\mocks\ObjectMock;
 /**
  * Class ApiTest.
  * @package kdn\cpanel\api
- * @uses kdn\cpanel\api\helpers\ArrayHelper
- * @uses kdn\cpanel\api\Object
- * @uses kdn\cpanel\api\ServiceLocator
- * @uses kdn\cpanel\api\Cpanel
+ * @uses \kdn\cpanel\api\helpers\ArrayHelper
+ * @uses \kdn\cpanel\api\Object
+ * @uses \kdn\cpanel\api\ServiceLocator
+ * @uses \kdn\cpanel\api\Cpanel
  */
 class ApiTest extends TestCase
 {
@@ -39,7 +39,7 @@ class ApiTest extends TestCase
     }
 
     /**
-     * @covers kdn\cpanel\api\Api::get
+     * @covers \kdn\cpanel\api\Api::get
      * @small
      */
     public function testGetCustomServiceWithoutCpanel()
@@ -49,7 +49,7 @@ class ApiTest extends TestCase
     }
 
     /**
-     * @covers kdn\cpanel\api\Api::get
+     * @covers \kdn\cpanel\api\Api::get
      * @small
      */
     public function testGetCustomServiceWithCpanel()

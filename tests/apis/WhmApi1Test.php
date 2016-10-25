@@ -9,9 +9,9 @@ use kdn\cpanel\api\TestCase;
 /**
  * Class WhmApi1Test.
  * @package kdn\cpanel\api
- * @uses kdn\cpanel\api\Object
- * @uses kdn\cpanel\api\ServiceLocator
- * @uses kdn\cpanel\api\Cpanel
+ * @uses \kdn\cpanel\api\Object
+ * @uses \kdn\cpanel\api\ServiceLocator
+ * @uses \kdn\cpanel\api\Cpanel
  */
 class WhmApi1Test extends TestCase
 {
@@ -30,7 +30,7 @@ class WhmApi1Test extends TestCase
     }
 
     /**
-     * @covers kdn\cpanel\api\apis\WhmApi1::getDefaultDefinitions
+     * @covers \kdn\cpanel\api\apis\WhmApi1::getDefaultDefinitions
      * @small
      */
     public function testGetDefaultDefinitions()
@@ -53,8 +53,8 @@ class WhmApi1Test extends TestCase
     /**
      * @param string $service
      * @param string $class
-     * @covers       kdn\cpanel\api\apis\WhmApi1::get
-     * @uses         kdn\cpanel\api\apis\WhmApi1::getDefaultDefinitions
+     * @covers       \kdn\cpanel\api\apis\WhmApi1::get
+     * @uses         \kdn\cpanel\api\apis\WhmApi1::getDefaultDefinitions
      * @dataProvider getProvider
      * @small
      */

@@ -10,16 +10,16 @@ use kdn\cpanel\api\responses\UapiResponse;
  * Class BandwidthTest.
  * @package kdn\cpanel\api\modules\uapi
  * @property \kdn\cpanel\api\modules\uapi\Bandwidth $module
- * @covers kdn\cpanel\api\modules\UapiModule
- * @uses   kdn\cpanel\api\Object
- * @uses   kdn\cpanel\api\ServiceLocator
- * @uses   kdn\cpanel\api\Cpanel
- * @uses   kdn\cpanel\api\Auth
- * @uses   kdn\cpanel\api\Api
- * @uses   kdn\cpanel\api\apis\Uapi
- * @uses   kdn\cpanel\api\Module
- * @uses   kdn\cpanel\api\Response
- * @uses   kdn\cpanel\api\responses\UapiResponse
+ * @covers \kdn\cpanel\api\modules\UapiModule
+ * @uses   \kdn\cpanel\api\Object
+ * @uses   \kdn\cpanel\api\ServiceLocator
+ * @uses   \kdn\cpanel\api\Cpanel
+ * @uses   \kdn\cpanel\api\Auth
+ * @uses   \kdn\cpanel\api\Api
+ * @uses   \kdn\cpanel\api\apis\Uapi
+ * @uses   \kdn\cpanel\api\Module
+ * @uses   \kdn\cpanel\api\Response
+ * @uses   \kdn\cpanel\api\responses\UapiResponse
  */
 class BandwidthTest extends UapiModuleTestCase
 {
@@ -29,7 +29,7 @@ class BandwidthTest extends UapiModuleTestCase
     protected $moduleName = 'bandwidth';
 
     /**
-     * @covers kdn\cpanel\api\modules\uapi\Bandwidth::getRetentionPeriods
+     * @covers \kdn\cpanel\api\modules\uapi\Bandwidth::getRetentionPeriods
      * @medium
      */
     public function testGetRetentionPeriods()
@@ -44,7 +44,7 @@ class BandwidthTest extends UapiModuleTestCase
     }
 
     /**
-     * @covers kdn\cpanel\api\modules\uapi\Bandwidth::query
+     * @covers \kdn\cpanel\api\modules\uapi\Bandwidth::query
      * @medium
      */
     public function testQuery()
@@ -60,7 +60,7 @@ class BandwidthTest extends UapiModuleTestCase
     }
 
     /**
-     * @covers kdn\cpanel\api\modules\uapi\Bandwidth::query
+     * @covers \kdn\cpanel\api\modules\uapi\Bandwidth::query
      * @medium
      */
     public function testQueryAdvanced()

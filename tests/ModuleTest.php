@@ -14,12 +14,12 @@ use ReflectionObject;
 /**
  * Class ModuleTest.
  * @package kdn\cpanel\api
- * @uses kdn\cpanel\api\Object
- * @uses kdn\cpanel\api\ServiceLocator
- * @uses kdn\cpanel\api\Cpanel
- * @uses kdn\cpanel\api\Auth
- * @uses kdn\cpanel\api\Response
- * @uses kdn\cpanel\api\responses\UapiResponse
+ * @uses \kdn\cpanel\api\Object
+ * @uses \kdn\cpanel\api\ServiceLocator
+ * @uses \kdn\cpanel\api\Cpanel
+ * @uses \kdn\cpanel\api\Auth
+ * @uses \kdn\cpanel\api\Response
+ * @uses \kdn\cpanel\api\responses\UapiResponse
  */
 class ModuleTest extends TestCase
 {
@@ -74,7 +74,7 @@ EOT;
     }
 
     /**
-     * @covers kdn\cpanel\api\Module::getName
+     * @covers \kdn\cpanel\api\Module::getName
      * @small
      */
     public function testGetName()
@@ -83,7 +83,7 @@ EOT;
     }
 
     /**
-     * @covers kdn\cpanel\api\Module::getServiceName
+     * @covers \kdn\cpanel\api\Module::getServiceName
      * @small
      */
     public function testGetServiceName()
@@ -92,7 +92,7 @@ EOT;
     }
 
     /**
-     * @covers kdn\cpanel\api\Module::getHost
+     * @covers \kdn\cpanel\api\Module::getHost
      * @small
      */
     public function testGetHost()
@@ -104,8 +104,8 @@ EOT;
     }
 
     /**
-     * @covers kdn\cpanel\api\Module::getHost
-     * @covers kdn\cpanel\api\Module::setHost
+     * @covers \kdn\cpanel\api\Module::getHost
+     * @covers \kdn\cpanel\api\Module::setHost
      * @small
      */
     public function testSetHostAndGetHost()
@@ -115,7 +115,7 @@ EOT;
     }
 
     /**
-     * @covers kdn\cpanel\api\Module::getProtocol
+     * @covers \kdn\cpanel\api\Module::getProtocol
      * @small
      */
     public function testGetProtocol()
@@ -127,8 +127,8 @@ EOT;
     }
 
     /**
-     * @covers kdn\cpanel\api\Module::getProtocol
-     * @covers kdn\cpanel\api\Module::setProtocol
+     * @covers \kdn\cpanel\api\Module::getProtocol
+     * @covers \kdn\cpanel\api\Module::setProtocol
      * @small
      */
     public function testSetProtocolAndGetProtocol()
@@ -138,8 +138,8 @@ EOT;
     }
 
     /**
-     * @covers kdn\cpanel\api\Module::getPort
-     * @covers kdn\cpanel\api\Module::setPort
+     * @covers \kdn\cpanel\api\Module::getPort
+     * @covers \kdn\cpanel\api\Module::setPort
      * @small
      */
     public function testSetPortAndGetPort()
@@ -149,7 +149,7 @@ EOT;
     }
 
     /**
-     * @covers kdn\cpanel\api\Module::getClientConfig
+     * @covers \kdn\cpanel\api\Module::getClientConfig
      * @small
      */
     public function testGetClientConfig()
@@ -161,8 +161,8 @@ EOT;
     }
 
     /**
-     * @covers kdn\cpanel\api\Module::getClientConfig
-     * @covers kdn\cpanel\api\Module::setClientConfig
+     * @covers \kdn\cpanel\api\Module::getClientConfig
+     * @covers \kdn\cpanel\api\Module::setClientConfig
      * @small
      */
     public function testSetClientConfigAndGetClientConfig()
@@ -172,7 +172,7 @@ EOT;
     }
 
     /**
-     * @covers kdn\cpanel\api\Module::getAuth
+     * @covers \kdn\cpanel\api\Module::getAuth
      * @small
      */
     public function testGetAuth()
@@ -184,8 +184,8 @@ EOT;
     }
 
     /**
-     * @covers kdn\cpanel\api\Module::getAuth
-     * @covers kdn\cpanel\api\Module::setAuth
+     * @covers \kdn\cpanel\api\Module::getAuth
+     * @covers \kdn\cpanel\api\Module::setAuth
      * @small
      */
     public function testSetAuthAndGetAuth()
@@ -195,8 +195,8 @@ EOT;
     }
 
     /**
-     * @covers kdn\cpanel\api\Module::getClient
-     * @uses   kdn\cpanel\api\Module::getClientConfig
+     * @covers \kdn\cpanel\api\Module::getClient
+     * @uses   \kdn\cpanel\api\Module::getClientConfig
      * @small
      */
     public function testGetClient()
@@ -205,8 +205,8 @@ EOT;
     }
 
     /**
-     * @covers kdn\cpanel\api\Module::getClient
-     * @covers kdn\cpanel\api\Module::setClient
+     * @covers \kdn\cpanel\api\Module::getClient
+     * @covers \kdn\cpanel\api\Module::setClient
      * @small
      */
     public function testSetClientAndGetClient()
@@ -216,10 +216,10 @@ EOT;
     }
 
     /**
-     * @covers kdn\cpanel\api\Module::getBaseUri
-     * @uses   kdn\cpanel\api\Module::getHost
-     * @uses   kdn\cpanel\api\Module::getPort
-     * @uses   kdn\cpanel\api\Module::getProtocol
+     * @covers \kdn\cpanel\api\Module::getBaseUri
+     * @uses   \kdn\cpanel\api\Module::getHost
+     * @uses   \kdn\cpanel\api\Module::getPort
+     * @uses   \kdn\cpanel\api\Module::getProtocol
      * @small
      */
     public function testGetBaseUri()
@@ -230,11 +230,11 @@ EOT;
     }
 
     /**
-     * @covers kdn\cpanel\api\Module::createRequest
-     * @uses   kdn\cpanel\api\Module::getBaseUri
-     * @uses   kdn\cpanel\api\Module::getHost
-     * @uses   kdn\cpanel\api\Module::getProtocol
-     * @uses   kdn\cpanel\api\Module::getPort
+     * @covers \kdn\cpanel\api\Module::createRequest
+     * @uses   \kdn\cpanel\api\Module::getBaseUri
+     * @uses   \kdn\cpanel\api\Module::getHost
+     * @uses   \kdn\cpanel\api\Module::getProtocol
+     * @uses   \kdn\cpanel\api\Module::getPort
      * @small
      */
     public function testCreateRequest()
@@ -258,7 +258,7 @@ EOT;
      * @param string $expectedResult
      * @param array $params
      * @param integer $encoding
-     * @covers       kdn\cpanel\api\Module::buildQuery
+     * @covers       \kdn\cpanel\api\Module::buildQuery
      * @dataProvider buildQueryProvider
      * @small
      */
@@ -268,7 +268,7 @@ EOT;
     }
 
     /**
-     * @covers kdn\cpanel\api\Module::buildQuery
+     * @covers \kdn\cpanel\api\Module::buildQuery
      * @small
      */
     public function testBuildQueryDefaultEncoding()
@@ -280,14 +280,14 @@ EOT;
     }
 
     /**
-     * @covers kdn\cpanel\api\Module::sendRequest
-     * @uses   kdn\cpanel\api\Module::createRequest
-     * @uses   kdn\cpanel\api\Module::getBaseUri
-     * @uses   kdn\cpanel\api\Module::getClient
-     * @uses   kdn\cpanel\api\Module::getHost
-     * @uses   kdn\cpanel\api\Module::getPort
-     * @uses   kdn\cpanel\api\Module::getProtocol
-     * @uses   kdn\cpanel\api\Module::setClient
+     * @covers \kdn\cpanel\api\Module::sendRequest
+     * @uses   \kdn\cpanel\api\Module::createRequest
+     * @uses   \kdn\cpanel\api\Module::getBaseUri
+     * @uses   \kdn\cpanel\api\Module::getClient
+     * @uses   \kdn\cpanel\api\Module::getHost
+     * @uses   \kdn\cpanel\api\Module::getPort
+     * @uses   \kdn\cpanel\api\Module::getProtocol
+     * @uses   \kdn\cpanel\api\Module::setClient
      * @small
      */
     public function testSendRequest()
@@ -308,20 +308,20 @@ EOT;
     }
 
     /**
-     * @covers kdn\cpanel\api\Module::send
-     * @covers kdn\cpanel\api\Module::validateAuthType
-     * @uses   kdn\cpanel\api\Module::buildHeaders
-     * @uses   kdn\cpanel\api\Module::buildQuery
-     * @uses   kdn\cpanel\api\Module::createRequest
-     * @uses   kdn\cpanel\api\Module::getAuth
-     * @uses   kdn\cpanel\api\Module::getBaseUri
-     * @uses   kdn\cpanel\api\Module::getClient
-     * @uses   kdn\cpanel\api\Module::getHost
-     * @uses   kdn\cpanel\api\Module::getPort
-     * @uses   kdn\cpanel\api\Module::getProtocol
-     * @uses   kdn\cpanel\api\Module::getServiceName
-     * @uses   kdn\cpanel\api\Module::sendRequest
-     * @uses   kdn\cpanel\api\Module::setClient
+     * @covers \kdn\cpanel\api\Module::send
+     * @covers \kdn\cpanel\api\Module::validateAuthType
+     * @uses   \kdn\cpanel\api\Module::buildHeaders
+     * @uses   \kdn\cpanel\api\Module::buildQuery
+     * @uses   \kdn\cpanel\api\Module::createRequest
+     * @uses   \kdn\cpanel\api\Module::getAuth
+     * @uses   \kdn\cpanel\api\Module::getBaseUri
+     * @uses   \kdn\cpanel\api\Module::getClient
+     * @uses   \kdn\cpanel\api\Module::getHost
+     * @uses   \kdn\cpanel\api\Module::getPort
+     * @uses   \kdn\cpanel\api\Module::getProtocol
+     * @uses   \kdn\cpanel\api\Module::getServiceName
+     * @uses   \kdn\cpanel\api\Module::sendRequest
+     * @uses   \kdn\cpanel\api\Module::setClient
      * @small
      */
     public function testSend()
@@ -349,21 +349,21 @@ EOT;
     }
 
     /**
-     * @covers kdn\cpanel\api\Module::get
-     * @uses   kdn\cpanel\api\Module::buildHeaders
-     * @uses   kdn\cpanel\api\Module::buildQuery
-     * @uses   kdn\cpanel\api\Module::createRequest
-     * @uses   kdn\cpanel\api\Module::getAuth
-     * @uses   kdn\cpanel\api\Module::getBaseUri
-     * @uses   kdn\cpanel\api\Module::getClient
-     * @uses   kdn\cpanel\api\Module::getHost
-     * @uses   kdn\cpanel\api\Module::getPort
-     * @uses   kdn\cpanel\api\Module::getProtocol
-     * @uses   kdn\cpanel\api\Module::getServiceName
-     * @uses   kdn\cpanel\api\Module::send
-     * @uses   kdn\cpanel\api\Module::sendRequest
-     * @uses   kdn\cpanel\api\Module::setClient
-     * @uses   kdn\cpanel\api\Module::validateAuthType
+     * @covers \kdn\cpanel\api\Module::get
+     * @uses   \kdn\cpanel\api\Module::buildHeaders
+     * @uses   \kdn\cpanel\api\Module::buildQuery
+     * @uses   \kdn\cpanel\api\Module::createRequest
+     * @uses   \kdn\cpanel\api\Module::getAuth
+     * @uses   \kdn\cpanel\api\Module::getBaseUri
+     * @uses   \kdn\cpanel\api\Module::getClient
+     * @uses   \kdn\cpanel\api\Module::getHost
+     * @uses   \kdn\cpanel\api\Module::getPort
+     * @uses   \kdn\cpanel\api\Module::getProtocol
+     * @uses   \kdn\cpanel\api\Module::getServiceName
+     * @uses   \kdn\cpanel\api\Module::send
+     * @uses   \kdn\cpanel\api\Module::sendRequest
+     * @uses   \kdn\cpanel\api\Module::setClient
+     * @uses   \kdn\cpanel\api\Module::validateAuthType
      * @small
      */
     public function testGet()
@@ -390,21 +390,21 @@ EOT;
     }
 
     /**
-     * @covers kdn\cpanel\api\Module::post
-     * @uses   kdn\cpanel\api\Module::buildHeaders
-     * @uses   kdn\cpanel\api\Module::buildQuery
-     * @uses   kdn\cpanel\api\Module::createRequest
-     * @uses   kdn\cpanel\api\Module::getAuth
-     * @uses   kdn\cpanel\api\Module::getBaseUri
-     * @uses   kdn\cpanel\api\Module::getClient
-     * @uses   kdn\cpanel\api\Module::getHost
-     * @uses   kdn\cpanel\api\Module::getPort
-     * @uses   kdn\cpanel\api\Module::getProtocol
-     * @uses   kdn\cpanel\api\Module::getServiceName
-     * @uses   kdn\cpanel\api\Module::send
-     * @uses   kdn\cpanel\api\Module::sendRequest
-     * @uses   kdn\cpanel\api\Module::setClient
-     * @uses   kdn\cpanel\api\Module::validateAuthType
+     * @covers \kdn\cpanel\api\Module::post
+     * @uses   \kdn\cpanel\api\Module::buildHeaders
+     * @uses   \kdn\cpanel\api\Module::buildQuery
+     * @uses   \kdn\cpanel\api\Module::createRequest
+     * @uses   \kdn\cpanel\api\Module::getAuth
+     * @uses   \kdn\cpanel\api\Module::getBaseUri
+     * @uses   \kdn\cpanel\api\Module::getClient
+     * @uses   \kdn\cpanel\api\Module::getHost
+     * @uses   \kdn\cpanel\api\Module::getPort
+     * @uses   \kdn\cpanel\api\Module::getProtocol
+     * @uses   \kdn\cpanel\api\Module::getServiceName
+     * @uses   \kdn\cpanel\api\Module::send
+     * @uses   \kdn\cpanel\api\Module::sendRequest
+     * @uses   \kdn\cpanel\api\Module::setClient
+     * @uses   \kdn\cpanel\api\Module::validateAuthType
      * @small
      */
     public function testPost()
@@ -444,10 +444,10 @@ EOT;
 
     /**
      * @param mixed $auth
-     * @covers       kdn\cpanel\api\Module::validateAuthType
-     * @uses         kdn\cpanel\api\Module::getAuth
-     * @uses         kdn\cpanel\api\Module::send
-     * @uses         kdn\cpanel\api\Module::setAuth
+     * @covers       \kdn\cpanel\api\Module::validateAuthType
+     * @uses         \kdn\cpanel\api\Module::getAuth
+     * @uses         \kdn\cpanel\api\Module::send
+     * @uses         \kdn\cpanel\api\Module::setAuth
      * @dataProvider validateAuthTypeInvalidAuthMethodExceptionProvider
      * @expectedException \kdn\cpanel\api\exceptions\InvalidAuthMethodException
      * @expectedExceptionMessage The authentication method must be an object.
@@ -460,11 +460,11 @@ EOT;
     }
 
     /**
-     * @covers kdn\cpanel\api\Module::validateAuthType
-     * @uses   kdn\cpanel\api\Module::getAuth
-     * @uses   kdn\cpanel\api\Module::getServiceName
-     * @uses   kdn\cpanel\api\Module::send
-     * @uses   kdn\cpanel\api\Module::setAuth
+     * @covers \kdn\cpanel\api\Module::validateAuthType
+     * @uses   \kdn\cpanel\api\Module::getAuth
+     * @uses   \kdn\cpanel\api\Module::getServiceName
+     * @uses   \kdn\cpanel\api\Module::send
+     * @uses   \kdn\cpanel\api\Module::setAuth
      * @expectedException \kdn\cpanel\api\exceptions\AuthMethodNotSupportedException
      * @expectedExceptionMessage Authentication method "hash" not supported by service "uapi".
      * @small
@@ -488,21 +488,21 @@ EOT;
     /**
      * @param string $expectedResult
      * @param Auth $auth
-     * @covers       kdn\cpanel\api\Module::buildHeaders
-     * @uses         kdn\cpanel\api\Module::buildQuery
-     * @uses         kdn\cpanel\api\Module::getAuth
-     * @uses         kdn\cpanel\api\Module::getBaseUri
-     * @uses         kdn\cpanel\api\Module::getClient
-     * @uses         kdn\cpanel\api\Module::getHost
-     * @uses         kdn\cpanel\api\Module::getPort
-     * @uses         kdn\cpanel\api\Module::getProtocol
-     * @uses         kdn\cpanel\api\Module::getServiceName
-     * @uses         kdn\cpanel\api\Module::createRequest
-     * @uses         kdn\cpanel\api\Module::send
-     * @uses         kdn\cpanel\api\Module::sendRequest
-     * @uses         kdn\cpanel\api\Module::setAuth
-     * @uses         kdn\cpanel\api\Module::setClient
-     * @uses         kdn\cpanel\api\Module::validateAuthType
+     * @covers       \kdn\cpanel\api\Module::buildHeaders
+     * @uses         \kdn\cpanel\api\Module::buildQuery
+     * @uses         \kdn\cpanel\api\Module::getAuth
+     * @uses         \kdn\cpanel\api\Module::getBaseUri
+     * @uses         \kdn\cpanel\api\Module::getClient
+     * @uses         \kdn\cpanel\api\Module::getHost
+     * @uses         \kdn\cpanel\api\Module::getPort
+     * @uses         \kdn\cpanel\api\Module::getProtocol
+     * @uses         \kdn\cpanel\api\Module::getServiceName
+     * @uses         \kdn\cpanel\api\Module::createRequest
+     * @uses         \kdn\cpanel\api\Module::send
+     * @uses         \kdn\cpanel\api\Module::sendRequest
+     * @uses         \kdn\cpanel\api\Module::setAuth
+     * @uses         \kdn\cpanel\api\Module::setClient
+     * @uses         \kdn\cpanel\api\Module::validateAuthType
      * @dataProvider buildHeadersProvider
      * @small
      */

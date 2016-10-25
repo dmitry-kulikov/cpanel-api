@@ -11,9 +11,9 @@ use kdn\cpanel\api\mocks\ObjectMock;
 /**
  * Class CpanelTest.
  * @package kdn\cpanel\api
- * @uses kdn\cpanel\api\Object
- * @uses kdn\cpanel\api\helpers\ArrayHelper
- * @uses kdn\cpanel\api\ServiceLocator
+ * @uses \kdn\cpanel\api\Object
+ * @uses \kdn\cpanel\api\helpers\ArrayHelper
+ * @uses \kdn\cpanel\api\ServiceLocator
  */
 class CpanelTest extends TestCase
 {
@@ -40,7 +40,7 @@ class CpanelTest extends TestCase
     }
 
     /**
-     * @covers kdn\cpanel\api\Cpanel::getDefaultDefinitions
+     * @covers \kdn\cpanel\api\Cpanel::getDefaultDefinitions
      * @small
      */
     public function testGetDefaultDefinitions()
@@ -69,12 +69,12 @@ class CpanelTest extends TestCase
     /**
      * @param string $service
      * @param string $class
-     * @covers       kdn\cpanel\api\Cpanel::get
-     * @uses         kdn\cpanel\api\Cpanel::getDefaultDefinitions
-     * @uses         kdn\cpanel\api\apis\Api2::getDefaultDefinitions
-     * @uses         kdn\cpanel\api\apis\Uapi::getDefaultDefinitions
-     * @uses         kdn\cpanel\api\apis\WhmApi0::getDefaultDefinitions
-     * @uses         kdn\cpanel\api\apis\WhmApi1::getDefaultDefinitions
+     * @covers       \kdn\cpanel\api\Cpanel::get
+     * @uses         \kdn\cpanel\api\Cpanel::getDefaultDefinitions
+     * @uses         \kdn\cpanel\api\apis\Api2::getDefaultDefinitions
+     * @uses         \kdn\cpanel\api\apis\Uapi::getDefaultDefinitions
+     * @uses         \kdn\cpanel\api\apis\WhmApi0::getDefaultDefinitions
+     * @uses         \kdn\cpanel\api\apis\WhmApi1::getDefaultDefinitions
      * @dataProvider getProvider
      * @small
      */
@@ -85,8 +85,8 @@ class CpanelTest extends TestCase
     }
 
     /**
-     * @covers kdn\cpanel\api\Cpanel::get
-     * @uses   kdn\cpanel\api\Cpanel::getDefaultDefinitions
+     * @covers \kdn\cpanel\api\Cpanel::get
+     * @uses   \kdn\cpanel\api\Cpanel::getDefaultDefinitions
      * @small
      */
     public function testGetCustomServiceWithoutCpanel()
@@ -96,8 +96,8 @@ class CpanelTest extends TestCase
     }
 
     /**
-     * @covers kdn\cpanel\api\Cpanel::get
-     * @uses   kdn\cpanel\api\Cpanel::getDefaultDefinitions
+     * @covers \kdn\cpanel\api\Cpanel::get
+     * @uses   \kdn\cpanel\api\Cpanel::getDefaultDefinitions
      * @small
      */
     public function testGetCustomServiceWithCpanel()

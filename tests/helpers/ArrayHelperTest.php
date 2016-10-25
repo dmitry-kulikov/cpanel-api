@@ -12,7 +12,7 @@ use kdn\cpanel\api\TestCase;
 class ArrayHelperTest extends TestCase
 {
     /**
-     * @covers kdn\cpanel\api\helpers\ArrayHelper::merge
+     * @covers \kdn\cpanel\api\helpers\ArrayHelper::merge
      * @small
      * @link http://www.yiiframework.com/
      * @copyright Copyright (c) 2008 Yii Software LLC

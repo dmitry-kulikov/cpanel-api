@@ -5,12 +5,12 @@ namespace kdn\cpanel\api;
 /**
  * Class AuthTest.
  * @package kdn\cpanel\api
- * @uses kdn\cpanel\api\Object
+ * @uses \kdn\cpanel\api\Object
  */
 class AuthTest extends TestCase
 {
     /**
-     * @covers kdn\cpanel\api\Auth::getMethods
+     * @covers \kdn\cpanel\api\Auth::getMethods
      * @small
      */
     public function testGetMethods()
@@ -35,8 +35,8 @@ class AuthTest extends TestCase
     }
 
     /**
-     * @covers kdn\cpanel\api\Auth::getMethodsInfo
-     * @uses   kdn\cpanel\api\Auth::getMethods
+     * @covers \kdn\cpanel\api\Auth::getMethodsInfo
+     * @uses   \kdn\cpanel\api\Auth::getMethods
      * @small
      */
     public function testGetMethodsInfo()
@@ -72,9 +72,9 @@ class AuthTest extends TestCase
 
     /**
      * @param array $config
-     * @covers       kdn\cpanel\api\Auth::__construct
-     * @covers       kdn\cpanel\api\Auth::validateAuthType
-     * @uses         kdn\cpanel\api\Auth::getMethods
+     * @covers       \kdn\cpanel\api\Auth::__construct
+     * @covers       \kdn\cpanel\api\Auth::validateAuthType
+     * @uses         \kdn\cpanel\api\Auth::getMethods
      * @dataProvider validateAuthTypeProvider
      * @small
      */
@@ -84,10 +84,10 @@ class AuthTest extends TestCase
     }
 
     /**
-     * @covers kdn\cpanel\api\Auth::__construct
-     * @covers kdn\cpanel\api\Auth::validateAuthType
-     * @uses   kdn\cpanel\api\Auth::getMethods
-     * @uses   kdn\cpanel\api\Auth::getMethodsInfo
+     * @covers \kdn\cpanel\api\Auth::__construct
+     * @covers \kdn\cpanel\api\Auth::validateAuthType
+     * @uses   \kdn\cpanel\api\Auth::getMethods
+     * @uses   \kdn\cpanel\api\Auth::getMethodsInfo
      * @expectedException \kdn\cpanel\api\exceptions\InvalidConfigException
      * @expectedExceptionMessage Unknown authentication method.
      * @small
@@ -98,9 +98,9 @@ class AuthTest extends TestCase
     }
 
     /**
-     * @covers kdn\cpanel\api\Auth::__construct
-     * @covers kdn\cpanel\api\Auth::validateAuthType
-     * @uses   kdn\cpanel\api\Auth::getMethods
+     * @covers \kdn\cpanel\api\Auth::__construct
+     * @covers \kdn\cpanel\api\Auth::validateAuthType
+     * @uses   \kdn\cpanel\api\Auth::getMethods
      * @expectedException \kdn\cpanel\api\exceptions\InvalidConfigException
      * @expectedExceptionMessage hash authentication method requires the following data: "hash".
      * @small
@@ -122,10 +122,10 @@ class AuthTest extends TestCase
     /**
      * @param array $config
      * @param string $expectedType
-     * @covers       kdn\cpanel\api\Auth::__construct
-     * @covers       kdn\cpanel\api\Auth::getAuthType
-     * @uses         kdn\cpanel\api\Auth::getMethods
-     * @uses         kdn\cpanel\api\Auth::validateAuthType
+     * @covers       \kdn\cpanel\api\Auth::__construct
+     * @covers       \kdn\cpanel\api\Auth::getAuthType
+     * @uses         \kdn\cpanel\api\Auth::getMethods
+     * @uses         \kdn\cpanel\api\Auth::validateAuthType
      * @dataProvider getAuthTypeProvider
      * @small
      */
@@ -149,10 +149,10 @@ class AuthTest extends TestCase
     /**
      * @param array $config
      * @param string $expectedType
-     * @covers       kdn\cpanel\api\Auth::__construct
-     * @covers       kdn\cpanel\api\Auth::determineAuthType
-     * @uses         kdn\cpanel\api\Auth::getAuthType
-     * @uses         kdn\cpanel\api\Auth::getMethods
+     * @covers       \kdn\cpanel\api\Auth::__construct
+     * @covers       \kdn\cpanel\api\Auth::determineAuthType
+     * @uses         \kdn\cpanel\api\Auth::getAuthType
+     * @uses         \kdn\cpanel\api\Auth::getMethods
      * @dataProvider determineAuthTypeProvider
      * @small
      */
@@ -162,10 +162,10 @@ class AuthTest extends TestCase
     }
 
     /**
-     * @covers kdn\cpanel\api\Auth::__construct
-     * @covers kdn\cpanel\api\Auth::determineAuthType
-     * @uses   kdn\cpanel\api\Auth::getMethods
-     * @uses   kdn\cpanel\api\Auth::getMethodsInfo
+     * @covers \kdn\cpanel\api\Auth::__construct
+     * @covers \kdn\cpanel\api\Auth::determineAuthType
+     * @uses   \kdn\cpanel\api\Auth::getMethods
+     * @uses   \kdn\cpanel\api\Auth::getMethodsInfo
      * @expectedException \kdn\cpanel\api\exceptions\InvalidConfigException
      * @expectedExceptionMessage Can't determine authentication method.
      * @small

@@ -8,8 +8,8 @@ use kdn\cpanel\api\TestCase;
 /**
  * Class UapiResponseTest.
  * @package kdn\cpanel\api\responses
- * @covers kdn\cpanel\api\Response
- * @uses   kdn\cpanel\api\Object
+ * @covers \kdn\cpanel\api\Response
+ * @uses   \kdn\cpanel\api\Object
  */
 class UapiResponseTest extends TestCase
 {
@@ -19,7 +19,7 @@ class UapiResponseTest extends TestCase
     protected $response;
 
     /**
-     * @covers kdn\cpanel\api\responses\UapiResponse::denormalize
+     * @covers \kdn\cpanel\api\responses\UapiResponse::denormalize
      * @small
      */
     public function testDenormalize()

@@ -13,9 +13,9 @@ use kdn\cpanel\api\TestCase;
 /**
  * Class UapiTest.
  * @package kdn\cpanel\api
- * @uses kdn\cpanel\api\Object
- * @uses kdn\cpanel\api\ServiceLocator
- * @uses kdn\cpanel\api\Cpanel
+ * @uses \kdn\cpanel\api\Object
+ * @uses \kdn\cpanel\api\ServiceLocator
+ * @uses \kdn\cpanel\api\Cpanel
  */
 class UapiTest extends TestCase
 {
@@ -34,7 +34,7 @@ class UapiTest extends TestCase
     }
 
     /**
-     * @covers kdn\cpanel\api\apis\Uapi::getDefaultDefinitions
+     * @covers \kdn\cpanel\api\apis\Uapi::getDefaultDefinitions
      * @small
      */
     public function testGetDefaultDefinitions()
@@ -65,8 +65,8 @@ class UapiTest extends TestCase
     /**
      * @param string $service
      * @param string $class
-     * @covers       kdn\cpanel\api\apis\Uapi::get
-     * @uses         kdn\cpanel\api\apis\Uapi::getDefaultDefinitions
+     * @covers       \kdn\cpanel\api\apis\Uapi::get
+     * @uses         \kdn\cpanel\api\apis\Uapi::getDefaultDefinitions
      * @dataProvider getProvider
      * @small
      */

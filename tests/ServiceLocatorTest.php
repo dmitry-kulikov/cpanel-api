@@ -8,8 +8,8 @@ use kdn\cpanel\api\mocks\ServiceLocatorMock;
 /**
  * Class ServiceLocatorTest.
  * @package kdn\cpanel\api
- * @uses kdn\cpanel\api\Object
- * @uses kdn\cpanel\api\helpers\ArrayHelper
+ * @uses \kdn\cpanel\api\Object
+ * @uses \kdn\cpanel\api\helpers\ArrayHelper
  */
 class ServiceLocatorTest extends TestCase
 {
@@ -41,10 +41,10 @@ class ServiceLocatorTest extends TestCase
     }
 
     /**
-     * @covers kdn\cpanel\api\ServiceLocator::getDefaultDefinitions
-     * @uses   kdn\cpanel\api\ServiceLocator::__construct
-     * @uses   kdn\cpanel\api\ServiceLocator::set
-     * @uses   kdn\cpanel\api\ServiceLocator::setDefinitions
+     * @covers \kdn\cpanel\api\ServiceLocator::getDefaultDefinitions
+     * @uses   \kdn\cpanel\api\ServiceLocator::__construct
+     * @uses   \kdn\cpanel\api\ServiceLocator::set
+     * @uses   \kdn\cpanel\api\ServiceLocator::setDefinitions
      * @small
      */
     public function testGetDefaultDefinitions()
@@ -53,13 +53,13 @@ class ServiceLocatorTest extends TestCase
     }
 
     /**
-     * @covers kdn\cpanel\api\ServiceLocator::__get
-     * @uses   kdn\cpanel\api\ServiceLocator::__construct
-     * @uses   kdn\cpanel\api\ServiceLocator::get
-     * @uses   kdn\cpanel\api\ServiceLocator::getDefaultDefinitions
-     * @uses   kdn\cpanel\api\ServiceLocator::has
-     * @uses   kdn\cpanel\api\ServiceLocator::set
-     * @uses   kdn\cpanel\api\ServiceLocator::setDefinitions
+     * @covers \kdn\cpanel\api\ServiceLocator::__get
+     * @uses   \kdn\cpanel\api\ServiceLocator::__construct
+     * @uses   \kdn\cpanel\api\ServiceLocator::get
+     * @uses   \kdn\cpanel\api\ServiceLocator::getDefaultDefinitions
+     * @uses   \kdn\cpanel\api\ServiceLocator::has
+     * @uses   \kdn\cpanel\api\ServiceLocator::set
+     * @uses   \kdn\cpanel\api\ServiceLocator::setDefinitions
      * @small
      */
     public function testMagicGet()
@@ -74,12 +74,12 @@ class ServiceLocatorTest extends TestCase
     }
 
     /**
-     * @covers kdn\cpanel\api\ServiceLocator::__get
-     * @uses   kdn\cpanel\api\ServiceLocator::__construct
-     * @uses   kdn\cpanel\api\ServiceLocator::getDefaultDefinitions
-     * @uses   kdn\cpanel\api\ServiceLocator::has
-     * @uses   kdn\cpanel\api\ServiceLocator::set
-     * @uses   kdn\cpanel\api\ServiceLocator::setDefinitions
+     * @covers \kdn\cpanel\api\ServiceLocator::__get
+     * @uses   \kdn\cpanel\api\ServiceLocator::__construct
+     * @uses   \kdn\cpanel\api\ServiceLocator::getDefaultDefinitions
+     * @uses   \kdn\cpanel\api\ServiceLocator::has
+     * @uses   \kdn\cpanel\api\ServiceLocator::set
+     * @uses   \kdn\cpanel\api\ServiceLocator::setDefinitions
      * @expectedException \kdn\cpanel\api\exceptions\UnknownPropertyException
      * @expectedExceptionMessage Getting unknown property: kdn\cpanel\api\ServiceLocator::unknown.
      * @small
@@ -96,11 +96,11 @@ class ServiceLocatorTest extends TestCase
     }
 
     /**
-     * @covers kdn\cpanel\api\ServiceLocator::has
-     * @uses   kdn\cpanel\api\ServiceLocator::__construct
-     * @uses   kdn\cpanel\api\ServiceLocator::getDefaultDefinitions
-     * @uses   kdn\cpanel\api\ServiceLocator::set
-     * @uses   kdn\cpanel\api\ServiceLocator::setDefinitions
+     * @covers \kdn\cpanel\api\ServiceLocator::has
+     * @uses   \kdn\cpanel\api\ServiceLocator::__construct
+     * @uses   \kdn\cpanel\api\ServiceLocator::getDefaultDefinitions
+     * @uses   \kdn\cpanel\api\ServiceLocator::set
+     * @uses   \kdn\cpanel\api\ServiceLocator::setDefinitions
      * @small
      */
     public function testHas()
@@ -110,11 +110,11 @@ class ServiceLocatorTest extends TestCase
     }
 
     /**
-     * @covers kdn\cpanel\api\ServiceLocator::getDefinitions
-     * @uses   kdn\cpanel\api\ServiceLocator::__construct
-     * @uses   kdn\cpanel\api\ServiceLocator::getDefaultDefinitions
-     * @uses   kdn\cpanel\api\ServiceLocator::set
-     * @uses   kdn\cpanel\api\ServiceLocator::setDefinitions
+     * @covers \kdn\cpanel\api\ServiceLocator::getDefinitions
+     * @uses   \kdn\cpanel\api\ServiceLocator::__construct
+     * @uses   \kdn\cpanel\api\ServiceLocator::getDefaultDefinitions
+     * @uses   \kdn\cpanel\api\ServiceLocator::set
+     * @uses   \kdn\cpanel\api\ServiceLocator::setDefinitions
      * @small
      */
     public function testGetDefinitions()
@@ -123,12 +123,12 @@ class ServiceLocatorTest extends TestCase
     }
 
     /**
-     * @covers kdn\cpanel\api\ServiceLocator::clear
-     * @uses   kdn\cpanel\api\ServiceLocator::__construct
-     * @uses   kdn\cpanel\api\ServiceLocator::getDefaultDefinitions
-     * @uses   kdn\cpanel\api\ServiceLocator::has
-     * @uses   kdn\cpanel\api\ServiceLocator::set
-     * @uses   kdn\cpanel\api\ServiceLocator::setDefinitions
+     * @covers \kdn\cpanel\api\ServiceLocator::clear
+     * @uses   \kdn\cpanel\api\ServiceLocator::__construct
+     * @uses   \kdn\cpanel\api\ServiceLocator::getDefaultDefinitions
+     * @uses   \kdn\cpanel\api\ServiceLocator::has
+     * @uses   \kdn\cpanel\api\ServiceLocator::set
+     * @uses   \kdn\cpanel\api\ServiceLocator::setDefinitions
      * @small
      */
     public function testClear()
@@ -176,11 +176,11 @@ class ServiceLocatorTest extends TestCase
     /**
      * @param mixed $definition
      * @param object $expectedResult
-     * @covers       kdn\cpanel\api\ServiceLocator::get
-     * @covers       kdn\cpanel\api\ServiceLocator::set
-     * @uses         kdn\cpanel\api\ServiceLocator::__construct
-     * @uses         kdn\cpanel\api\ServiceLocator::getDefaultDefinitions
-     * @uses         kdn\cpanel\api\ServiceLocator::setDefinitions
+     * @covers       \kdn\cpanel\api\ServiceLocator::get
+     * @covers       \kdn\cpanel\api\ServiceLocator::set
+     * @uses         \kdn\cpanel\api\ServiceLocator::__construct
+     * @uses         \kdn\cpanel\api\ServiceLocator::getDefaultDefinitions
+     * @uses         \kdn\cpanel\api\ServiceLocator::setDefinitions
      * @dataProvider setAndGetProvider
      * @small
      */
@@ -191,11 +191,11 @@ class ServiceLocatorTest extends TestCase
     }
 
     /**
-     * @covers kdn\cpanel\api\ServiceLocator::set
-     * @uses   kdn\cpanel\api\ServiceLocator::__construct
-     * @uses   kdn\cpanel\api\ServiceLocator::getDefaultDefinitions
-     * @uses   kdn\cpanel\api\ServiceLocator::has
-     * @uses   kdn\cpanel\api\ServiceLocator::setDefinitions
+     * @covers \kdn\cpanel\api\ServiceLocator::set
+     * @uses   \kdn\cpanel\api\ServiceLocator::__construct
+     * @uses   \kdn\cpanel\api\ServiceLocator::getDefaultDefinitions
+     * @uses   \kdn\cpanel\api\ServiceLocator::has
+     * @uses   \kdn\cpanel\api\ServiceLocator::setDefinitions
      * @small
      */
     public function testSetNull()
@@ -205,10 +205,10 @@ class ServiceLocatorTest extends TestCase
     }
 
     /**
-     * @covers kdn\cpanel\api\ServiceLocator::set
-     * @uses   kdn\cpanel\api\ServiceLocator::__construct
-     * @uses   kdn\cpanel\api\ServiceLocator::getDefaultDefinitions
-     * @uses   kdn\cpanel\api\ServiceLocator::setDefinitions
+     * @covers \kdn\cpanel\api\ServiceLocator::set
+     * @uses   \kdn\cpanel\api\ServiceLocator::__construct
+     * @uses   \kdn\cpanel\api\ServiceLocator::getDefaultDefinitions
+     * @uses   \kdn\cpanel\api\ServiceLocator::setDefinitions
      * @expectedException \kdn\cpanel\api\exceptions\InvalidConfigException
      * @expectedExceptionMessage The configuration for the "object" service must contain a "class" element.
      * @small
@@ -219,10 +219,10 @@ class ServiceLocatorTest extends TestCase
     }
 
     /**
-     * @covers kdn\cpanel\api\ServiceLocator::set
-     * @uses   kdn\cpanel\api\ServiceLocator::__construct
-     * @uses   kdn\cpanel\api\ServiceLocator::getDefaultDefinitions
-     * @uses   kdn\cpanel\api\ServiceLocator::setDefinitions
+     * @covers \kdn\cpanel\api\ServiceLocator::set
+     * @uses   \kdn\cpanel\api\ServiceLocator::__construct
+     * @uses   \kdn\cpanel\api\ServiceLocator::getDefaultDefinitions
+     * @uses   \kdn\cpanel\api\ServiceLocator::setDefinitions
      * @expectedException \kdn\cpanel\api\exceptions\InvalidConfigException
      * @expectedExceptionMessage Unexpected configuration type for the "object" service: boolean.
      * @small
@@ -233,11 +233,11 @@ class ServiceLocatorTest extends TestCase
     }
 
     /**
-     * @covers kdn\cpanel\api\ServiceLocator::get
-     * @uses   kdn\cpanel\api\ServiceLocator::__construct
-     * @uses   kdn\cpanel\api\ServiceLocator::getDefaultDefinitions
-     * @uses   kdn\cpanel\api\ServiceLocator::set
-     * @uses   kdn\cpanel\api\ServiceLocator::setDefinitions
+     * @covers \kdn\cpanel\api\ServiceLocator::get
+     * @uses   \kdn\cpanel\api\ServiceLocator::__construct
+     * @uses   \kdn\cpanel\api\ServiceLocator::getDefaultDefinitions
+     * @uses   \kdn\cpanel\api\ServiceLocator::set
+     * @uses   \kdn\cpanel\api\ServiceLocator::setDefinitions
      * @expectedException \kdn\cpanel\api\exceptions\InvalidConfigException
      * @expectedExceptionMessage Unknown service ID: unknown.
      * @small
@@ -248,11 +248,11 @@ class ServiceLocatorTest extends TestCase
     }
 
     /**
-     * @covers kdn\cpanel\api\ServiceLocator::get
-     * @uses   kdn\cpanel\api\ServiceLocator::__construct
-     * @uses   kdn\cpanel\api\ServiceLocator::getDefaultDefinitions
-     * @uses   kdn\cpanel\api\ServiceLocator::set
-     * @uses   kdn\cpanel\api\ServiceLocator::setDefinitions
+     * @covers \kdn\cpanel\api\ServiceLocator::get
+     * @uses   \kdn\cpanel\api\ServiceLocator::__construct
+     * @uses   \kdn\cpanel\api\ServiceLocator::getDefaultDefinitions
+     * @uses   \kdn\cpanel\api\ServiceLocator::set
+     * @uses   \kdn\cpanel\api\ServiceLocator::setDefinitions
      * @expectedException \kdn\cpanel\api\exceptions\InvalidConfigException
      * @expectedExceptionMessage Unexpected object definition type: boolean.
      * @small
@@ -267,11 +267,11 @@ class ServiceLocatorTest extends TestCase
     }
 
     /**
-     * @covers kdn\cpanel\api\ServiceLocator::setDefinitions
-     * @uses   kdn\cpanel\api\ServiceLocator::__construct
-     * @uses   kdn\cpanel\api\ServiceLocator::getDefaultDefinitions
-     * @uses   kdn\cpanel\api\ServiceLocator::getDefinitions
-     * @uses   kdn\cpanel\api\ServiceLocator::set
+     * @covers \kdn\cpanel\api\ServiceLocator::setDefinitions
+     * @uses   \kdn\cpanel\api\ServiceLocator::__construct
+     * @uses   \kdn\cpanel\api\ServiceLocator::getDefaultDefinitions
+     * @uses   \kdn\cpanel\api\ServiceLocator::getDefinitions
+     * @uses   \kdn\cpanel\api\ServiceLocator::set
      * @small
      */
     public function testSetDefinitions()
@@ -285,11 +285,11 @@ class ServiceLocatorTest extends TestCase
     }
 
     /**
-     * @covers kdn\cpanel\api\ServiceLocator::__construct
-     * @uses   kdn\cpanel\api\ServiceLocator::getDefaultDefinitions
-     * @uses   kdn\cpanel\api\ServiceLocator::getDefinitions
-     * @uses   kdn\cpanel\api\ServiceLocator::set
-     * @uses   kdn\cpanel\api\ServiceLocator::setDefinitions
+     * @covers \kdn\cpanel\api\ServiceLocator::__construct
+     * @uses   \kdn\cpanel\api\ServiceLocator::getDefaultDefinitions
+     * @uses   \kdn\cpanel\api\ServiceLocator::getDefinitions
+     * @uses   \kdn\cpanel\api\ServiceLocator::set
+     * @uses   \kdn\cpanel\api\ServiceLocator::setDefinitions
      * @small
      */
     public function testConstruct()

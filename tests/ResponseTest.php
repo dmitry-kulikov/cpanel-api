@@ -8,7 +8,7 @@ use kdn\cpanel\api\mocks\ResponseMock;
 /**
  * Class ResponseTest.
  * @package kdn\cpanel\api
- * @uses kdn\cpanel\api\Object
+ * @uses \kdn\cpanel\api\Object
  */
 class ResponseTest extends TestCase
 {
@@ -27,8 +27,8 @@ class ResponseTest extends TestCase
     }
 
     /**
-     * @covers kdn\cpanel\api\Response::isParsed
-     * @uses   kdn\cpanel\api\Response::__construct
+     * @covers \kdn\cpanel\api\Response::isParsed
+     * @uses   \kdn\cpanel\api\Response::__construct
      * @small
      */
     public function testIsParsed()
@@ -37,9 +37,9 @@ class ResponseTest extends TestCase
     }
 
     /**
-     * @covers kdn\cpanel\api\Response::__construct
-     * @covers kdn\cpanel\api\Response::parse
-     * @uses   kdn\cpanel\api\Response::isParsed
+     * @covers \kdn\cpanel\api\Response::__construct
+     * @covers \kdn\cpanel\api\Response::parse
+     * @uses   \kdn\cpanel\api\Response::isParsed
      * @small
      */
     public function testParse()

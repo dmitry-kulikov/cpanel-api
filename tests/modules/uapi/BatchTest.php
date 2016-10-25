@@ -8,16 +8,16 @@ use kdn\cpanel\api\responses\UapiResponse;
  * Class BatchTest.
  * @package kdn\cpanel\api\modules\uapi
  * @property \kdn\cpanel\api\modules\uapi\Batch $module
- * @covers kdn\cpanel\api\modules\UapiModule
- * @uses   kdn\cpanel\api\Object
- * @uses   kdn\cpanel\api\ServiceLocator
- * @uses   kdn\cpanel\api\Cpanel
- * @uses   kdn\cpanel\api\Auth
- * @uses   kdn\cpanel\api\Api
- * @uses   kdn\cpanel\api\apis\Uapi
- * @uses   kdn\cpanel\api\Module
- * @uses   kdn\cpanel\api\Response
- * @uses   kdn\cpanel\api\responses\UapiResponse
+ * @covers \kdn\cpanel\api\modules\UapiModule
+ * @uses   \kdn\cpanel\api\Object
+ * @uses   \kdn\cpanel\api\ServiceLocator
+ * @uses   \kdn\cpanel\api\Cpanel
+ * @uses   \kdn\cpanel\api\Auth
+ * @uses   \kdn\cpanel\api\Api
+ * @uses   \kdn\cpanel\api\apis\Uapi
+ * @uses   \kdn\cpanel\api\Module
+ * @uses   \kdn\cpanel\api\Response
+ * @uses   \kdn\cpanel\api\responses\UapiResponse
  */
 class BatchTest extends UapiModuleTestCase
 {
@@ -27,7 +27,7 @@ class BatchTest extends UapiModuleTestCase
     protected $moduleName = 'batch';
 
     /**
-     * @covers kdn\cpanel\api\modules\uapi\Batch::strict
+     * @covers \kdn\cpanel\api\modules\uapi\Batch::strict
      * @medium
      */
     public function testStrictSingleCommand()
@@ -47,7 +47,7 @@ class BatchTest extends UapiModuleTestCase
     }
 
     /**
-     * @covers kdn\cpanel\api\modules\uapi\Batch::strict
+     * @covers \kdn\cpanel\api\modules\uapi\Batch::strict
      * @medium
      */
     public function testStrictMultipleCommands()
@@ -73,7 +73,7 @@ class BatchTest extends UapiModuleTestCase
     }
 
     /**
-     * @covers kdn\cpanel\api\modules\uapi\Batch::strict
+     * @covers \kdn\cpanel\api\modules\uapi\Batch::strict
      * @medium
      */
     public function testStrictMultipleCommandsImplicitOrder()

@@ -12,8 +12,8 @@ use ReflectionProperty;
 class ObjectTest extends TestCase
 {
     /**
-     * @covers kdn\cpanel\api\Object::__construct
-     * @covers kdn\cpanel\api\Object::configure
+     * @covers \kdn\cpanel\api\Object::__construct
+     * @covers \kdn\cpanel\api\Object::configure
      * @small
      */
     public function testConstruct()
@@ -24,8 +24,8 @@ class ObjectTest extends TestCase
     }
 
     /**
-     * @covers kdn\cpanel\api\Object::className
-     * @uses   kdn\cpanel\api\Object::__construct
+     * @covers \kdn\cpanel\api\Object::className
+     * @uses   \kdn\cpanel\api\Object::__construct
      * @small
      */
     public function testClassName()
@@ -54,7 +54,7 @@ class ObjectTest extends TestCase
      * @param string $propertyName
      * @param null|integer $filter
      * @param boolean $expectedResult
-     * @covers       kdn\cpanel\api\Object::hasProperty
+     * @covers       \kdn\cpanel\api\Object::hasProperty
      * @dataProvider hasPropertyProvider
      * @small
      */
