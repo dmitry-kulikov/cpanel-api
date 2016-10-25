@@ -2,6 +2,7 @@
 
 namespace kdn\cpanel\api\modules\uapi;
 
+use kdn\cpanel\api\exceptions\Exception;
 use kdn\cpanel\api\modules\UapiModule;
 
 /**
@@ -96,10 +97,15 @@ class Ssl extends UapiModule
     /**
      * Reads entire file into a string.
      * @param string $fileName name of the file to read
-     * @return boolean|string returns the read data or false on failure.
+     * @return string returns the read data.
+     * @throws Exception
      */
     protected static function getFileContents($fileName)
     {
-        return file_get_contents(realpath($fileName));
+        $contents = file_get_contents(realpath($fileName));
+        if ($contents === false) {
+            throw new Exception('Unable to read file "' . $fileName . '".');
+        }
+        return $contents;
     }
 }

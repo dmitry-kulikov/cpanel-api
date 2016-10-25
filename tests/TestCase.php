@@ -28,47 +28,47 @@ abstract class TestCase extends PHPUnit_Framework_TestCase
 
     /**
      * Get value of environment variable "CPANEL_HOST".
-     * @return boolean|string value of environment variable "CPANEL_HOST".
+     * @return string value of environment variable "CPANEL_HOST".
      */
     protected static function getCpanelHost()
     {
-        return getenv('CPANEL_HOST');
+        return static::getStringEnvironmentVariable('CPANEL_HOST');
     }
 
     /**
      * Get value of environment variable "CPANEL_DOMAIN".
-     * @return boolean|string value of environment variable "CPANEL_DOMAIN".
+     * @return string value of environment variable "CPANEL_DOMAIN".
      */
     protected static function getCpanelDomain()
     {
-        return getenv('CPANEL_DOMAIN');
+        return static::getStringEnvironmentVariable('CPANEL_DOMAIN');
     }
 
     /**
      * Get value of environment variable "CPANEL_AUTH_HASH".
-     * @return boolean|string value of environment variable "CPANEL_AUTH_HASH".
+     * @return string value of environment variable "CPANEL_AUTH_HASH".
      */
     protected static function getCpanelAuthHash()
     {
-        return getenv('CPANEL_AUTH_HASH');
+        return static::getStringEnvironmentVariable('CPANEL_AUTH_HASH');
     }
 
     /**
      * Get value of environment variable "CPANEL_AUTH_USERNAME".
-     * @return boolean|string value of environment variable "CPANEL_AUTH_USERNAME".
+     * @return string value of environment variable "CPANEL_AUTH_USERNAME".
      */
     protected static function getCpanelAuthUsername()
     {
-        return getenv('CPANEL_AUTH_USERNAME');
+        return static::getStringEnvironmentVariable('CPANEL_AUTH_USERNAME');
     }
 
     /**
      * Get value of environment variable "CPANEL_AUTH_PASSWORD".
-     * @return boolean|string value of environment variable "CPANEL_AUTH_PASSWORD".
+     * @return string value of environment variable "CPANEL_AUTH_PASSWORD".
      */
     protected static function getCpanelAuthPassword()
     {
-        return getenv('CPANEL_AUTH_PASSWORD');
+        return static::getStringEnvironmentVariable('CPANEL_AUTH_PASSWORD');
     }
 
     /**
@@ -97,6 +97,20 @@ abstract class TestCase extends PHPUnit_Framework_TestCase
         }
         if (empty($variable)) {
             return false;
+        }
+        return $variable;
+    }
+
+    /**
+     * Get value of environment variable which should have string value.
+     * @param string $variableName environment variable name
+     * @return string value of environment variable.
+     */
+    protected static function getStringEnvironmentVariable($variableName)
+    {
+        $variable = getenv($variableName);
+        if ($variable === false) {
+            static::fail('Environment variable "' . $variableName . '" is not specified.');
         }
         return $variable;
     }

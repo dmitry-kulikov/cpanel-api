@@ -48,9 +48,6 @@ class SslTest extends UapiModuleTestCase
     public function testInstallSsl()
     {
         $domain = static::getCpanelDomain();
-        if (!is_string($domain)) {
-            $this->fail('Environment variable "CPANEL_DOMAIN" is not specified.');
-        }
         $response = $this->module->installSsl($domain, 'certificate', 'privateKey', 'caBundle');
         $this->assertInstanceOf(UapiResponse::className(), $response);
         $request = $this->getLastRequest();
@@ -74,9 +71,6 @@ class SslTest extends UapiModuleTestCase
     public function testInstallSslFromFiles()
     {
         $domain = static::getCpanelDomain();
-        if (!is_string($domain)) {
-            $this->fail('Environment variable "CPANEL_DOMAIN" is not specified.');
-        }
         $relativePath = static::getDataPath() . 'ssl';
         $response = $this->module->installSslFromFiles(
             $domain,
