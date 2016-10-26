@@ -94,12 +94,7 @@ class SslTest extends UapiModuleTestCase
      */
     public function testInstallSslFromFilesException($certificateFile, $privateKeyFile, $caBundleFile)
     {
-        @$this->module->installSslFromFiles(
-            static::getCpanelDomain(),
-            $certificateFile,
-            $privateKeyFile,
-            $caBundleFile
-        );
+        $this->module->installSslFromFiles(static::getCpanelDomain(), $certificateFile, $privateKeyFile, $caBundleFile);
     }
 
     /**

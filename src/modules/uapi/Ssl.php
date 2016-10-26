@@ -102,7 +102,7 @@ class Ssl extends UapiModule
      */
     protected static function getFileContents($fileName)
     {
-        $contents = file_get_contents(realpath($fileName));
+        $contents = @file_get_contents(realpath($fileName));
         if ($contents === false) {
             throw new Exception('Unable to read file "' . $fileName . '".');
         }
