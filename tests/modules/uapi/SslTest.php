@@ -62,6 +62,46 @@ class SslTest extends UapiModuleTestCase
         );
     }
 
+    public function installSslFromFilesExceptionProvider()
+    {
+        $relativePath = static::getDataPath() . 'ssl';
+        $fileNames = ['cert.pem', 'privkey.pem', 'bundle.txt'];
+        $filePaths = [];
+        foreach ($fileNames as $fileName) {
+            $filePaths[] = "$relativePath/$fileName";
+        }
+        $fileNamesCount = count($fileNames);
+        $data = [];
+        for ($i = 0; $i < $fileNamesCount; $i++) {
+            $dataSet = $filePaths;
+            $dataSet[$i] = "$relativePath/not-existing";
+            $data["not existing {$fileNames[$i]}"] = $dataSet;
+        }
+        return $data;
+    }
+
+    /**
+     * @param string $certificateFile
+     * @param string $privateKeyFile
+     * @param string $caBundleFile
+     * @covers       \kdn\cpanel\api\modules\uapi\Ssl::getFileContents
+     * @covers       \kdn\cpanel\api\modules\uapi\Ssl::installSslFromFiles
+     * @uses         \kdn\cpanel\api\modules\uapi\Ssl::installSsl
+     * @dataProvider installSslFromFilesExceptionProvider
+     * @expectedException \kdn\cpanel\api\exceptions\Exception
+     * @expectedExceptionMessage Unable to read file
+     * @small
+     */
+    public function testInstallSslFromFilesException($certificateFile, $privateKeyFile, $caBundleFile)
+    {
+        @$this->module->installSslFromFiles(
+            static::getCpanelDomain(),
+            $certificateFile,
+            $privateKeyFile,
+            $caBundleFile
+        );
+    }
+
     /**
      * @covers \kdn\cpanel\api\modules\uapi\Ssl::getFileContents
      * @covers \kdn\cpanel\api\modules\uapi\Ssl::installSslFromFiles
