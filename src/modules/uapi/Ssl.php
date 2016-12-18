@@ -22,7 +22,7 @@ class Ssl extends UapiModule
      * @param string $certificate
      * @param string $privateKey
      * @param null|string $caBundle
-     * @return \kdn\cpanel\api\responses\UapiResponse parsed response to request.
+     * @return \kdn\cpanel\api\Response parsed response to request.
      */
     public function installSsl($domain, $certificate, $privateKey, $caBundle = null)
     {
@@ -43,7 +43,7 @@ class Ssl extends UapiModule
      * @param string $certificateFile
      * @param string $privateKeyFile
      * @param null|string $caBundleFile
-     * @return \kdn\cpanel\api\responses\UapiResponse parsed response to request.
+     * @return \kdn\cpanel\api\Response parsed response to request.
      */
     public function installSslFromFiles($domain, $certificateFile, $privateKeyFile, $caBundleFile = null)
     {
@@ -55,7 +55,7 @@ class Ssl extends UapiModule
 
     /**
      * @link https://documentation.cpanel.net/display/SDK/UAPI+Functions+-+SSL%3A%3Alist_certs
-     * @return \kdn\cpanel\api\responses\UapiResponse parsed response to request.
+     * @return \kdn\cpanel\api\Response parsed response to request.
      */
     public function listCerts()
     {
@@ -65,7 +65,7 @@ class Ssl extends UapiModule
     /**
      * @link https://documentation.cpanel.net/display/SDK/UAPI+Functions+-+SSL%3A%3Adelete_cert
      * @param string $id
-     * @return \kdn\cpanel\api\responses\UapiResponse parsed response to request.
+     * @return \kdn\cpanel\api\Response parsed response to request.
      */
     public function deleteCertById($id)
     {
@@ -75,7 +75,7 @@ class Ssl extends UapiModule
     /**
      * @link https://documentation.cpanel.net/display/SDK/UAPI+Functions+-+SSL%3A%3Adelete_cert
      * @param string $friendlyName
-     * @return \kdn\cpanel\api\responses\UapiResponse parsed response to request.
+     * @return \kdn\cpanel\api\Response parsed response to request.
      */
     public function deleteCertByName($friendlyName)
     {
@@ -86,7 +86,7 @@ class Ssl extends UapiModule
      * @link https://documentation.cpanel.net/display/SDK/UAPI+Functions+-+SSL%3A%3Aset_cert_friendly_name
      * @param string $friendlyName
      * @param string $newFriendlyName
-     * @return \kdn\cpanel\api\responses\UapiResponse parsed response to request.
+     * @return \kdn\cpanel\api\Response parsed response to request.
      */
     public function setCertFriendlyName($friendlyName, $newFriendlyName)
     {

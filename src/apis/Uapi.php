@@ -13,6 +13,8 @@ use kdn\cpanel\api\Api;
  * @property \kdn\cpanel\api\modules\uapi\Bandwidth $bandwidth
  * @property \kdn\cpanel\api\modules\uapi\Batch $batch
  * @property \kdn\cpanel\api\modules\uapi\Brand $brand
+ * @property \kdn\cpanel\api\modules\uapi\Mysql $mysql
+ * @property \kdn\cpanel\api\modules\uapi\Postgresql $postgresql
  * @property \kdn\cpanel\api\modules\uapi\Ssl $ssl
  */
 class Uapi extends Api
@@ -27,6 +29,8 @@ class Uapi extends Api
             'bandwidth' => 'kdn\cpanel\api\modules\uapi\Bandwidth',
             'batch' => 'kdn\cpanel\api\modules\uapi\Batch',
             'brand' => 'kdn\cpanel\api\modules\uapi\Brand',
+            'mysql' => 'kdn\cpanel\api\modules\uapi\Mysql',
+            'postgresql' => 'kdn\cpanel\api\modules\uapi\Postgresql',
             'ssl' => 'kdn\cpanel\api\modules\uapi\Ssl',
         ];
     }

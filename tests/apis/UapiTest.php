@@ -7,6 +7,8 @@ use kdn\cpanel\api\modules\uapi\Backup;
 use kdn\cpanel\api\modules\uapi\Bandwidth;
 use kdn\cpanel\api\modules\uapi\Batch;
 use kdn\cpanel\api\modules\uapi\Brand;
+use kdn\cpanel\api\modules\uapi\Mysql;
+use kdn\cpanel\api\modules\uapi\Postgresql;
 use kdn\cpanel\api\modules\uapi\Ssl;
 use kdn\cpanel\api\TestCase;
 
@@ -45,6 +47,8 @@ class UapiTest extends TestCase
                 'bandwidth' => Bandwidth::className(),
                 'batch' => Batch::className(),
                 'brand' => Brand::className(),
+                'mysql' => Mysql::className(),
+                'postgresql' => Postgresql::className(),
                 'ssl' => Ssl::className(),
             ],
             $this->uapi->getDefaultDefinitions()
@@ -58,6 +62,8 @@ class UapiTest extends TestCase
             'bandwidth' => ['bandwidth', Bandwidth::className()],
             'batch' => ['batch', Batch::className()],
             'brand' => ['brand', Brand::className()],
+            'mysql' => ['mysql', Mysql::className()],
+            'postgresql' => ['postgresql', Postgresql::className()],
             'ssl' => ['ssl', Ssl::className()],
         ];
     }
