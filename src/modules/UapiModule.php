@@ -4,10 +4,13 @@ namespace kdn\cpanel\api\modules;
 
 use kdn\cpanel\api\Cpanel;
 use kdn\cpanel\api\Module;
+use kdn\cpanel\api\responses\UapiResponse;
 
 /**
  * Class UapiModule.
  * @package kdn\cpanel\api\modules
+ * @method UapiResponse get($function, $params = [], $body = null, $requestOptions = [])
+ * @method UapiResponse post($function, $params = [], $body = null, $requestOptions = [])
  */
 class UapiModule extends Module
 {

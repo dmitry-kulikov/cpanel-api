@@ -17,7 +17,7 @@ class Bandwidth extends UapiModule
 
     /**
      * @link https://documentation.cpanel.net/display/SDK/UAPI+Functions+-+Bandwidth%3A%3Aget_retention_periods
-     * @return \kdn\cpanel\api\Response parsed response to request.
+     * @return \kdn\cpanel\api\responses\UapiResponse parsed response to request.
      */
     public function getRetentionPeriods()
     {
@@ -33,7 +33,7 @@ class Bandwidth extends UapiModule
      * @param null|integer $start
      * @param null|integer $end
      * @param null|string $timezone
-     * @return \kdn\cpanel\api\Response parsed response to request.
+     * @return \kdn\cpanel\api\responses\UapiResponse parsed response to request.
      */
     public function query(
         $grouping,

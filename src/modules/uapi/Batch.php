@@ -18,7 +18,7 @@ class Batch extends UapiModule
     /**
      * @link https://documentation.cpanel.net/display/SDK/UAPI+Functions+-+Batch%3A%3Astrict
      * @param string|array $command
-     * @return \kdn\cpanel\api\Response parsed response to request.
+     * @return \kdn\cpanel\api\responses\UapiResponse parsed response to request.
      */
     public function strict($command)
     {

@@ -17,7 +17,7 @@ class Backup extends UapiModule
 
     /**
      * @link https://documentation.cpanel.net/display/SDK/UAPI+Functions+-+Backup%3A%3Alist_backups
-     * @return \kdn\cpanel\api\Response parsed response to request.
+     * @return \kdn\cpanel\api\responses\UapiResponse parsed response to request.
      */
     public function listBackups()
     {

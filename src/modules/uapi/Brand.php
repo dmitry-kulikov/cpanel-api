@@ -17,7 +17,7 @@ class Brand extends UapiModule
 
     /**
      * @link https://documentation.cpanel.net/display/SDK/UAPI+Functions+-+Brand%3A%3Aread
-     * @return \kdn\cpanel\api\Response parsed response to request.
+     * @return \kdn\cpanel\api\responses\UapiResponse parsed response to request.
      */
     public function read()
     {

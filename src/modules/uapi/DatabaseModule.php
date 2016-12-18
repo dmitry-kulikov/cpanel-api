@@ -12,7 +12,7 @@ abstract class DatabaseModule extends UapiModule
 {
     /**
      * @param string $name
-     * @return \kdn\cpanel\api\Response parsed response to request.
+     * @return \kdn\cpanel\api\responses\UapiResponse parsed response to request.
      */
     public function createDatabase($name)
     {
@@ -21,7 +21,7 @@ abstract class DatabaseModule extends UapiModule
 
     /**
      * @param string $name
-     * @return \kdn\cpanel\api\Response parsed response to request.
+     * @return \kdn\cpanel\api\responses\UapiResponse parsed response to request.
      */
     public function deleteDatabase($name)
     {
