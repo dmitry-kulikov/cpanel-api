@@ -22,6 +22,11 @@ abstract class DatabaseModuleTestCase extends UapiModuleTestCase
     protected $databaseName = 'test';
 
     /**
+     * @var string user name
+     */
+    protected $userName = 'user';
+
+    /**
      * @covers \kdn\cpanel\api\modules\uapi\DatabaseModule::createDatabase
      * @medium
      */
@@ -38,6 +43,22 @@ abstract class DatabaseModuleTestCase extends UapiModuleTestCase
     }
 
     /**
+     * @covers \kdn\cpanel\api\modules\uapi\DatabaseModule::createUser
+     * @medium
+     */
+    public function testCreateUser()
+    {
+        $this->assertInstanceOf(UapiResponse::className(), $this->module->createUser($this->userName, 'password'));
+        $request = $this->getLastRequest();
+        $this->assertEquals('POST', $request->getMethod());
+        $this->assertEquals(
+            'https://' . static::getCpanelHost() .
+            ":2083/execute/$this->apiModuleName/create_user?name=$this->userName&password=password",
+            (string)$request->getUri()
+        );
+    }
+
+    /**
      * @covers \kdn\cpanel\api\modules\uapi\DatabaseModule::deleteDatabase
      * @medium
      */
@@ -49,6 +70,41 @@ abstract class DatabaseModuleTestCase extends UapiModuleTestCase
         $this->assertEquals(
             'https://' . static::getCpanelHost() .
             ":2083/execute/$this->apiModuleName/delete_database?name=$this->databaseName",
+            (string)$request->getUri()
+        );
+    }
+
+    /**
+     * @covers \kdn\cpanel\api\modules\uapi\DatabaseModule::getRestrictions
+     * @medium
+     */
+    public function testGetRestrictions()
+    {
+        $this->assertInstanceOf(UapiResponse::className(), $this->module->getRestrictions());
+        $request = $this->getLastRequest();
+        $this->assertEquals('GET', $request->getMethod());
+        $this->assertEquals(
+            'https://' . static::getCpanelHost() . ":2083/execute/$this->apiModuleName/get_restrictions",
+            (string)$request->getUri()
+        );
+    }
+
+    /**
+     * @covers \kdn\cpanel\api\modules\uapi\DatabaseModule::renameDatabase
+     * @medium
+     */
+    public function testRenameDatabase()
+    {
+        $newName = $this->databaseName . '_new';
+        $this->assertInstanceOf(
+            UapiResponse::className(),
+            $this->module->renameDatabase($this->databaseName, $newName)
+        );
+        $request = $this->getLastRequest();
+        $this->assertEquals('POST', $request->getMethod());
+        $this->assertEquals(
+            'https://' . static::getCpanelHost() .
+            ":2083/execute/$this->apiModuleName/rename_database?oldname=$this->databaseName&newname=$newName",
             (string)$request->getUri()
         );
     }

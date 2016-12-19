@@ -2,6 +2,8 @@
 
 namespace kdn\cpanel\api\modules\uapi;
 
+use kdn\cpanel\api\responses\UapiResponse;
+
 /**
  * Class PostgresqlTest.
  * @package kdn\cpanel\api\modules\uapi
@@ -28,4 +30,61 @@ class PostgresqlTest extends DatabaseModuleTestCase
      * @inheritdoc
      */
     protected $apiModuleName = 'Postgresql';
+
+    /**
+     * @covers \kdn\cpanel\api\modules\uapi\Postgresql::renameUser
+     * @medium
+     */
+    public function testRenameUser()
+    {
+        $newName = $this->userName . '_new';
+        $this->assertInstanceOf(
+            UapiResponse::className(),
+            $this->module->renameUser($this->userName, $newName, 'password')
+        );
+        $request = $this->getLastRequest();
+        $this->assertEquals('POST', $request->getMethod());
+        $this->assertEquals(
+            'https://' . static::getCpanelHost() .
+            ":2083/execute/$this->apiModuleName/rename_user?oldname=$this->userName&newname=$newName&password=password",
+            (string)$request->getUri()
+        );
+    }
+
+    /**
+     * @covers \kdn\cpanel\api\modules\uapi\Postgresql::renameUserNoPassword
+     * @medium
+     */
+    public function testRenameUserNoPassword()
+    {
+        $newName = $this->userName . '_new';
+        $this->assertInstanceOf(
+            UapiResponse::className(),
+            $this->module->renameUserNoPassword($this->userName, $newName)
+        );
+        $request = $this->getLastRequest();
+        $this->assertEquals('POST', $request->getMethod());
+        $this->assertEquals(
+            'https://' . static::getCpanelHost() .
+            ":2083/execute/$this->apiModuleName/rename_user_no_password?oldname=$this->userName&newname=$newName",
+            (string)$request->getUri()
+        );
+    }
+
+    /**
+     * @covers \kdn\cpanel\api\modules\uapi\Postgresql::setPassword
+     * @medium
+     */
+    public function testSetPassword()
+    {
+        $newPassword = 'new_password';
+        $this->assertInstanceOf(UapiResponse::className(), $this->module->setPassword($this->userName, $newPassword));
+        $request = $this->getLastRequest();
+        $this->assertEquals('POST', $request->getMethod());
+        $this->assertEquals(
+            'https://' . static::getCpanelHost() .
+            ":2083/execute/$this->apiModuleName/set_password?name=$this->userName&password=$newPassword",
+            (string)$request->getUri()
+        );
+    }
 }
