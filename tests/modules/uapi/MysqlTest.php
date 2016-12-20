@@ -41,8 +41,8 @@ class MysqlTest extends DatabaseModuleTestCase
         $request = $this->getLastRequest();
         $this->assertEquals('POST', $request->getMethod());
         $this->assertEquals(
-            'https://' . static::getCpanelHost() .
-            ":2083/execute/$this->apiModuleName/delete_user?name=$this->userName",
+            'https://' . static::getCpanelHost() . ':' . static::getCpanelPort() .
+            "/execute/$this->apiModuleName/delete_user?name=$this->userName",
             (string)$request->getUri()
         );
     }
@@ -58,8 +58,8 @@ class MysqlTest extends DatabaseModuleTestCase
         $request = $this->getLastRequest();
         $this->assertEquals('POST', $request->getMethod());
         $this->assertEquals(
-            'https://' . static::getCpanelHost() .
-            ":2083/execute/$this->apiModuleName/rename_user?oldname=$this->userName&newname=$newName",
+            'https://' . static::getCpanelHost() . ':' . static::getCpanelPort() .
+            "/execute/$this->apiModuleName/rename_user?oldname=$this->userName&newname=$newName",
             (string)$request->getUri()
         );
     }
@@ -75,8 +75,8 @@ class MysqlTest extends DatabaseModuleTestCase
         $request = $this->getLastRequest();
         $this->assertEquals('POST', $request->getMethod());
         $this->assertEquals(
-            'https://' . static::getCpanelHost() .
-            ":2083/execute/$this->apiModuleName/set_password?user=$this->userName&password=$newPassword",
+            'https://' . static::getCpanelHost() . ':' . static::getCpanelPort() .
+            "/execute/$this->apiModuleName/set_password?user=$this->userName&password=$newPassword",
             (string)$request->getUri()
         );
     }

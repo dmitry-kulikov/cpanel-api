@@ -45,8 +45,8 @@ class PostgresqlTest extends DatabaseModuleTestCase
         $request = $this->getLastRequest();
         $this->assertEquals('POST', $request->getMethod());
         $this->assertEquals(
-            'https://' . static::getCpanelHost() .
-            ":2083/execute/$this->apiModuleName/rename_user?oldname=$this->userName&newname=$newName&password=password",
+            'https://' . static::getCpanelHost() . ':' . static::getCpanelPort() .
+            "/execute/$this->apiModuleName/rename_user?oldname=$this->userName&newname=$newName&password=password",
             (string)$request->getUri()
         );
     }
@@ -65,8 +65,8 @@ class PostgresqlTest extends DatabaseModuleTestCase
         $request = $this->getLastRequest();
         $this->assertEquals('POST', $request->getMethod());
         $this->assertEquals(
-            'https://' . static::getCpanelHost() .
-            ":2083/execute/$this->apiModuleName/rename_user_no_password?oldname=$this->userName&newname=$newName",
+            'https://' . static::getCpanelHost() . ':' . static::getCpanelPort() .
+            "/execute/$this->apiModuleName/rename_user_no_password?oldname=$this->userName&newname=$newName",
             (string)$request->getUri()
         );
     }
@@ -82,8 +82,8 @@ class PostgresqlTest extends DatabaseModuleTestCase
         $request = $this->getLastRequest();
         $this->assertEquals('POST', $request->getMethod());
         $this->assertEquals(
-            'https://' . static::getCpanelHost() .
-            ":2083/execute/$this->apiModuleName/set_password?name=$this->userName&password=$newPassword",
+            'https://' . static::getCpanelHost() . ':' . static::getCpanelPort() .
+            "/execute/$this->apiModuleName/set_password?name=$this->userName&password=$newPassword",
             (string)$request->getUri()
         );
     }

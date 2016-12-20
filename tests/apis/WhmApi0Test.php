@@ -3,7 +3,7 @@
 namespace kdn\cpanel\api\apis;
 
 use kdn\cpanel\api\Cpanel;
-use kdn\cpanel\api\modules\whmApi0\ServerInformation;
+use kdn\cpanel\api\modules\whmApi0\ServerAdministration;
 use kdn\cpanel\api\TestCase;
 
 /**
@@ -37,7 +37,7 @@ class WhmApi0Test extends TestCase
     {
         $this->assertEquals(
             [
-                'serverInformation' => ServerInformation::className(),
+                'serverAdministration' => ServerAdministration::className(),
             ],
             $this->whmApi0->getDefaultDefinitions()
         );
@@ -46,7 +46,7 @@ class WhmApi0Test extends TestCase
     public function getProvider()
     {
         return [
-            'serverInformation' => ['serverInformation', ServerInformation::className()],
+            'serverAdministration' => ['serverAdministration', ServerAdministration::className()],
         ];
     }
 

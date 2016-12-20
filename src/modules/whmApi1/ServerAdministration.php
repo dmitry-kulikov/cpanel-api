@@ -5,13 +5,13 @@ namespace kdn\cpanel\api\modules\whmApi1;
 use kdn\cpanel\api\modules\WhmApi1Module;
 
 /**
- * Class ServerInformation.
+ * Class ServerAdministration.
  * @package kdn\cpanel\api\modules\whmApi1
  */
-class ServerInformation extends WhmApi1Module
+class ServerAdministration extends WhmApi1Module
 {
     /**
      * @inheritdoc
      */
-    protected $name = 'ServerInformation';
+    protected $name = 'ServerAdministration';
 }

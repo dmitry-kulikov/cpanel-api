@@ -38,7 +38,8 @@ class BandwidthTest extends UapiModuleTestCase
         $request = $this->getLastRequest();
         $this->assertEquals('GET', $request->getMethod());
         $this->assertEquals(
-            'https://' . static::getCpanelHost() . ':2083/execute/Bandwidth/get_retention_periods',
+            'https://' . static::getCpanelHost() . ':' . static::getCpanelPort() .
+            '/execute/Bandwidth/get_retention_periods',
             (string)$request->getUri()
         );
     }
@@ -54,7 +55,8 @@ class BandwidthTest extends UapiModuleTestCase
         $request = $this->getLastRequest();
         $this->assertEquals('GET', $request->getMethod());
         $this->assertEquals(
-            'https://' . static::getCpanelHost() . ':2083/execute/Bandwidth/query?grouping=domain',
+            'https://' . static::getCpanelHost() . ':' . static::getCpanelPort() .
+            '/execute/Bandwidth/query?grouping=domain',
             (string)$request->getUri()
         );
     }
@@ -84,7 +86,7 @@ class BandwidthTest extends UapiModuleTestCase
         $request = $this->getLastRequest();
         $this->assertEquals('GET', $request->getMethod());
         $this->assertEquals(
-            'https://' . static::getCpanelHost() . ':2083/execute/Bandwidth/query?' .
+            'https://' . static::getCpanelHost() . ':' . static::getCpanelPort() . '/execute/Bandwidth/query?' .
             "grouping=domain%7Cprotocol%7Cyear_month&interval=daily&domains=$cpanelDomain%7CUNKNOWN&" .
             'protocols=http%7Cimap%7Csmtp%7Cpop3%7Cftp&' .
             "start=$startTimestamp&end=$endTimestamp&timezone=America%2FChicago",

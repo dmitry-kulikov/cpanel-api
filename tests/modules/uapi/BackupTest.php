@@ -36,7 +36,7 @@ class BackupTest extends UapiModuleTestCase
         $request = $this->getLastRequest();
         $this->assertEquals('GET', $request->getMethod());
         $this->assertEquals(
-            'https://' . static::getCpanelHost() . ':2083/execute/Backup/list_backups',
+            'https://' . static::getCpanelHost() . ':' . static::getCpanelPort() . '/execute/Backup/list_backups',
             (string)$request->getUri()
         );
     }

@@ -36,6 +36,33 @@ abstract class TestCase extends PHPUnit_Framework_TestCase
     }
 
     /**
+     * Get value of environment variable "CPANEL_PORT".
+     * @return integer value of environment variable "CPANEL_PORT".
+     */
+    protected static function getCpanelPort()
+    {
+        return static::getPositiveIntegerEnvironmentVariable('CPANEL_PORT');
+    }
+
+    /**
+     * Get value of environment variable "WHM_HOST".
+     * @return string value of environment variable "WHM_HOST".
+     */
+    protected static function getWhmHost()
+    {
+        return static::getStringEnvironmentVariable('WHM_HOST');
+    }
+
+    /**
+     * Get value of environment variable "WHM_PORT".
+     * @return integer value of environment variable "WHM_PORT".
+     */
+    protected static function getWhmPort()
+    {
+        return static::getPositiveIntegerEnvironmentVariable('WHM_PORT');
+    }
+
+    /**
      * Get value of environment variable "CPANEL_DOMAIN".
      * @return string value of environment variable "CPANEL_DOMAIN".
      */
@@ -69,6 +96,24 @@ abstract class TestCase extends PHPUnit_Framework_TestCase
     protected static function getCpanelAuthPassword()
     {
         return static::getStringEnvironmentVariable('CPANEL_AUTH_PASSWORD');
+    }
+
+    /**
+     * Get value of environment variable "WHM_AUTH_USERNAME".
+     * @return string value of environment variable "WHM_AUTH_USERNAME".
+     */
+    protected static function getWhmAuthUsername()
+    {
+        return static::getStringEnvironmentVariable('WHM_AUTH_USERNAME');
+    }
+
+    /**
+     * Get value of environment variable "WHM_AUTH_PASSWORD".
+     * @return string value of environment variable "WHM_AUTH_PASSWORD".
+     */
+    protected static function getWhmAuthPassword()
+    {
+        return static::getStringEnvironmentVariable('WHM_AUTH_PASSWORD');
     }
 
     /**
@@ -113,6 +158,23 @@ abstract class TestCase extends PHPUnit_Framework_TestCase
             static::fail('Environment variable "' . $variableName . '" is not specified.');
         }
         return $variable;
+    }
+
+    /**
+     * Get value of environment variable which should have positive integer value.
+     * @param string $variableName environment variable name
+     * @return integer value of environment variable.
+     */
+    protected static function getPositiveIntegerEnvironmentVariable($variableName)
+    {
+        $variable = static::getStringEnvironmentVariable($variableName);
+        if (!ctype_digit($variable)) {
+            static::fail(
+                'Environment variable "' . $variableName . '" should have positive integer value, but value is "' .
+                $variable . '".'
+            );
+        }
+        return (int)$variable;
     }
 
     /**

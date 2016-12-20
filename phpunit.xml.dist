@@ -24,10 +24,15 @@
     <php>
         <env name="INTEGRATION_TESTING" value="false"/>
         <env name="CPANEL_HOST" value="hostname.example.com"/>
+        <env name="CPANEL_PORT" value="2083"/>
+        <env name="WHM_HOST" value="hostname.example.com"/>
+        <env name="WHM_PORT" value="2087"/>
         <env name="CPANEL_DOMAIN" value="example.com"/>
         <env name="CPANEL_AUTH_HASH" value="hash"/>
         <env name="CPANEL_AUTH_USERNAME" value="username"/>
         <env name="CPANEL_AUTH_PASSWORD" value="password"/>
+        <env name="WHM_AUTH_USERNAME" value="whm_username"/>
+        <env name="WHM_AUTH_PASSWORD" value="whm_password"/>
         <env name="GUZZLE_REQUEST_VERIFY" value="true"/>
     </php>
 </phpunit>

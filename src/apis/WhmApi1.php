@@ -9,7 +9,7 @@ use kdn\cpanel\api\Api;
  * @package kdn\cpanel\api\apis
  * @link https://documentation.cpanel.net/display/SDK/Guide+to+WHM+API+1
  *
- * @property \kdn\cpanel\api\modules\whmApi1\ServerInformation $serverInformation
+ * @property \kdn\cpanel\api\modules\whmApi1\ServerAdministration $serverAdministration
  */
 class WhmApi1 extends Api
 {
@@ -19,7 +19,7 @@ class WhmApi1 extends Api
     public static function getDefaultDefinitions()
     {
         return [
-            'serverInformation' => 'kdn\cpanel\api\modules\whmApi1\ServerInformation',
+            'serverAdministration' => 'kdn\cpanel\api\modules\whmApi1\ServerAdministration',
         ];
     }
 }

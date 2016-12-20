@@ -36,7 +36,7 @@ class SslTest extends UapiModuleTestCase
         $request = $this->getLastRequest();
         $this->assertEquals('GET', $request->getMethod());
         $this->assertEquals(
-            'https://' . static::getCpanelHost() . ':2083/execute/SSL/list_certs',
+            'https://' . static::getCpanelHost() . ':' . static::getCpanelPort() . '/execute/SSL/list_certs',
             (string)$request->getUri()
         );
     }
@@ -53,7 +53,7 @@ class SslTest extends UapiModuleTestCase
         $request = $this->getLastRequest();
         $this->assertEquals('POST', $request->getMethod());
         $this->assertEquals(
-            'https://' . static::getCpanelHost() . ':2083/execute/SSL/install_ssl',
+            'https://' . static::getCpanelHost() . ':' . static::getCpanelPort() . '/execute/SSL/install_ssl',
             (string)$request->getUri()
         );
         $this->assertEquals(
@@ -117,7 +117,7 @@ class SslTest extends UapiModuleTestCase
         $request = $this->getLastRequest();
         $this->assertEquals('POST', $request->getMethod());
         $this->assertEquals(
-            'https://' . static::getCpanelHost() . ':2083/execute/SSL/install_ssl',
+            'https://' . static::getCpanelHost() . ':' . static::getCpanelPort() . '/execute/SSL/install_ssl',
             (string)$request->getUri()
         );
         $this->assertEquals(
@@ -137,7 +137,7 @@ class SslTest extends UapiModuleTestCase
         $request = $this->getLastRequest();
         $this->assertEquals('POST', $request->getMethod());
         $this->assertEquals(
-            'https://' . static::getCpanelHost() . ':2083/execute/SSL/delete_cert',
+            'https://' . static::getCpanelHost() . ':' . static::getCpanelPort() . '/execute/SSL/delete_cert',
             (string)$request->getUri()
         );
         $this->assertEquals("id=$certId", $request->getBody()->getContents());
@@ -154,7 +154,7 @@ class SslTest extends UapiModuleTestCase
         $request = $this->getLastRequest();
         $this->assertEquals('POST', $request->getMethod());
         $this->assertEquals(
-            'https://' . static::getCpanelHost() . ':2083/execute/SSL/delete_cert',
+            'https://' . static::getCpanelHost() . ':' . static::getCpanelPort() . '/execute/SSL/delete_cert',
             (string)$request->getUri()
         );
         $this->assertEquals("friendly_name=$certName", $request->getBody()->getContents());
@@ -172,7 +172,8 @@ class SslTest extends UapiModuleTestCase
         $request = $this->getLastRequest();
         $this->assertEquals('POST', $request->getMethod());
         $this->assertEquals(
-            'https://' . static::getCpanelHost() . ':2083/execute/SSL/set_cert_friendly_name',
+            'https://' . static::getCpanelHost() . ':' . static::getCpanelPort() .
+            '/execute/SSL/set_cert_friendly_name',
             (string)$request->getUri()
         );
         $this->assertEquals(

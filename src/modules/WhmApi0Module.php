@@ -4,10 +4,13 @@ namespace kdn\cpanel\api\modules;
 
 use kdn\cpanel\api\Cpanel;
 use kdn\cpanel\api\Module;
+use kdn\cpanel\api\responses\WhmApi0Response;
 
 /**
  * Class WhmApi0Module.
  * @package kdn\cpanel\api\modules
+ * @method WhmApi0Response get($function, $params = [], $body = null, $requestOptions = [])
+ * @method WhmApi0Response post($function, $params = [], $body = null, $requestOptions = [])
  */
 class WhmApi0Module extends Module
 {
@@ -31,6 +34,6 @@ class WhmApi0Module extends Module
      */
     protected function buildUri($function, $params)
     {
-        return $this->getBaseUri();
+        return $this->getBaseUri()->withPath("json-api/$function")->withQuery(static::buildQuery($params));
     }
 }

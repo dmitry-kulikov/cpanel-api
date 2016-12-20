@@ -37,7 +37,7 @@ class BatchTest extends UapiModuleTestCase
         $request = $this->getLastRequest();
         $this->assertEquals('POST', $request->getMethod());
         $this->assertEquals(
-            'https://' . static::getCpanelHost() . ':2083/execute/Batch/strict',
+            'https://' . static::getCpanelHost() . ':' . static::getCpanelPort() . '/execute/Batch/strict',
             (string)$request->getUri()
         );
         $this->assertEquals(
@@ -62,7 +62,7 @@ class BatchTest extends UapiModuleTestCase
         $request = $this->getLastRequest();
         $this->assertEquals('POST', $request->getMethod());
         $this->assertEquals(
-            'https://' . static::getCpanelHost() . ':2083/execute/Batch/strict',
+            'https://' . static::getCpanelHost() . ':' . static::getCpanelPort() . '/execute/Batch/strict',
             (string)$request->getUri()
         );
         $this->assertEquals(
@@ -88,7 +88,7 @@ class BatchTest extends UapiModuleTestCase
         $request = $this->getLastRequest();
         $this->assertEquals('POST', $request->getMethod());
         $this->assertEquals(
-            'https://' . static::getCpanelHost() . ':2083/execute/Batch/strict',
+            'https://' . static::getCpanelHost() . ':' . static::getCpanelPort() . '/execute/Batch/strict',
             (string)$request->getUri()
         );
         $this->assertEquals(

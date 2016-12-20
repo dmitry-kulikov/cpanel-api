@@ -36,7 +36,7 @@ class BrandTest extends UapiModuleTestCase
         $request = $this->getLastRequest();
         $this->assertEquals('GET', $request->getMethod());
         $this->assertEquals(
-            'https://' . static::getCpanelHost() . ':2083/execute/Brand/read',
+            'https://' . static::getCpanelHost() . ':' . static::getCpanelPort() . '/execute/Brand/read',
             (string)$request->getUri()
         );
     }

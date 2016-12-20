@@ -36,8 +36,8 @@ abstract class DatabaseModuleTestCase extends UapiModuleTestCase
         $request = $this->getLastRequest();
         $this->assertEquals('POST', $request->getMethod());
         $this->assertEquals(
-            'https://' . static::getCpanelHost() .
-            ":2083/execute/$this->apiModuleName/create_database?name=$this->databaseName",
+            'https://' . static::getCpanelHost() . ':' . static::getCpanelPort() .
+            "/execute/$this->apiModuleName/create_database?name=$this->databaseName",
             (string)$request->getUri()
         );
     }
@@ -52,8 +52,8 @@ abstract class DatabaseModuleTestCase extends UapiModuleTestCase
         $request = $this->getLastRequest();
         $this->assertEquals('POST', $request->getMethod());
         $this->assertEquals(
-            'https://' . static::getCpanelHost() .
-            ":2083/execute/$this->apiModuleName/create_user?name=$this->userName&password=password",
+            'https://' . static::getCpanelHost() . ':' . static::getCpanelPort() .
+            "/execute/$this->apiModuleName/create_user?name=$this->userName&password=password",
             (string)$request->getUri()
         );
     }
@@ -68,8 +68,8 @@ abstract class DatabaseModuleTestCase extends UapiModuleTestCase
         $request = $this->getLastRequest();
         $this->assertEquals('POST', $request->getMethod());
         $this->assertEquals(
-            'https://' . static::getCpanelHost() .
-            ":2083/execute/$this->apiModuleName/delete_database?name=$this->databaseName",
+            'https://' . static::getCpanelHost() . ':' . static::getCpanelPort() .
+            "/execute/$this->apiModuleName/delete_database?name=$this->databaseName",
             (string)$request->getUri()
         );
     }
@@ -84,7 +84,8 @@ abstract class DatabaseModuleTestCase extends UapiModuleTestCase
         $request = $this->getLastRequest();
         $this->assertEquals('GET', $request->getMethod());
         $this->assertEquals(
-            'https://' . static::getCpanelHost() . ":2083/execute/$this->apiModuleName/get_restrictions",
+            'https://' . static::getCpanelHost() . ':' . static::getCpanelPort() .
+            "/execute/$this->apiModuleName/get_restrictions",
             (string)$request->getUri()
         );
     }
@@ -103,8 +104,8 @@ abstract class DatabaseModuleTestCase extends UapiModuleTestCase
         $request = $this->getLastRequest();
         $this->assertEquals('POST', $request->getMethod());
         $this->assertEquals(
-            'https://' . static::getCpanelHost() .
-            ":2083/execute/$this->apiModuleName/rename_database?oldname=$this->databaseName&newname=$newName",
+            'https://' . static::getCpanelHost() . ':' . static::getCpanelPort() .
+            "/execute/$this->apiModuleName/rename_database?oldname=$this->databaseName&newname=$newName",
             (string)$request->getUri()
         );
     }
