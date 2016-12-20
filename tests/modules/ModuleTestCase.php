@@ -6,6 +6,7 @@ use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Middleware;
 use GuzzleHttp\Psr7\Response;
+use kdn\cpanel\api\Auth;
 use kdn\cpanel\api\Cpanel;
 use kdn\cpanel\api\HistoryContainer;
 use kdn\cpanel\api\TestCase;
@@ -54,7 +55,13 @@ EOT;
         }
         $stack = HandlerStack::create($handler);
         $stack->push(Middleware::history($this->historyContainer));
-        return ['clientConfig' => ['handler' => $stack, 'verify' => static::getGuzzleRequestVerify()]];
+        return [
+            'host' => static::getWhmHost(),
+            'clientConfig' => ['handler' => $stack, 'verify' => static::getGuzzleRequestVerify()],
+            'auth' => new Auth(
+                ['username' => static::getWhmAuthUsername(), 'password' => static::getWhmAuthPassword()]
+            ),
+        ];
     }
 
     /**
