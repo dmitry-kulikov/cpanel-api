@@ -3,19 +3,16 @@
 namespace kdn\cpanel\api\modules;
 
 use kdn\cpanel\api\Cpanel;
-use kdn\cpanel\api\Module;
+use kdn\cpanel\api\responses\WhmApi1Response;
 
 /**
  * Class WhmApi1Module.
  * @package kdn\cpanel\api\modules
+ * @method WhmApi1Response get($function, $params = [], $body = null, $requestOptions = [])
+ * @method WhmApi1Response post($function, $params = [], $body = null, $requestOptions = [])
  */
-class WhmApi1Module extends Module
+class WhmApi1Module extends WhmApi0Module
 {
-    /**
-     * @inheritdoc
-     */
-    protected $port = 2087;
-
     /**
      * @inheritdoc
      */
@@ -31,6 +28,7 @@ class WhmApi1Module extends Module
      */
     protected function buildUri($function, $params)
     {
-        return $this->getBaseUri();
+        $params['api.version'] = 1;
+        return parent::buildUri($function, $params);
     }
 }

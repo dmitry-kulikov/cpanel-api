@@ -20,6 +20,22 @@ abstract class UapiModuleTestCase extends ModuleTestCase
     /**
      * @inheritdoc
      */
+    protected function getMockResponseBody()
+    {
+        return <<<'EOT'
+{
+    "messages": null,
+    "errors": null,
+    "status": 1,
+    "metadata": {},
+    "data": null
+}
+EOT;
+    }
+
+    /**
+     * @inheritdoc
+     */
     protected function getCpanelConfig()
     {
         $config = parent::getCpanelConfig();

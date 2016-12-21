@@ -19,9 +19,14 @@ abstract class WhmApi0ModuleTestCase extends ModuleTestCase
     /**
      * @inheritdoc
      */
-    protected function setUp()
+    protected function getMockResponseBody()
     {
-        parent::setUp();
-        $this->module->setPort(static::getWhmPort());
+        return <<<'EOT'
+{
+    "result": [],
+    "statusmsg": "Ok",
+    "status": 1
+}
+EOT;
     }
 }

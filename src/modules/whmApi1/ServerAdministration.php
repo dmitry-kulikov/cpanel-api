@@ -14,4 +14,13 @@ class ServerAdministration extends WhmApi1Module
      * @inheritdoc
      */
     protected $name = 'ServerAdministration';
+
+    /**
+     * @link https://documentation.cpanel.net/display/SDK/WHM+API+1+Functions+-+gethostname
+     * @return \kdn\cpanel\api\responses\WhmApi1Response parsed response to request.
+     */
+    public function getHostName()
+    {
+        return $this->get('gethostname');
+    }
 }

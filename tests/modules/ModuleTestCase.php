@@ -35,6 +35,12 @@ abstract class ModuleTestCase extends TestCase
     protected $moduleName;
 
     /**
+     * Get response body for mock handler.
+     * @return string response body for mock handler.
+     */
+    abstract protected function getMockResponseBody();
+
+    /**
      * Get configuration for Cpanel.
      * @return array configuration for Cpanel.
      */
@@ -42,16 +48,7 @@ abstract class ModuleTestCase extends TestCase
     {
         $handler = null;
         if (!static::getIntegrationTesting()) {
-            $responseBody = <<<'EOT'
-{
-    "messages": null,
-    "errors": null,
-    "status": 1,
-    "metadata": {},
-    "data": null
-}
-EOT;
-            $handler = new MockHandler([new Response(200, [], $responseBody)]);
+            $handler = new MockHandler([new Response(200, [], $this->getMockResponseBody())]);
         }
         $stack = HandlerStack::create($handler);
         $stack->push(Middleware::history($this->historyContainer));
@@ -72,5 +69,6 @@ EOT;
         parent::setUp();
         $this->clearHistoryContainer();
         $this->module = (new Cpanel($this->getCpanelConfig()))->{$this->apiName}->{$this->moduleName};
+        $this->module->setPort(static::getWhmPort());
     }
 }
