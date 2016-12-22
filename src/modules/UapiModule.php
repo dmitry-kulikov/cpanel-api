@@ -12,7 +12,7 @@ use kdn\cpanel\api\responses\UapiResponse;
  * @method UapiResponse get($function, $params = [], $body = null, $requestOptions = [])
  * @method UapiResponse post($function, $params = [], $body = null, $requestOptions = [])
  */
-class UapiModule extends Module
+abstract class UapiModule extends Module
 {
     /**
      * @inheritdoc

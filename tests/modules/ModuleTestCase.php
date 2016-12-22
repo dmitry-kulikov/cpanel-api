@@ -38,7 +38,10 @@ abstract class ModuleTestCase extends TestCase
      * Get response body for mock handler.
      * @return string response body for mock handler.
      */
-    abstract protected function getMockResponseBody();
+    protected function getMockResponseBody()
+    {
+        return '';
+    }
 
     /**
      * Get configuration for Cpanel.

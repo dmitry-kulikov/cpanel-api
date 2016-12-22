@@ -11,7 +11,7 @@ use kdn\cpanel\api\responses\WhmApi1Response;
  * @method WhmApi1Response get($function, $params = [], $body = null, $requestOptions = [])
  * @method WhmApi1Response post($function, $params = [], $body = null, $requestOptions = [])
  */
-class WhmApi1Module extends WhmApi0Module
+abstract class WhmApi1Module extends WhmApi0Module
 {
     /**
      * @inheritdoc
