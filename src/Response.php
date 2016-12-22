@@ -32,6 +32,15 @@ abstract class Response extends Object
     }
 
     /**
+     * Get raw response object from GuzzleHttp.
+     * @return \Psr\Http\Message\ResponseInterface raw response object from GuzzleHttp.
+     */
+    public function getRawResponse()
+    {
+        return $this->rawResponse;
+    }
+
+    /**
      * Returns whether response was parsed.
      * @return boolean whether response was parsed.
      */
@@ -50,7 +59,9 @@ abstract class Response extends Object
             return $this;
         }
         $encoder = new JsonEncoder();
-        $decodedResponse = $encoder->decode($this->rawResponse->getBody()->getContents(), $encoder::FORMAT);
+        $body = $this->getRawResponse()->getBody();
+        $decodedResponse = $encoder->decode($body->getContents(), JsonEncoder::FORMAT);
+        $body->rewind();
         $this->parsed = true;
         $this->denormalize($decodedResponse);
         return $this;

@@ -11,12 +11,12 @@ use kdn\cpanel\api\Response;
 class Api2Response extends Response
 {
     /**
-     * @var integer cPanel API version called
+     * @var null|integer cPanel API version called, can be null in case of error
      */
     public $apiVersion;
 
     /**
-     * @var string function name
+     * @var null|string function name, can be null in case of error
      */
     public $func;
 
@@ -26,15 +26,25 @@ class Api2Response extends Response
     public $data;
 
     /**
-     * @var array an array of information about the function call itself;
+     * @var null|array an array of information about the function call itself, can be null in case of error;
      * all cPanel API 2 functions include the result parameter in this array
      */
     public $event;
 
     /**
-     * @var string module name
+     * @var null|string module name, can be null in case of error
      */
     public $module;
+
+    /**
+     * @var null|string type, null in case of success
+     */
+    public $type;
+
+    /**
+     * @var null|string error message, null in case of success
+     */
+    public $error;
 
     /**
      * @inheritdoc
@@ -47,9 +57,13 @@ class Api2Response extends Response
             'data' => 'data',
             'event' => 'event',
             'module' => 'module',
+            'type' => 'type',
+            'error' => 'error',
         ];
         foreach ($mapping as $property => $key) {
-            $this->$property = $data['cpanelresult'][$key];
+            if (array_key_exists($key, $data['cpanelresult'])) {
+                $this->$property = $data['cpanelresult'][$key];
+            }
         }
     }
 }

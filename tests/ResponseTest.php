@@ -39,6 +39,7 @@ class ResponseTest extends TestCase
     /**
      * @covers \kdn\cpanel\api\Response::__construct
      * @covers \kdn\cpanel\api\Response::parse
+     * @uses   \kdn\cpanel\api\Response::getRawResponse
      * @uses   \kdn\cpanel\api\Response::isParsed
      * @small
      */
